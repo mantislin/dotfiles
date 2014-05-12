@@ -1,0 +1,18 @@
+set guifont=Menlo:h11
+set gfw=Menlo:h11
+
+let g:ml =75 | let g:mc =237 | let g:mx =10  | let g:my =33
+let g:ll =75 | let g:lc =120 | let g:lx =13  | let g:ly =34
+let g:rl =75 | let g:rc =119 | let g:rx =825 | let g:ry =34
+let g:lbl=35 | let g:lbc=125 | let g:lbx=0   | let g:lby=566
+let g:rbl=35 | let g:rbc=125 | let g:rbx=802 | let g:rby=566
+let g:ltl=35 | let g:ltc=125 | let g:ltx=0   | let g:lty=0
+let g:rtl=35 | let g:rtc=125 | let g:rtx=802 | let g:rty=0
+
+" let g:ml =g:themax | let g:mc =g:themax | let g:mx =0        | let g:my =0
+" let g:ll =g:themax | let g:lc =120      | let g:lx =0        | let g:ly =0
+" let g:rl =g:themax | let g:rc =120      | let g:rx =g:themax | let g:ry =0
+" let g:lbl=35       | let g:lbc=125      | let g:lbx=0        | let g:lby=g:themax
+" let g:rbl=35       | let g:rbc=125      | let g:rbx=g:themax | let g:rby=g:themax
+" let g:ltl=35       | let g:ltc=125      | let g:ltx=0        | let g:lty=0
+" let g:rtl=35       | let g:rtc=125      | let g:rtx=g:themax | let g:rty=0

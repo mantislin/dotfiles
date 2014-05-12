@@ -1,0 +1,880 @@
+//
+// BusComingBellAddVC.m
+// AutoTraffic2012_js
+//
+// Created by mts on 12/3/12.
+// Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "BusComingBellAddVC.h"
+#import "UserApp.h"
+#import "bus_defs.h"
+#import "CtItemListAlertSelector.h"
+#import "CheckListSelector.h"
+#import "BusComingBell.h"
+#import "BusComingBellDao.h"
+
+#define LabLinePlaceholder @"获取线路"
+#define LabStPlaceholder @"请选择站点"
+#define LabDistPlaceholder @"请选择提醒站点数目"
+
+@interface BusComingBellAddVC () {
+@private
+    int _mode; // 1 从公交站点查询结果界面添加; 2 修改闹铃; 3 从闹铃列表界面添加
+    int popSelType; // 0 is invalid
+    int repeatsSelType; // 0 is invalid
+    int queryType; // 0 is invalid
+}
+@end
+
+@implementation BusComingBellAddVC
+
+@synthesize viewAdd = _viewAdd;
+@synthesize viewConf = _viewConf;
+@synthesize viewLine = _viewLine;
+@synthesize viewNoLine = _viewNoLine;
+@synthesize labLine = _labLine; // 线路
+@synthesize labStation = _labStation; // 上车站点
+@synthesize labResDis = _labResDis; // 响铃提示
+@synthesize labRepeats = _labRepeats; // 预订日期
+@synthesize btnState = _btnState; // 启用闹铃
+@synthesize btnTimeStart = _btnTimeStart; // 提醒时间段，开始
+@synthesize btnTimeEnd = _btnTimeEnd; // 提醒时间段，结束
+@synthesize btnShake = _btnShake; // 震动
+@synthesize btnBell = _btnBell; // 铃声
+
+@synthesize busbell = _busbell;
+@synthesize data = _data;
+// @synthesize busLineDict = _busLineDict;
+// @synthesize busStationArr = _busStationArr;
+// @synthesize cityCode = _cityCode;
+// @synthesize busDir = _busDir;
+
+- (NSMutableDictionary *)data
+{
+    if (!_data) {
+        NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+        self.data = data;
+        [data release];
+    }
+    return _data;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        _mode = 3;
+    }
+    return self;
+}
+
+- (id)initWithParams:(NSDictionary *)params
+{
+    if (self = [super init]) {
+        BusComingBell *busbell = [[BusComingBell alloc] init];
+        busbell.line = [TypeUtil ObjToStr:[params objectForKey:@"Line"]];
+        self.busbell = busbell;
+        [busbell release];
+        _mode = 1;
+    }
+    return self;
+}
+
+- (id)initWithBusBell:(BusComingBell *)busbell
+{
+    if (self = [super init]) {
+        self.busbell = busbell;
+        _mode = 2;
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationItem.title = @"添加上车提醒";
+    if (!self.busbell) {
+        BusComingBell *busbell = [[BusComingBell alloc] init];
+        self.busbell = busbell;
+        [busbell release];
+    } else {
+        self.btnState.selected = self.busbell.state;
+        self.labLine.text = self.busbell.line;
+        self.labStation.text = self.busbell.stname;
+        self.labResDis.text = [NSString stringWithFormat:@"提前 %.0d 站",
+                               self.busbell.distance];
+        self.labRepeats.text = [BusBell stringFromRepeats:self.busbell.repeats];
+
+        NSString *timeStart = [NSString stringWithFormat:@"%02d-%02d",
+                               self.busbell.timeRange->startHour,
+                               self.busbell.timeRange->startMinute];
+        NSString *timeEnd = [NSString stringWithFormat:@"%02d-%02d",
+                             self.busbell.timeRange->endHour,
+                             self.busbell.timeRange->endMinute];
+        [self.btnTimeStart setTitle:timeStart forState:UIControlStateNormal];
+        [self.btnTimeEnd setTitle:timeEnd forState:UIControlStateNormal];
+
+        self.btnBell.selected = self.busbell.ring;
+        self.btnShake.selected = self.busbell.vibrate;
+        /*
+        self.labLine.text = _busbell.line;
+        self.labStation.text = _busbell.station;
+        self.labResDis.text = [NSString stringWithFormat:@"%.0f米", _busbell.distance];
+        self.btnState.selected = _busbell.state;
+        self.btnShake.selected = _busbell.shake;
+        self.btnBell.selected = _busbell.bell;
+         */
+    }
+    [self initUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidUnload
+{
+    [self setViewAdd:nil];
+    [self setViewConf:nil];
+    [self setViewLine:nil];
+    [self setViewNoLine:nil];
+    [self setLabLine:nil]; // 线路
+    [self setLabStation:nil]; // 上车站点
+    [self setLabResDis:nil]; // 响铃提示
+    [self setLabRepeats:nil]; // 预订日期
+    [self setBtnState:nil]; // 启用闹铃
+    [self setBtnTimeStart:nil]; // 提醒时间段，开始
+    [self setBtnTimeEnd:nil]; // 提醒时间段，结束
+    [self setBtnShake:nil]; // 震动
+    [self setBtnBell:nil]; // 铃声
+
+    [self setBusbell:nil];
+    [self setData:nil];
+    // [self setBusLineDict:nil];
+    // [self setBusStationArr:nil];
+    // [self setCityCode:nil];
+    // [self setBusDir:nil];
+
+    [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc
+{
+    [_viewAdd release];
+    [_viewConf release];
+    [_viewLine release];
+    [_viewNoLine release];
+    [_labLine release]; // 线路
+    [_labStation release]; // 上车站点
+    [_labResDis release]; // 响铃提示
+    [_labRepeats release]; // 预订日期
+    [_btnState release]; // 启用闹铃
+    [_btnTimeStart release]; // 提醒时间段，开始
+    [_btnTimeEnd release]; // 提醒时间段，结束
+    [_btnShake release]; // 震动
+    [_btnBell release]; // 铃声
+
+    [_busbell release];
+    [_data release];
+    // [_busLineDict release];
+    // [_busStationArr release];
+    // [_cityCode release];
+    // [_busDir release];
+
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark ButtonActions
+
+- (IBAction)btnSettings_TouchUpInside:(id)sender
+{
+    if (![sender isKindOfClass:[UIButton class]]) { return; }
+    UIButton *btn = (UIButton *)sender;
+    int tag = btn.tag;
+    switch (tag) {
+        case 1: { // 启用闹铃
+            [self btnSwitch_TouchUpInside:_btnState];
+            break;
+        }
+        case 2: { // 线路
+            BusLineQueryViewController *vc =
+                [[BusLineQueryViewController alloc] init];
+            vc.delegate = self;
+            vc.title = @"选择线路";
+            [UserApp.curApp.rootNavController pushViewController:vc animated:YES];
+            [vc.queryHistoryController view].hidden = YES;
+            [vc release];
+            break;
+        }
+        case 3: { // 上车站点
+            if (_mode == 3 && (self.busbell.line == nil || self.busbell.line.length <= 0)) {
+                [UserApp showToast:@"请先选择线路"];
+                return;
+            }
+            queryType = 2;
+            [self startQuery];
+            break;
+        }
+        case 4: { // 响铃提示
+            NSArray *busStationList = [self.data objectForKey:@"BusStationList"];
+            if (busStationList.count <= 0) {
+                [UserApp showToast:@"没有站点可以提前"];
+                return;
+            }
+            int endno = (self.busbell.direction == 0 ? 0 : busStationList.count - 1);
+            int distance = abs(self.busbell.stno - endno);
+            if (distance <= 0) {
+                [UserApp showToast:@"没有站点可以提前"];
+                return;
+            }
+            NSMutableArray *distList = [[NSMutableArray alloc] init];
+            for (int i = 0; i < distance; i++)
+                [distList addObject:[NSString stringWithFormat:@"提前 %d 站", i + 1]];
+            [self.data setObject:distList forKey:@"DistanceList"];
+            if (distList.count == 1) {
+                [self OnPopupItemSelected:@"提前 1 站"];
+            } else {
+                [CtItemListAlertSelector showItemListWithDataSource:distList
+                                                     propNameOfDict:nil
+                                                           andTitle:@"选择距离"
+                                                        andDelegate:self];
+            }
+            [distList release];
+            break;
+        }
+        case 5: { // 预订日期
+            NSMutableArray *repeats = [NSMutableArray arrayWithArray:
+                                       [self.busbell.repeats componentsSeparatedByString:@","]];
+            NSMutableArray *checkList = [[NSMutableArray alloc] init];
+            for (int i = 0; i < 7; i++) {
+                BOOL bChecked = NO;
+                for (int j = 0; j < repeats.count; j++) {
+                    int iWkday = [[repeats objectAtIndex:j] intValue];
+                    if (iWkday == i) {
+                        bChecked = YES;
+                        break;
+                    }
+                }
+                NSString *name = [BusBell weekdayFromNum:i];
+                NSString *value = [NSString stringWithFormat:@"%d", i];
+                NSNumber *nChecked = [NSNumber numberWithBool:bChecked];
+                NSMutableDictionary *checkItem = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                  name, @"Name",
+                                                  value, @"Value",
+                                                  nChecked, @"Checked", nil];
+                [checkList addObject:checkItem];
+            }
+            [self.data setObject:checkList forKey:@"WeekdayCheckList"];
+            [CheckListSelector showCheckListWithDataSource:checkList
+                                            propNameOfDict:@"Name"
+                                           propCheckOfDict:@"Checked"
+                                                  andTitle:@"选择预订日期"
+                                               andDelegate:self];
+            [checkList release];
+            break;
+        }
+        case 6: { // 提醒时间段
+            break;
+        }
+        case 7: { // 震动
+            [self btnSwitch_TouchUpInside:_btnShake];
+            break;
+        }
+        case 8: { // 铃声
+            [self btnSwitch_TouchUpInside:_btnBell];
+            break;
+        }
+        default: {
+            NSLog(@"未知操作");
+            break;
+        }
+    }
+}
+
+- (void)backupSomeArgs
+{
+    if (self.labLine.text.length > 0)
+        [self.data setObject:self.labLine.text forKey:@"LTLine"];
+    if (self.labStation.text.length > 0)
+        [self.data setObject:self.labStation.text forKey:@"LTStation"];
+    if (self.labResDis.text.length > 0)
+        [self.data setObject:self.labResDis.text forKey:@"LTDistance"];
+    if (self.busbell.line.length > 0)
+        [self.data setObject:self.busbell.line forKey:@"BBLine"];
+    if (self.busbell.stname.length > 0)
+        [self.data setObject:self.busbell.stname forKey:@"BBStation"];
+    [self.data setObject:[NSNumber numberWithInt:self.busbell.distance]
+                  forKey:@"BBDistance"];
+    // if (self.busbell.line.length > 0)
+    //     [self.data setObject:self.busbell.line forKey:@"LastBusLine"];
+    // if (self.labLine.text.length > 0)
+    //     [self.data setObject:self.labLine.text forKey:@"LastBusLineDesc"];
+}
+
+- (void)restoreSomeArgs
+{
+    NSString *busLine = [NSString stringWithFormat:@"%@",
+                         [self.data objectForKey:@"LastBusLine"]];
+    NSString *busLineDesc = [NSString stringWithFormat:@"%@",
+                             [self.data objectForKey:@"LastBusLineDesc"]];
+    self.busbell.line = (busLine.length > 0 ? busLine : nil);
+    [self.data setObject:@"" forKey:@"LastBusLine"];
+
+    self.labLine.text = (busLineDesc.length > 0 ?
+                         busLineDesc :
+                         LabLinePlaceholder);
+    [self.data setObject:@"" forKey:@"LastBusLineDesc"];
+}
+
+- (IBAction)btnTimeRange_TouchUpInside:(id)sender
+{
+    if (![sender isKindOfClass:[UIButton class]]) { return; }
+    UIButton *btn = (UIButton *)sender;
+    int tag = btn.tag;
+
+    if (tag == 51 || tag == 52) {
+        NSDateComponents *dtCmpt =
+            [[NSCalendar currentCalendar] components:NSYearCalendarUnit |
+                                                    NSMonthCalendarUnit |
+                                                    NSDayCalendarUnit |
+                                                    NSHourCalendarUnit |
+                                                    NSMinuteCalendarUnit
+                                            fromDate:[NSDate date]];
+        if (tag == 51) {
+            repeatsSelType = 1;
+            dtCmpt.hour = self.busbell.timeRange->startHour;
+            dtCmpt.minute = self.busbell.timeRange->startMinute;
+        } else if (tag == 52) {
+            repeatsSelType = 2;
+            dtCmpt.hour = self.busbell.timeRange->endHour;
+            dtCmpt.minute = self.busbell.timeRange->endMinute;
+        }
+        NSDate *dateStart = [[NSCalendar currentCalendar] dateFromComponents:dtCmpt];
+        [self showRepeatsSelector:dateStart];
+    } else {
+        NSLog(@"未知操作");
+    }
+}
+
+- (void)showRepeatsSelector:(NSDate *)date {
+    int borderLR = 30;
+
+    UIView *dtPkrBg = [[UIView alloc] initWithFrame:self.view.frame];
+    dtPkrBg.alpha = 0.5f;
+    dtPkrBg.backgroundColor = [UIColor blackColor];
+
+    UIDatePicker *dtPicker = [[UIDatePicker alloc] init];
+    dtPicker.datePickerMode = UIDatePickerModeTime;
+    NSDate *dateDtPkr = (date == nil ? [NSDate date] : date);
+    dtPicker.date = dateDtPkr;
+    CGRect rect = dtPicker.frame;
+    rect.size.width = self.view.frame.size.width - borderLR * 2;
+    dtPicker.frame = rect;
+    dtPicker.center = self.view.center;
+    dtPicker.transform = CGAffineTransformMakeTranslation(0, -70);
+
+    UIButton *btnConfirm = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *btnCancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btnConfirm.tag = 1;
+    btnCancel.tag = 0;
+    [btnConfirm setTitle:@"设置" forState:UIControlStateNormal];
+    [btnCancel setTitle:@"取消" forState:UIControlStateNormal];
+    [btnConfirm addTarget:self
+                   action:@selector(onRepeatsSelected:)
+         forControlEvents:UIControlEventTouchUpInside];
+    [btnCancel addTarget:self
+                  action:@selector(onRepeatsSelected:)
+        forControlEvents:UIControlEventTouchUpInside];
+    rect = dtPicker.frame;
+    CGRect rectBtn = CGRectMake(rect.origin.x,
+                                rect.origin.y + rect.size.height + 10,
+                                (rect.size.width - 10) / 2,
+                                40);
+    btnConfirm.frame = rectBtn;
+    rectBtn.origin.x = rect.origin.x + rect.size.width - rectBtn.size.width;
+    btnCancel.frame = rectBtn;
+
+    [self.data setObject:dtPkrBg forKey:@"DatePickerBackground"];
+    [self.data setObject:dtPicker forKey:@"DatePicker"];
+    [self.data setObject:btnConfirm forKey:@"ButtonConfirm"];
+    [self.data setObject:btnCancel forKey:@"ButtonCancel"];
+
+    [self.view addSubview:dtPkrBg];
+    [self.view addSubview:dtPicker];
+    [self.view addSubview:btnConfirm];
+    [self.view addSubview:btnCancel];
+
+    [dtPkrBg release];
+    [dtPicker release];
+}
+
+- (void)onRepeatsSelected:(id)sender
+{
+    if (![sender isKindOfClass:[UIButton class]]) {
+        [self hideRepeatsSelector];
+        return;
+    }
+    UIButton *btn = (UIButton *)sender;
+    int tag = btn.tag;
+    if (tag == 1) {
+        UIDatePicker *dtPicker = [self.data objectForKey:@"DatePicker"];
+        if (dtPicker == nil) {
+            [self hideRepeatsSelector];
+            return;
+        }
+        NSDate *dateDtPkr = dtPicker.date;
+        NSDateComponents *dtCmpt =
+            [[NSCalendar currentCalendar] components:NSYearCalendarUnit |
+                                                    NSMonthCalendarUnit |
+                                                    NSDayCalendarUnit |
+                                                    NSHourCalendarUnit |
+                                                    NSMinuteCalendarUnit
+                                            fromDate:dateDtPkr];
+        if (repeatsSelType == 1) {
+            self.busbell.timeRange->startHour = dtCmpt.hour;
+            self.busbell.timeRange->startMinute = dtCmpt.minute;
+            NSString *title = [NSString stringWithFormat:@"%02d:%02d",
+                               self.busbell.timeRange->startHour,
+                               self.busbell.timeRange->startMinute];
+            [self.btnTimeStart setTitle:title forState:UIControlStateNormal];
+        } else if (repeatsSelType == 2) {
+            self.busbell.timeRange->endHour = dtCmpt.hour;
+            self.busbell.timeRange->endMinute = dtCmpt.minute;
+            NSString *title = [NSString stringWithFormat:@"%02d:%02d",
+                               self.busbell.timeRange->endHour,
+                               self.busbell.timeRange->endMinute];
+            [self.btnTimeEnd setTitle:title forState:UIControlStateNormal];
+        }
+    }
+    [self hideRepeatsSelector];
+}
+
+- (void)hideRepeatsSelector
+{
+    repeatsSelType = 0;
+    UIView *dtPkrBg = [self.data objectForKey:@"DatePickerBackground"];
+    UIDatePicker *dtPicker = [self.data objectForKey:@"DatePicker"];
+    UIButton *btnConfirm = [self.data objectForKey:@"ButtonConfirm"];
+    UIButton *btnCancel = [self.data objectForKey:@"ButtonCancel"];
+    if (btnCancel) [btnCancel removeFromSuperview];
+    if (btnConfirm) [btnConfirm removeFromSuperview];
+    if (dtPicker) [dtPicker removeFromSuperview];
+    if (dtPkrBg) [dtPkrBg removeFromSuperview];
+}
+
+- (IBAction)btnSwitch_TouchUpInside:(id)sender
+{
+    if (![sender isKindOfClass:[UIButton class]]) { return; }
+    UIButton *btn = (UIButton *)sender;
+    int tag = btn.tag;
+
+    btn.selected = !btn.selected;
+    if (!_busbell) { return; }
+    switch (tag) {
+        case 101: { // 启用闹铃
+            self.busbell.state = btn.selected;
+            break;
+        }
+        case 102: { // 震动
+            self.busbell.vibrate = btn.selected;
+            break;
+        }
+        case 103: { // 铃声
+            self.busbell.ring = btn.selected;
+            break;
+        }
+        default: {
+            NSLog(@"未知操作");
+            break;
+        }
+    }
+}
+
+- (IBAction)btnConfirm_TouchUpInside:(id)sender
+{
+    /// here
+    if (_mode == 3) {
+        if ([TypeUtil isEmptyString:self.busbell.line]) {
+            [UserApp showToast:@"请选择线路"];
+            return;
+        }
+        if ([TypeUtil isEmptyString:self.busbell.stname]) {
+            [UserApp showToast:@"请选择站点"];
+            return;
+        }
+
+        /*
+        NSDictionary *busStationInfo = nil;
+
+        for (NSDictionary *tmp in _busStationArr) {
+            NSString *name = [tmp objectForKey:@"name"];
+            if ([_busbell.station isEqualToString:name]) {
+                busStationInfo = tmp;
+                break;
+            }
+        }
+        if (busStationInfo == nil) {
+            [UserApp showToast:@"未选择站点"];
+            return;
+        }
+        float longi =
+        [TypeUtil ObjToFloat:[busStationInfo objectForKey:@"longitude"]];
+        float latit =
+        [TypeUtil ObjToFloat:[busStationInfo objectForKey:@"latitude"]];
+        longi = 113.303066;
+        latit = 23.098025;
+        self.bell.longitude = longi;
+        self.bell.latitude = latit;
+         */
+    }
+
+    /*
+    BusComingBellDao *dao = [[BusComingBellDao alloc] init];
+    [dao saveSetting:_busbell];
+    [dao release];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:@"BCBellsUpdated" object:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+     */
+}
+
+#pragma mark -
+#pragma mark BusBellQueryLineDelegate
+
+- (void)onBusLineQuerySucc:(NSObject *)res
+{
+    NSDictionary *busLineDict = (NSDictionary *)res;
+    if (busLineDict)
+        [self.data setObject:busLineDict forKey:@"BusLineDict"];
+    [self showBusLineSelector:busLineDict];
+}
+
+- (void)onBusLineQueryFail:(NSObject *)res
+{
+    if (res == nil) { return; }
+    if ([res isKindOfClass:[NSException class]]) {
+        NSException *err = (NSException *)res;
+        [UserApp showMessage:@"错误" message:[err reason]];
+        return;
+    }
+}
+
+#pragma mark -
+#pragma mark others
+
+- (void)showBusLineSelector:(NSDictionary *)data
+{
+    NSArray *boxData = [data objectForKey:@"names"];
+    if (boxData == nil || boxData.count == 0) {
+        [UserApp showMessage:@"公交查询" message:@"未找到符合条件的线路"];
+        return;
+    }
+    popSelType = 1;
+    if (boxData.count == 1) {
+        [self OnPopupItemSelected:[boxData objectAtIndex:0]];
+    } else {
+        [CtItemListAlertSelector showItemListWithDataSource:boxData
+                                             propNameOfDict:nil
+                                                   andTitle:@"选择线路"
+                                                andDelegate:self];
+    }
+}
+
+- (void)startQuery
+{
+    NSMutableString *url = (NSMutableString *)
+    [UserApp getBaServerCvUrl:@"cvId=710001&type=1&bus="];
+    [url appendString:[CtUrlHelper urlEncode:self.busbell.line]];
+    [url appendString:@"&city="];
+    [url appendString:[CtUrlHelper urlEncode:self.busbell.city]];
+    [url appendString:@"&dir="];
+    [url appendString:[NSString stringWithFormat:@"%d", self.busbell.direction]];
+    [url appendString:@"&hash=&verifyCode="];
+    [url appendString:[NetUtil getEncryptKey:url]];
+
+    NSObject *res = [NetOperation tryLoadJsonURLCache:url
+                                         withPostData:nil
+                                         cacheInTable:BUS_CACHE_TABLE
+                                         andCacheType:BUS_LINE_CACHE_TYPE
+                                      cacheExpireTime:BUS_LINE_CACHE_EXPIRE_TIME];
+    if (res != nil) {
+        [self OnCtNetReqFinished:res];
+    } else {
+        [UserApp showProgressInView:self.view animated:YES];
+        NetOperation *req = [[NetOperation alloc] initWithJsonCacheURL:url
+                                                          withPostData:nil
+                                                          withDelegate:self
+                                                          cacheInTable:BUS_CACHE_TABLE
+                                                          andCacheType:BUS_LINE_CACHE_TYPE
+                                                       cacheExpireTime:BUS_LINE_CACHE_EXPIRE_TIME
+                                                           refreshMode:NO];
+        [UserApp.curApp.netReqQueue addOperation:req];
+        [req release];
+    }
+}
+
+- (void)initUI
+{
+    if (_mode == 1) { // 从公交站点查询结果界面添加闹铃
+        _viewConf.hidden = YES;
+        _viewLine.hidden = YES;
+        CGRect rect = _viewAdd.frame;
+        rect.origin.y = 0;
+        _viewAdd.frame = rect;
+        rect = _viewNoLine.frame;
+        rect.origin.y = 0;
+        _viewNoLine.frame = rect;
+    } else if (_mode == 2) { // 修改闹铃
+        if (_busbell.line.length <= 0) {
+            _viewLine.hidden = YES;
+            CGRect rect = _viewNoLine.frame;
+            rect.origin.y = 0;
+            _viewNoLine.frame = rect;
+        }
+    } else if (_mode == 3) { // 从公交闹铃列表界面添加闹铃
+        _viewConf.hidden = YES;
+        CGRect rect = _viewAdd.frame;
+        rect.origin.y = 0;
+        _viewAdd.frame = rect;
+    }
+}
+
+#pragma mark -
+#pragma mark NetOperDelegate
+
+- (void)OnCtNetReqFinished:(NSObject *)res
+{
+    [UserApp hideProgressOfView:self.view animated:NO];
+    if (res == nil)
+        return;
+
+    if ([res isKindOfClass:[NSException class]]) {
+        NSException *err = (NSException *)res;
+        [UserApp showMessage:@"错误" message:[err reason]];
+        return;
+    }
+
+    NSDictionary *dict = (NSDictionary *)res;
+    if (dict.count <= 0)
+        return;
+    if (queryType == 1)
+        [self showBusDirectionSelector:dict];
+    else if (queryType == 2)
+        [self showBusStationSelector:dict];
+}
+
+- (void)showBusDirectionSelector:(NSDictionary *)data
+{
+    if (data.count <= 0) {
+        [self restoreSomeArgs];
+        return;
+    }
+    NSArray *props = [data objectForKey:@"Props"];
+    if (props.count <= 16) {
+        [self restoreSomeArgs];
+        return;
+    }
+    int status = [TypeUtil ObjToInt:[props objectAtIndex:16]];
+    if (status == 0) {
+        [self restoreSomeArgs];
+        [UserApp.curApp showMessage:@"温馨提示"
+                            message:@"很抱歉，该线路还没开通实时到站和提醒服务"];
+        return;
+    }
+    NSString *topStName = [TypeUtil ObjToStr:[props objectAtIndex:7]];
+    NSString *btmStName = [TypeUtil ObjToStr:[props objectAtIndex:8]];
+    NSString *topOption = [NSString stringWithFormat:@"下行到 %@", topStName];
+    NSString *btmOption = [NSString stringWithFormat:@"上行到 %@", btmStName];
+
+    NSArray *stNameList = [NSArray arrayWithObjects:btmStName, topStName, nil];
+    NSArray *optionList = [NSArray arrayWithObjects:btmOption, topOption, nil];
+    [self.data setObject:stNameList forKey:@"StNameList"];
+    [self.data setObject:optionList forKey:@"OptionList"];
+
+    popSelType = 2;
+    [CtItemListAlertSelector showItemListWithDataSource:optionList
+                                         propNameOfDict:nil
+                                               andTitle:@"选择运行方向"
+                                            andDelegate:self];
+}
+
+- (NSArray *)remixBusStationsData:(NSArray *)data
+{
+    if (data == nil)
+        return nil;
+    NSMutableArray *stList = [[NSMutableArray alloc] init];
+    for (int i = 0; i < data.count - 3; i += 3) {
+        NSString *stName = [TypeUtil ObjToStr:[data objectAtIndex:i]];
+        float longi = [TypeUtil ObjToFloat:[data objectAtIndex:i + 1]];
+        float latit = [TypeUtil ObjToFloat:[data objectAtIndex:i + 2]];
+        NSNumber *longit = [NSNumber numberWithFloat:longi];
+        NSNumber *latitu = [NSNumber numberWithFloat:latit];
+        NSDictionary *tmpDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                stName, @"name",
+                                longit, @"longitude",
+                                latitu, @"latitude", nil];
+        [stList addObject:tmpDic];
+    }
+    return [stList autorelease];
+}
+
+
+- (void)showBusStationSelector:(NSDictionary *)data
+{
+    if (data == nil)
+        return;
+    NSArray *busStationArr = [data objectForKey:@"Stations"];
+    if (busStationArr == nil ||
+        busStationArr.count <= 0 ||
+        busStationArr.count % 3 != 0) {
+        [UserApp showMessage:@"提示" message:@"未查询到站点"];
+        return;
+    } else {
+        // 之所以如此写，是因为返回的数据类型为
+        // [站点1,经度1,纬度1,站点2,经度2,纬度2,...]
+        NSMutableArray *busStationList = [[NSMutableArray alloc] init];
+        for (int i = 0; i < busStationArr.count; i += 3) {
+            NSString *stName = [TypeUtil ObjToStr:[busStationArr objectAtIndex:i]];
+            float longi = [TypeUtil ObjToFloat:[busStationArr objectAtIndex:i + 1]];
+            float latit = [TypeUtil ObjToFloat:[busStationArr objectAtIndex:i + 2]];
+            NSNumber *longit = [NSNumber numberWithFloat:longi];
+            NSNumber *latitu = [NSNumber numberWithFloat:latit];
+            NSDictionary *tmpDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    stName, @"name",
+                                    longit, @"longitude",
+                                    latitu, @"latitude", nil];
+            [busStationList addObject:tmpDic];
+        }
+        [self.data setObject:busStationList forKey:@"BusStationList"];
+
+        popSelType = 3;
+        if (busStationList.count == 1) {
+            NSDictionary *item0 = [busStationList objectAtIndex:0];
+            NSString *name = [item0 objectForKey:@"name"];
+            [self OnPopupItemSelected:name];
+        } else {
+            [CtItemListAlertSelector showItemListWithDataSource:busStationList
+                                                 propNameOfDict:@"name"
+                                                       andTitle:@"选择站点"
+                                                    andDelegate:self];
+        }
+        [busStationList release];
+    }
+}
+
+#pragma mark -
+#pragma mark CtItemListAlertSelectorDelegate
+
+- (void)OnPopupItemSelected:(NSString *)res
+{
+    if (popSelType == 1) { // 选择线路
+        popSelType = 0;
+        if (res == nil || res.length <= 0) {
+            [UserApp showMessage:@"提示" message:@"未选择线路"];
+            return;
+        }
+        /// here
+        if (![self.busbell.line isEqualToString:res]) {
+            self.labStation.text = LabStPlaceholder;
+            self.labResDis.text = LabDistPlaceholder;
+            self.busbell.stname = nil;
+            self.busbell.distance = 0;
+        }
+        [self backupSomeArgs];
+        self.labLine.text = res;
+        self.busbell.line = res;
+        self.busbell.city = [UserApp.curApp getCurCityCode];
+        queryType = 1;
+        [self startQuery];
+    } else if (popSelType == 2) { // 选择行进方向
+        popSelType = 0;
+        if (res.length <= 0)
+            return;
+        NSArray *optionList = [self.data objectForKey:@"OptionList"];
+        NSArray *stNameList = [self.data objectForKey:@"StNameList"];
+        int index = [optionList indexOfObject:res];
+        if (index == NSNotFound)
+            return;
+        NSString *option = [optionList objectAtIndex:index];
+        NSString *terminus = [stNameList objectAtIndex:index];
+        terminus = [NSString stringWithFormat:@"%@ (%@)", self.busbell.line, terminus];
+        self.busbell.direction = index;
+        self.busbell.terminus = terminus;
+        self.labLine.text = [NSString stringWithFormat:@"%@(%@)",
+                             self.busbell.line,
+                             option];
+        if (optionList)
+            [self.data removeObjectForKey:@"OptionList"];
+        if (stNameList)
+            [self.data removeObjectForKey:@"StNameList"];
+    } else if (popSelType == 3) { // 选择站点
+        popSelType = 0;
+        if (res.length <= 0) {
+            [UserApp showToast:@"未选择站点"];
+            return;
+        }
+        NSArray *busStationList = [self.data objectForKey:@"BusStationList"];
+        if (busStationList.count <= 0)
+            return;
+
+        NSDictionary *stInfo = nil;
+        int stno = -1;
+        for (int i = 0; i < busStationList.count; i++) {
+            stInfo = [busStationList objectAtIndex:i];
+            NSString *stName = [stInfo objectForKey:@"name"];
+            if ([stName isEqualToString:res]) {
+                stno = i;
+                break;
+            }
+        }
+        if (stInfo == nil || stno == -1)
+            return;
+
+        double lat = [TypeUtil ObjToFloat:[stInfo objectForKey:@"latitude"]];
+        double lon = [TypeUtil ObjToFloat:[stInfo objectForKey:@"longitude"]];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(lat, lon);
+        NSString *stname = [stInfo objectForKey:@"name"];
+
+        if (![stname isEqualToString:self.busbell.stname]) {
+            self.labResDis.text = LabDistPlaceholder;
+            self.busbell.distance = 0;
+        }
+
+        self.busbell.coord = coord;
+        self.busbell.stname = stname;
+        self.busbell.stno = stno;
+        self.labStation.text = res;
+    } else {
+        if (res.length <= 0)
+            return;
+        NSString *distance = [res substringToIndex:res.length - 1];
+        self.busbell.distance = [TypeUtil ObjToFloat:distance];
+        self.labResDis.text = res;
+    }
+}
+
+- (void)OnPopupItemChecked:(NSArray *)res {
+    NSMutableArray *checkList = [self.data objectForKey:@"WeekdayCheckList"];
+    NSMutableString *repeats = [[NSMutableString alloc] init];
+    for (int i = 0; i < checkList.count; i++) {
+        NSDictionary *checkItem = [checkList objectAtIndex:i];
+        BOOL checked = [[checkItem objectForKey:@"Checked"] boolValue];
+        if (checked) {
+            NSString *value = [checkItem objectForKey:@"Value"];
+            [repeats appendFormat:@"%@%@", (repeats.length <= 0 ? @"" : @","), value];
+        }
+    }
+    self.busbell.repeats = repeats;
+    self.labRepeats.text = [BusBell stringFromRepeats:repeats];
+    [repeats release];
+}
+
+@end
