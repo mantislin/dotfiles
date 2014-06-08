@@ -1,5 +1,0 @@
-cd /d "C:\Program Files (x86)\VMware\VMware Workstation"
-
-vmware-vdiskmanager.exe -r "D:\vm\OS X Mountain Lion 10.8.3\OS X Mountain Lion-cl1.vmdk" -t 1 "D:\vm\OS X Mountain Lion 10.8.3\OS X Mountain Lion-cl1\OS X Mountain Lion-cl1.vmdk"
-
-shutdown -s -t 0

@@ -86,6 +86,7 @@
     set autochdir " always switch to the current file directory
     set backspace=indent,eol,start " make backspace a more flexible
     set backup " make backup files
+    set undofile " make undo files
     set clipboard+=unnamed " share windows clipboard
     set colorcolumn=81
     if g:os == "windows"
@@ -95,6 +96,9 @@
         let folderPath=$HOME . '/vimfiles/temp'
         echo(system('if not exist "' . folderPath . '" md "' . folderPath . '"'))
         let &directory=folderPath " directory to place swap files in
+        let folderPath=$HOME . '/vimfiles/undo'
+        echo(system('if not exist "' . folderPath . '" md "' . folderPath . '"'))
+        let &undodir=folderPath " directory to place swap files in
         let folderPath=$HOME . '/vimfiles/view'
         let &viewdir=folderPath " directory to mkview
     else
@@ -104,6 +108,9 @@
         let folderPath=$HOME . '/.vim/temp'
         echo(system('if [ ! -d "' . folderPath . '" ]; then mkdir "' . folderPath . '"; fi'))
         let &directory=folderPath " directory to place swap files in
+        let folderPath=$HOME . '/.vim/undo'
+        echo(system('if [ ! -d "' . folderPath . '" ]; then mkdir "' . folderPath . '"; fi'))
+        let &undodir=folderPath " directory to place swap files in
         let folderPath=$HOME . '/.vim/view'
         let &viewdir=folderPath " directory to mkview
     endif
@@ -225,7 +232,7 @@
     au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2
     " Override types
     au BufNewFile,BufRead *.ahk set filetype=autohotkey
-    au BufNewFile,BufRead *.bat set filetype=batch
+    au BufNewFile,BufRead *.bat set filetype=dosbatch
     au BufNewFile,BufRead *.ps1 set filetype=ps1
     au BufNewFile,BufRead *.md set filetype=markdown
     au BufNewFile,BufRead *.dtl set filetype=htmldjango
@@ -385,10 +392,10 @@ set ttymouse=xterm2 " makes it work in everything
 
     " these function and command make you can run NERDTree command easily.
         " <Original> --> <Customize>
-        " NERDTree --> Ntree
-        " NERDTreeFind --> Ntree find
-        " NERDTreeClose --> Ntree close
-    func! Ntree(...)
+        " NERDTree --> Ntr
+        " NERDTreeFind --> Ntr find
+        " NERDTreeClose --> Ntr close
+    func! Ntr(...)
         let wholeCmd = "NERDTree"
         if exists("a:1")
             let capitalInitial = substitute(a:1, '\(.*\)', '\u\1', '')
@@ -397,7 +404,7 @@ set ttymouse=xterm2 " makes it work in everything
         endif
         exec wholeCmd
     endfu
-    command -nargs=? Ntree call Ntree(<f-args>)
+    command -nargs=? Ntr call Ntr(<f-args>)
 
 " plugin neocomplcache
     let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
@@ -482,13 +489,13 @@ set ttymouse=xterm2 " makes it work in everything
         let g:ltl=33 | let g:ltc=110 | let g:ltx=4   | let g:lty=28
         let g:rtl=29 | let g:rtc=101 | let g:rtx=644 | let g:rty=29
     elseif g:os=="mac"
-        let g:ml =57 | let g:mc =180 | let g:mx =8   | let g:my =28
-        let g:ll =57 | let g:lc =105 | let g:lx =4   | let g:ly =26
-        let g:rl =57 | let g:rc =105 | let g:rx =539 | let g:ry =26
+        let g:ml =56 | let g:mc =180 | let g:mx =8   | let g:my =32
+        let g:ll =56 | let g:lc =100 | let g:lx =10  | let g:ly =32
+        let g:rl =56 | let g:rc =100 | let g:rx =567 | let g:ry =32
         let g:lbl=34 | let g:lbc=118 | let g:lbx=3   | let g:lby=325
         let g:rbl=34 | let g:rbc=118 | let g:rbx=448 | let g:rby=325
-        let g:ltl=34 | let g:ltc=118 | let g:ltx=3   | let g:lty=26
-        let g:rtl=34 | let g:rtc=118 | let g:rtx=448 | let g:rty=26
+        let g:ltl=34 | let g:ltc=118 | let g:ltx=3   | let g:lty=32
+        let g:rtl=34 | let g:rtc=118 | let g:rtx=448 | let g:rty=32
     endif
 
     " let g:themax=9999
@@ -557,4 +564,4 @@ set ttymouse=xterm2 " makes it work in everything
 
     command -nargs=1 Size call Size(<f-args>)
 
-    au VimEnter * Size rb
+    " au VimEnter * Size rb

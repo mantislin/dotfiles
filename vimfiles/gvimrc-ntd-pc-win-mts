@@ -1,18 +1,8 @@
 set guifont=Consolas:h10
 set gfw=Consolas:h10
 
-let g:ml =63 | let g:mc =235 | let g:mx =8   | let g:my =12
-let g:ll =63 | let g:lc =116 | let g:lx =12  | let g:ly =12
-let g:rl =63 | let g:rc =116 | let g:rx =841 | let g:ry =12
+let g:ml=63  | let g:mc=235  | let g:mx=8    | let g:my=12
+let g:ll=63  | let g:lc=116  | let g:lx=12   | let g:ly=12
+let g:rl=63  | let g:rc=116  | let g:rx=841  | let g:ry=12
 let g:lbl=31 | let g:lbc=146 | let g:lbx=0   | let g:lby=510
 let g:rbl=31 | let g:rbc=146 | let g:rbx=638 | let g:rby=510
-let g:ltl=31 | let g:ltc=146 | let g:ltx=0   | let g:lty=0
-let g:rtl=31 | let g:rtc=146 | let g:rtx=638 | let g:rty=0
-
-" let g:ml =g:themax | let g:mc =g:themax | let g:mx =0        | let g:my =0
-" let g:ll =g:themax | let g:lc =116      | let g:lx =0        | let g:ly =0
-" let g:rl =g:themax | let g:rc =116      | let g:rx =g:themax | let g:ry =0
-" let g:lbl=31       | let g:lbc=146      | let g:lbx=0        | let g:lby=g:themax
-" let g:rbl=31       | let g:rbc=146      | let g:rbx=g:themax | let g:rby=g:themax
-" let g:ltl=31       | let g:ltc=146      | let g:ltx=0        | let g:lty=0
-" let g:rtl=31       | let g:rtc=146      | let g:rtx=g:themax | let g:rty=0
