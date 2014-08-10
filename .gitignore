@@ -2,11 +2,6 @@
 ## Eclipse
 #################
 
-# custom
-vimfiles/backup/*
-vimfiles/undo/*
-vimfiles/view/*
-
 *.pydevproject
 .project
 .metadata
@@ -218,3 +213,10 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#############
+## Custom
+#############
+vimfiles/backup/*
+vimfiles/undo/*
+vimfiles/view/*
