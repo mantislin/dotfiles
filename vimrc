@@ -238,8 +238,8 @@
     au BufNewFile,BufRead *.dtl set filetype=htmldjango
     au BufNewFile,BufRead *.json,jquery.*.js set filetype=javascript syntax=jquery
     au BufNewFile,BufRead *.h,*.m,*.mm set filetype=objc
-    au BufEnter,VimEnter,FileType *.ahk,*.bat set cindent cinoptions=+0
-    au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
+    " au BufEnter,VimEnter,FileType *.ahk,*.bat set cindent cinoptions=+0 " delete
+    au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0 ff=dos
     " Remember everything (position, folds, etc)
     au BufWinLeave ?* mkview 1
     au BufWinEnter ?* silent loadview 1
@@ -497,33 +497,6 @@ set ttymouse=xterm2 " makes it work in everything
         let g:ltl=34 | let g:ltc=118 | let g:ltx=3   | let g:lty=32
         let g:rtl=34 | let g:rtc=118 | let g:rtx=448 | let g:rty=32
     endif
-
-    " let g:themax=9999
-    " if g:os=="windows"
-    "     let g:ml =g:themax | let g:mc =g:themax | let g:mx =0        | let g:my =0
-    "     let g:ll =g:themax | let g:lc =101      | let g:lx =0        | let g:ly =0
-    "     let g:rl =g:themax | let g:rc =101      | let g:rx =547      | let g:ry =0
-    "     let g:lbl=26       | let g:lbc=113      | let g:lbx=0        | let g:lby=327
-    "     let g:rbl=26       | let g:rbc=113      | let g:rbx=469      | let g:rby=327
-    "     let g:ltl=26       | let g:ltc=113      | let g:ltx=0        | let g:lty=0
-    "     let g:rtl=26       | let g:rtc=113      | let g:rtx=469      | let g:rty=0
-    " elseif g:os=="linux"
-    "     let g:ml =g:themax | let g:mc =g:themax | let g:mx =0        | let g:my =0
-    "     let g:ll =g:themax | let g:lc =100      | let g:lx =0        | let g:ly =0
-    "     let g:rl =g:themax | let g:rc =100      | let g:rx =466      | let g:ry =0
-    "     let g:lbl=29       | let g:lbc=101      | let g:lbx=0        | let g:lby=355
-    "     let g:rbl=29       | let g:rbc=101      | let g:rbx=644      | let g:rby=355
-    "     let g:ltl=29       | let g:ltc=101      | let g:ltx=0        | let g:lty=0
-    "     let g:rtl=29       | let g:rtc=101      | let g:rtx=644      | let g:rty=0
-    " elseif g:os=="mac"
-    "     let g:ml =g:themax | let g:mc =g:themax | let g:mx =0        | let g:my =0
-    "     let g:ll =g:themax | let g:lc =105      | let g:lx =0        | let g:ly =0
-    "     let g:rl =g:themax | let g:rc =105      | let g:rx =g:themax | let g:ry =0
-    "     let g:lbl=34       | let g:lbc=118      | let g:lbx=0        | let g:lby=g:themax
-    "     let g:rbl=34       | let g:rbc=118      | let g:rbx=g:themax | let g:rby=g:themax
-    "     let g:ltl=34       | let g:ltc=118      | let g:ltx=0        | let g:lty=0
-    "     let g:rtl=34       | let g:rtc=118      | let g:rtx=g:themax | let g:rty=0
-    " endif
 
     let hostfile=""
     if g:os=="windows"
