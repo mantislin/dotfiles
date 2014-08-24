@@ -238,7 +238,7 @@
     au BufNewFile,BufRead *.dtl set filetype=htmldjango
     au BufNewFile,BufRead *.json,jquery.*.js set filetype=javascript syntax=jquery
     au BufNewFile,BufRead *.h,*.m,*.mm set filetype=objc
-    " au BufEnter,VimEnter,FileType *.ahk,*.bat set cindent cinoptions=+0 " delete
+    au BufEnter,VimEnter,FileType *.ahk,*.bat,*.ini set cindent cinoptions=+0 ff=dos
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0 ff=dos
     " Remember everything (position, folds, etc)
     au BufWinLeave ?* mkview 1
