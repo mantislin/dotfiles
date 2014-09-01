@@ -473,6 +473,7 @@ set ttymouse=xterm2 " makes it work in everything
     let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 
 " Position and size settings
+    let     g:dfl=30 | let g:dfc=86  | let g:dfx=-1  | let g:dfy=-1
     if g:os=="windows"
         let g:ml =47 | let g:mc =178 | let g:mx =7   | let g:my =7
         let g:ll =47 | let g:lc =101 | let g:lx =7   | let g:ly =7
@@ -509,33 +510,44 @@ set ttymouse=xterm2 " makes it work in everything
         exe 'source ' . hostfile
     endif
 
-    func! Size(posi) " here
-        if a:posi ==? 'max' || a:posi ==? 'm'
-            exec "winpos ".g:mx." ".g:my
-            exec "set lines=".g:ml." columns=".g:mc
+    func! Size(posi)
+        if a:posi ==? 'default' || a:posi ==? 'df'
+            let g:posix = g:dfx | let g:posiy = g:dfy
+            let g:sizel = g:dfl | let g:sizec = g:dfc
+        elseif a:posi ==? 'max' || a:posi ==? 'm'
+            let g:posix = g:mx | let g:posiy = g:my
+            let g:sizel = g:ml | let g:sizec = g:mc
         elseif a:posi ==? 'left' || a:posi ==? 'l'
-            exec "winpos ".g:lx." ".g:ly
-            exec "set lines=".g:ll." columns=".g:lc
+            let g:posix = g:lx | let g:posiy = g:ly
+            let g:sizel = g:ll | let g:sizec = g:lc
         elseif a:posi ==? 'right' || a:posi ==? 'r'
-            exec "winpos ".g:rx." ".g:ry
-            exec "set lines=".g:rl." columns=".g:rc
+            let g:posix = g:rx | let g:posiy = g:ry
+            let g:sizel = g:rl | let g:sizec = g:rc
         elseif a:posi ==? 'leftbottom' || a:posi ==? 'lb'
-            exec "winpos ".g:lbx." ".g:lby
-            exec "set lines=".g:lbl." columns=".g:lbc
+            let g:posix = g:lbx | let g:posiy = g:lby
+            let g:sizel = g:lbl | let g:sizec = g:lbc
         elseif a:posi ==? 'rightbottom' || a:posi ==? 'rb'
-            exec "winpos ".g:rbx." ".g:rby
-            exec "set lines=".g:rbl." columns=".g:rbc
+            let g:posix = g:rbx | let g:posiy = g:rby
+            let g:sizel = g:rbl | let g:sizec = g:rbc
         elseif a:posi ==? 'lefttop' || a:posi ==? 'lt'
-            exec "winpos ".g:ltx." ".g:lty
-            exec "set lines=".g:ltl." columns=".g:ltc
+            let g:posix = g:ltx | let g:posiy = g:lty
+            let g:sizel = g:ltl | let g:sizec = g:ltc
         elseif a:posi ==? 'righttop' || a:posi ==? 'rt'
-            exec "winpos ".g:rtx." ".g:rty
-            exec "set lines=".g:rtl." columns=".g:rtc
+            let g:posix = g:rtx | let g:posiy = g:rty
+            let g:sizel = g:rtl | let g:sizec = g:rtc
         else
+            let g:posix = -1 | let g:posiy = -1
+            let g:sizel = -1 | let g:sizec = -1
+        endif
+        if g:posix == -1 && g:posiy == -1 && g:sizel == -1 && g:sizec == -1
             exec "echo('\"".a:posi."\" is not supported size!')"
+        else
+            if g:posix > -1 && g:posiy > -1 | exec "winpos".g:posix." ".g:posiy | endif
+            if g:sizel > -1 | exec "set lines=".g:sizel | endif
+            if g:sizec > -1 | exec "set columns=".g:sizec | endif
         endif
     endfu
 
     command -nargs=1 Size call Size(<f-args>)
 
-    " au VimEnter * Size rb
+    au VimEnter * Size df
