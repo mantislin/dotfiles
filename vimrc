@@ -359,13 +359,16 @@ set ttymouse=xterm2 " makes it work in everything
     endif
     " ColorClear " clear all highlights
     " ColorToggle " toggle highlights
-" 
-" plugin: RainbowParens
-    au VimEnter * RainbowParenthesesToggle " on/off
-    au Syntax * RainbowParenthesesLoadRound " ()
-    au Syntax * RainbowParenthesesLoadSquare " []
-    au Syntax * RainbowParenthesesLoadBraces " {}
-    au Syntax * RainbowParenthesesLoadChevrons " <>
+
+" plugin: rainbow_parentheses
+    " au VimEnter * RainbowParenthesesToggle " on/off
+    " au Syntax * RainbowParenthesesLoadRound " ()
+    " au Syntax * RainbowParenthesesLoadSquare " []
+    " au Syntax * RainbowParenthesesLoadBraces " {}
+    " au Syntax * RainbowParenthesesLoadChevrons " <>
+
+" plugin: Rainbow Parentheses
+    let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
 " plugin: MiniBufExplorer
     let g:miniBufExplMapWindowNavVim = 1
@@ -542,7 +545,9 @@ set ttymouse=xterm2 " makes it work in everything
         if g:posix == -1 && g:posiy == -1 && g:sizel == -1 && g:sizec == -1
             exec "echo('\"".a:posi."\" is not supported size!')"
         else
-            if g:posix > -1 && g:posiy > -1 | exec "winpos".g:posix." ".g:posiy | endif
+            if g:posix > -1 && g:posiy > -1
+                exec "winpos".g:posix." ".g:posiy
+            endif
             if g:sizel > -1 | exec "set lines=".g:sizel | endif
             if g:sizec > -1 | exec "set columns=".g:sizec | endif
         endif
