@@ -244,11 +244,10 @@
     " Remember everything (position, folds, etc)
     au BufWinLeave ?* mkview 1
     au BufWinEnter ?* silent loadview 1
-    " highlight the columns bigger than 80
-    " ======================================
+    " Set highlights
+    au BufEnter,VimEnter * set cursorline
     " highlight FormatWarning ctermbg=red ctermfg=white guibg=#592929 guifg=white
     highlight FormatWarning ctermbg=red guibg=#592929
-    " /(\()\@!.\)\+\S\*)/  -->  match like: (NSString*)
     au BufEnter,VimEnter * match FormatWarning /\(\%81v.\+\|\( \|\t\)\+\n\)/
 
 " GUI Settings
@@ -545,9 +544,9 @@ set ttymouse=xterm2 " makes it work in everything
         if g:posix == -1 && g:posiy == -1 && g:sizel == -1 && g:sizec == -1
             exec "echo('\"".a:posi."\" is not supported size!')"
         else
-            if g:posix > -1 && g:posiy > -1
-                exec "winpos".g:posix." ".g:posiy
-            endif
+            " if g:posix > -1 && g:posiy > -1
+            "     exec "winpos".g:posix." ".g:posiy
+            " endif
             if g:sizel > -1 | exec "set lines=".g:sizel | endif
             if g:sizec > -1 | exec "set columns=".g:sizec | endif
         endif
