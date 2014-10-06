@@ -477,9 +477,9 @@ set ttymouse=xterm2 " makes it work in everything
 " Position and size settings
     let     g:dfl=30 | let g:dfc=86  | let g:dfx=-1  | let g:dfy=-1
     if g:os=="windows"
-        let g:ml =47 | let g:mc =178 | let g:mx =7   | let g:my =7
-        let g:ll =47 | let g:lc =101 | let g:lx =7   | let g:ly =7
-        let g:rl =47 | let g:rc =101 | let g:rx =547 | let g:ry =7
+        let g:ml =48 | let g:mc =178 | let g:mx =7   | let g:my =7
+        let g:ll =48 | let g:lc =101 | let g:lx =7   | let g:ly =7
+        let g:rl =48 | let g:rc =101 | let g:rx =547 | let g:ry =7
         let g:lbl=26 | let g:lbc=113 | let g:lbx=0   | let g:lby=327
         let g:rbl=26 | let g:rbc=113 | let g:rbx=469 | let g:rby=327
         let g:ltl=26 | let g:ltc=113 | let g:ltx=0   | let g:lty=0
