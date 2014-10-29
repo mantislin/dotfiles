@@ -218,5 +218,6 @@ pip-log.txt
 ## Custom
 #############
 vimfiles/backup/*
+vimfiles/temp/*
 vimfiles/undo/*
 vimfiles/view/*
