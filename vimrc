@@ -1,3 +1,4 @@
+" Test git ssh
 " Modeline and Notes
 "   This is my personal .vimrc, I don't recommend you copy it, just
 "   use the "   pieces you want(and understand!).  When you copy a
