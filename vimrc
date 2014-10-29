@@ -191,7 +191,7 @@
     set foldmethod=indent " Fold on the indent (damn you python)
     set foldlevel=100 " Don't autofold anything (but I can still fold manually)
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
-    function SimpleFoldText() " {
+    function! SimpleFoldText() " {
         return getline(v:foldstart).' '
     endfunction " }
     set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
@@ -219,6 +219,17 @@
     " make arrow keys useful
     " map <left> <ESC>:NERDTree<RETURN>
     " map <right> <ESC>:TagbarToggle<RETURN>
+    noremap <buffer> <silent> k gk
+    noremap <buffer> <silent> j gj
+    noremap <buffer> <silent> 0 g0
+    noremap <buffer> <silent> $ g$
+    noremap <buffer> <silent> ^ g^
+    noremap <buffer> <silent> gk k
+    noremap <buffer> <silent> gj j
+    noremap <buffer> <silent> g0 0
+    noremap <buffer> <silent> g$ $
+    noremap <buffer> <silent> g^ ^
+
     map <up> <ESC>:bp<RETURN>
     map <down> <ESC>:bn<RETURN>
     map <C-H> :wincmd h<CR>
@@ -244,6 +255,9 @@
     " Remember everything (position, folds, etc)
     au BufWinLeave ?* mkview 1
     au BufWinEnter ?* silent loadview 1
+    " Formatting
+    " au BufWritePre * silent! %s/\(\s\|　\)\+$//g|''
+    au BufWritePre * silent! %s/\(\s\|　\)\+$//g
     " Set highlights
     au BufEnter,VimEnter * set cursorline
     " highlight FormatWarning ctermbg=red ctermfg=white guibg=#592929 guifg=white
@@ -407,7 +421,7 @@ set ttymouse=xterm2 " makes it work in everything
         endif
         exec wholeCmd
     endfu
-    command -nargs=? Ntr call Ntr(<f-args>)
+    command! -nargs=? Ntr call Ntr(<f-args>)
 
 " plugin neocomplcache
     let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
@@ -419,7 +433,7 @@ set ttymouse=xterm2 " makes it work in everything
     let g:neocomplcache_min_syntax_length = 3 " Set minimum syntax keyword length.
     let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
     " Define directory.
-    let g:neocomplcache_dictionary_filetype_lists = { 
+    let g:neocomplcache_dictionary_filetype_lists = {
                 \ 'default' : '',
                 \ 'vimshell' : $HOME.'/.vimshell_hist',
                 \ 'scheme' : $HOME.'/.gosh_completions'
@@ -552,6 +566,6 @@ set ttymouse=xterm2 " makes it work in everything
         endif
     endfu
 
-    command -nargs=1 Size call Size(<f-args>)
+    command! -nargs=1 Size call Size(<f-args>)
 
     au VimEnter * Size df
