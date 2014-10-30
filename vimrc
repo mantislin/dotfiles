@@ -217,19 +217,19 @@
     " nmap <leader>t :FufBufferTag<CR>
     " nmap <tab> :FufBufferTag<CR>
     " make arrow keys useful
-    " map <left> <ESC>:NERDTree<RETURN>
+    map <left> <ESC>:NERDTreeFind<RETURN>
     " map <right> <ESC>:TagbarToggle<RETURN>
-    noremap <buffer> <silent> k gk
-    noremap <buffer> <silent> j gj
-    noremap <buffer> <silent> gk k
-    noremap <buffer> <silent> gj j
-
     map <up> <ESC>:bp<RETURN>
     map <down> <ESC>:bn<RETURN>
     map <C-H> :wincmd h<CR>
     map <C-J> :wincmd j<CR>
     map <C-K> :wincmd k<CR>
     map <C-L> :wincmd l<CR>
+
+    noremap <buffer> <silent> k gk
+    noremap <buffer> <silent> j gj
+    noremap <buffer> <silent> gk k
+    noremap <buffer> <silent> gj j
 
 " Autocommands
     " ruby standard 2 spaces, always
