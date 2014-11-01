@@ -217,9 +217,8 @@
     " nmap <leader>t :FufBufferTag<CR>
     " nmap <tab> :FufBufferTag<CR>
     " make arrow keys useful
-    " map <left> <ESC>:NERDTree<RETURN>
+    map <left> <ESC>:NERDTreeFind<RETURN>
     " map <right> <ESC>:TagbarToggle<RETURN>
-
     noremap <buffer> <silent> k gk
     noremap <buffer> <silent> j gj
     noremap <buffer> <silent> gk k
