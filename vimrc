@@ -257,7 +257,7 @@
     au BufWinEnter ?* silent loadview 1
     " Formatting
     " au BufWritePre * silent! %s/\(\s\|　\)\+$//g|''
-    au BufWritePre * silent! %s/\(\s\|　\)\+$//g
+    au BufWritePre * %s/\(\s\|　\)\+$//gei
     " Set highlights
     au BufEnter,VimEnter * set cursorline
     " highlight FormatWarning ctermbg=red ctermfg=white guibg=#592929 guifg=white
