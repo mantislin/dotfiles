@@ -219,16 +219,11 @@
     " make arrow keys useful
     " map <left> <ESC>:NERDTree<RETURN>
     " map <right> <ESC>:TagbarToggle<RETURN>
+
     noremap <buffer> <silent> k gk
     noremap <buffer> <silent> j gj
-    noremap <buffer> <silent> 0 g0
-    noremap <buffer> <silent> $ g$
-    noremap <buffer> <silent> ^ g^
     noremap <buffer> <silent> gk k
     noremap <buffer> <silent> gj j
-    noremap <buffer> <silent> g0 0
-    noremap <buffer> <silent> g$ $
-    noremap <buffer> <silent> g^ ^
 
     map <up> <ESC>:bp<RETURN>
     map <down> <ESC>:bn<RETURN>
