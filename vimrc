@@ -251,7 +251,7 @@
     au BufWinEnter ?* silent loadview 1
     " Formatting
     " au BufWritePre * silent! %s/\(\s\|　\)\+$//g|''
-    au BufWritePre * silent! %s/\(\s\|　\)\+$//g
+    au BufWritePre * silent %s/\(\s\|　\)\+$//gei
     " Set highlights
     au BufEnter,VimEnter * set cursorline
     " highlight FormatWarning ctermbg=red ctermfg=white guibg=#592929 guifg=white
@@ -275,8 +275,8 @@ if has("gui_running")
         set guifont=Consolas\ 10.5
         set gfw=CourierNew\ 10.5
     elseif has("gui_mac") || has("gui_macvim") || has("mac") || has("macunix")
-        set guifont=Menlo:h11
-        set gfw=Menlo:h11
+        set guifont=Menlo:h12
+        set gfw=Menlo:h12
     endif
     func! SwitchGUIDisplay() " Cusfunc, show a compact gui window
         if !exists("g:gdstate")
@@ -357,7 +357,7 @@ set ttymouse=xterm2 " makes it work in everything
     if has("gui_win32")
         au VimEnter * call ToggleDarkroom()
     elseif has("gui_mac") || has("gui_macvim")
-        set transparency=5 " transparency, just work to MacVim
+        set transparency=9 " transparency, just work to MacVim
     endif
 
 " plugin: Colorizer
@@ -501,13 +501,13 @@ set ttymouse=xterm2 " makes it work in everything
         let g:ltl=33 | let g:ltc=110 | let g:ltx=4   | let g:lty=28
         let g:rtl=29 | let g:rtc=101 | let g:rtx=644 | let g:rty=29
     elseif g:os=="mac"
-        let g:ml =56 | let g:mc =180 | let g:mx =8   | let g:my =32
-        let g:ll =56 | let g:lc =100 | let g:lx =10  | let g:ly =32
-        let g:rl =56 | let g:rc =100 | let g:rx =567 | let g:ry =32
-        let g:lbl=34 | let g:lbc=118 | let g:lbx=3   | let g:lby=325
+        let g:ml =53 | let g:mc =182 | let g:mx =1   | let g:my =26
+        let g:ll =53 | let g:lc =100 | let g:lx =10  | let g:ly =26
+        let g:rl =53 | let g:rc =100 | let g:rx =567 | let g:ry =26
+        let g:lbl=34 | let g:lbc=118 | let g:lbx=1   | let g:lby=325
         let g:rbl=34 | let g:rbc=118 | let g:rbx=448 | let g:rby=325
-        let g:ltl=34 | let g:ltc=118 | let g:ltx=3   | let g:lty=32
-        let g:rtl=34 | let g:rtc=118 | let g:rtx=448 | let g:rty=32
+        let g:ltl=34 | let g:ltc=118 | let g:ltx=1   | let g:lty=26
+        let g:rtl=34 | let g:rtc=118 | let g:rtx=448 | let g:rty=26
     endif
 
     let hostfile=""
