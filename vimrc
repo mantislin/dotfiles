@@ -208,8 +208,8 @@
     " hit f11 to paste
     " set pastetoggle=<f11>
     " space / shift-space scroll in normal mode
-    " noremap <S-space> <C-b>
-    " noremap <space> <C-f>
+    noremap <S-space> <C-b>
+    noremap <space> <C-f>
     " fuzzymaps
     " nmap <leader>f :FufFileWithCurrentBufferDir<CR>
     " nmap <leader>ff :FufFile<CR>
@@ -217,7 +217,7 @@
     " nmap <leader>t :FufBufferTag<CR>
     " nmap <tab> :FufBufferTag<CR>
     " make arrow keys useful
-    map <left> <ESC>:NERDTreeFind<RETURN>:wincmd l<CR>
+    map <left> <ESC>:NERDTreeFind<RETURN>
     " map <right> <ESC>:TagbarToggle<RETURN>
     noremap <buffer> <silent> k gk
     noremap <buffer> <silent> j gj
