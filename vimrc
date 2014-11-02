@@ -343,7 +343,7 @@ set ttymouse=xterm2 " makes it work in everything
         if (g:slate)
             let &go=""
             set lbr wrap stal&
-            call libcallnr("vimtweak.dll", "SetAlpha", 235)
+            call libcallnr("vimtweak.dll", "SetAlpha", 230)
             " call libcallnr("vimtweak.dll", "EnableCaption", 0)
         else
             let &lbr=s:o_lbr
