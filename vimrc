@@ -357,7 +357,7 @@ set ttymouse=xterm2 " makes it work in everything
     if has("gui_win32")
         au VimEnter * call ToggleDarkroom()
     elseif has("gui_mac") || has("gui_macvim")
-        set transparency=5 " transparency, just work to MacVim
+        set transparency=7 " transparency, just work to MacVim
     endif
 
 " plugin: Colorizer
