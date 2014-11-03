@@ -6,10 +6,6 @@
 "   If you find an obvious mistake hit me up at:
 "   http://robertmelton.com (many forms of communication)
 
-" has("gui_win32") || has("win32") || has("win32unix") || has("win64")
-" has("gui_mac") || has("gui_macvim") || has("mac") || has("macunix")
-" has("gui_gnome") || has("gui_gtk") || has("gui_gtk2")
-
 " Startup
     source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
@@ -250,7 +246,6 @@
     au BufWinLeave ?* mkview 1
     au BufWinEnter ?* silent loadview 1
     " Formatting
-    " au BufWritePre * silent! %s/\(\s\|　\)\+$//g|''
     au BufWritePre * %s/\(\s\|　\)\+$//gei|''
     " Set highlights
     au BufEnter,VimEnter * set cursorline
