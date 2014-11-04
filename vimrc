@@ -557,4 +557,4 @@ set ttymouse=xterm2 " makes it work in everything
 
     command! -nargs=1 Size call Size(<f-args>)
 
-    au VimEnter * Size df
+    au GUIEnter * Size df
