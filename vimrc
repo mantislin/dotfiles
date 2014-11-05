@@ -436,7 +436,7 @@ set ttymouse=xterm2 " makes it work in everything
     " Use smartcase.
     let g:neocomplcache_enable_smart_case = 0
     " Set minimum syntax keyword length.
-    let g:neocomplcache_min_syntax_length = 0
+    let g:neocomplcache_min_syntax_length = 1
     let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
     " Enable heavy features.
