@@ -359,7 +359,7 @@ set ttymouse=xterm2 " makes it work in everything
     let cohi = 0
     if has("gui_running")
         let cohi = 1
-    elseif stridx(&shell, 'vim.exe') == -1
+    elseif stridx(&shell, 'cmd.exe') == -1
         let cohi = 1
     endif
 
