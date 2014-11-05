@@ -215,10 +215,10 @@
     " make arrow keys useful
     map <left> <ESC>:NERDTreeFind<RETURN>
     " map <right> <ESC>:TagbarToggle<RETURN>
-    noremap <buffer> <silent> k gk
-    noremap <buffer> <silent> j gj
-    noremap <buffer> <silent> gk k
-    noremap <buffer> <silent> gj j
+    vnoremap <buffer> <silent> k gk
+    vnoremap <buffer> <silent> j gj
+    vnoremap <buffer> <silent> gk k
+    vnoremap <buffer> <silent> gj j
 
     map <up> <ESC>:bp<RETURN>
     map <down> <ESC>:bn<RETURN>
