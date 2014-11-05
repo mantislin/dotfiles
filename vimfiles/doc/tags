@@ -75,6 +75,7 @@
 'g:miniBufExplorerHideWhenDiff'	minibufexpl.txt	/*'g:miniBufExplorerHideWhenDiff'*
 'g:miniBufExplorerMoreThanOne'	minibufexpl.txt	/*'g:miniBufExplorerMoreThanOne'*
 'loaded_nerd_tree'	NERD_tree.txt	/*'loaded_nerd_tree'*
+:BuildMethods	cocoa.txt	/*:BuildMethods*
 :CMiniBufExplorer	minibufexpl.txt	/*:CMiniBufExplorer*
 :ColorClear	Colorizer.txt	/*:ColorClear*
 :ColorContrast	Colorizer.txt	/*:ColorContrast*
@@ -82,6 +83,7 @@
 :ColorSwapFgBg	Colorizer.txt	/*:ColorSwapFgBg*
 :ColorToggle	Colorizer.txt	/*:ColorToggle*
 :HSL2RGB	Colorizer.txt	/*:HSL2RGB*
+:ListMethods	cocoa.txt	/*:ListMethods*
 :MBEClose	minibufexpl.txt	/*:MBEClose*
 :MBECloseAll	minibufexpl.txt	/*:MBECloseAll*
 :MBEFocus	minibufexpl.txt	/*:MBEFocus*
@@ -371,6 +373,18 @@ bashsupport-windows	bashsupport.txt	/*bashsupport-windows*
 bashsupport-xterm	bashsupport.txt	/*bashsupport-xterm*
 bashsupport.txt	bashsupport.txt	/*bashsupport.txt*
 buffer_complete	neocomplcache.txt	/*buffer_complete*
+cocoa	cocoa.txt	/*cocoa*
+cocoa-author	cocoa.txt	/*cocoa-author*
+cocoa-commands	cocoa.txt	/*cocoa-commands*
+cocoa-completion	cocoa.txt	/*cocoa-completion*
+cocoa-contact	cocoa.txt	/*cocoa-contact*
+cocoa-features	cocoa.txt	/*cocoa-features*
+cocoa-installation	cocoa.txt	/*cocoa-installation*
+cocoa-intro	cocoa.txt	/*cocoa-intro*
+cocoa-license	cocoa.txt	/*cocoa-license*
+cocoa-mappings	cocoa.txt	/*cocoa-mappings*
+cocoa-suggested-plugins	cocoa.txt	/*cocoa-suggested-plugins*
+cocoa.txt	cocoa.txt	/*cocoa.txt*
 dictionary_complete	neocomplcache.txt	/*dictionary_complete*
 doc-file-list	help.txt	/*doc-file-list*
 filename_complete	neocomplcache.txt	/*filename_complete*
@@ -441,6 +455,7 @@ g:neocomplcache_text_mode_filetypes	neocomplcache.txt	/*g:neocomplcache_text_mod
 g:neocomplcache_use_vimproc	neocomplcache.txt	/*g:neocomplcache_use_vimproc*
 g:neocomplcache_vim_completefuncs	neocomplcache.txt	/*g:neocomplcache_vim_completefuncs*
 g:neocomplcache_wildcard_characters	neocomplcache.txt	/*g:neocomplcache_wildcard_characters*
+g:objc_man_key	cocoa.txt	/*g:objc_man_key*
 g:unite_source_vimshell_external_history_path	vimshell.txt	/*g:unite_source_vimshell_external_history_path*
 g:vimshell_cat_command	vimshell.txt	/*g:vimshell_cat_command*
 g:vimshell_cd_command	vimshell.txt	/*g:vimshell_cd_command*
@@ -513,6 +528,7 @@ i_<Plug>(vimshell_push_current_line)	vimshell.txt	/*i_<Plug>(vimshell_push_curre
 i_<Plug>(vimshell_run_help)	vimshell.txt	/*i_<Plug>(vimshell_run_help)*
 i_<Plug>(vimshell_zsh_complete)	vimshell.txt	/*i_<Plug>(vimshell_zsh_complete)*
 include_complete	neocomplcache.txt	/*include_complete*
+leopard-security-alert	cocoa.txt	/*leopard-security-alert*
 local-additions	help.txt	/*local-additions*
 member_complete	neocomplcache.txt	/*member_complete*
 minibufexpl.txt	minibufexpl.txt	/*minibufexpl.txt*
