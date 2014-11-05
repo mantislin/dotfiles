@@ -356,7 +356,21 @@ set ttymouse=xterm2 " makes it work in everything
     endif
 
 " plugin: Colorizer
-    au VimEnter * ColorHighlight " start/update highlighting
+    let s:cohi=0
+    if v:version >= 704
+        if g:os=="windows"
+            if has("gui_running")
+                let s:cohi=1
+            endif
+        else
+            let s:cohi=1
+        endif
+    endif
+
+    if s:cohi==1
+        au VimEnter * ColorHighlight
+    endif
+    " ColorHighlight " start/update highlighting
     " ColorClear " clear all highlights
     " ColorToggle " toggle highlights
 
