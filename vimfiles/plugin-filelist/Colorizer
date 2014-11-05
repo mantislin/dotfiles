@@ -1,0 +1,3 @@
+autoload/Colorizer.vim
+doc/Colorizer.txt
+plugin/ColorizerPlugin.vim
