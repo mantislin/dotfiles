@@ -10,7 +10,6 @@
     source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
     behave mswin
-    " let s:running_windows = has("win16") || has("win32") || has("win64")
     let s:colorful_term = (&term =~ "xterm") || (&term =~ "screen")
     let g:erlangHighlightBif = 1
     let g:erlangHighLightOperators = 1
@@ -215,10 +214,10 @@
     " make arrow keys useful
     map <left> <ESC>:NERDTreeFind<RETURN>
     " map <right> <ESC>:TagbarToggle<RETURN>
-    vnoremap <buffer> <silent> k gk
-    vnoremap <buffer> <silent> j gj
-    vnoremap <buffer> <silent> gk k
-    vnoremap <buffer> <silent> gj j
+    nnoremap <buffer> <silent> k gk
+    nnoremap <buffer> <silent> j gj
+    nnoremap <buffer> <silent> gk k
+    nnoremap <buffer> <silent> gj j
 
     map <up> <ESC>:bp<RETURN>
     map <down> <ESC>:bn<RETURN>
@@ -268,13 +267,13 @@ if has("gui_running")
     "              |+-- use simple dialogs rather than pop-ups
     "              +-- use GUI tabs, not console style tabs
     set mousehide " hide the mouse cursor when typing
-    if has("gui_win32") || has("win32") || has("win32unix") || has("win64")
+    if g:os == "windows"
         set guifont=Consolas:h10
         set gfw=Consolas:h10
-    elseif has("gui_gnome") || has("gui_gtk") || has("gui_gtk2")
+    elseif g:os == "linux"
         set guifont=Consolas\ 10.5
         set gfw=CourierNew\ 10.5
-    elseif has("gui_mac") || has("gui_macvim") || has("mac") || has("macunix")
+    elseif g:os == "mac"
         set guifont=Menlo:h11
         set gfw=Menlo:h11
     endif
@@ -393,11 +392,11 @@ set ttymouse=xterm2 " makes it work in everything
     let g:miniBufExplModSelTarget = 1
 
 " plugin: taglist
-    if has("gui_win32") || has("win32") || has("win32unix") || has("win64")
+    if g:os == "windows"
         let Tlist_Ctags_Cmd = 'ctags'
-    elseif has("gui_gnome") || has("gui_gtk") || has("gui_gtk2")
+    elseif g:os == "linux"
         let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-    elseif has("gui_mac") || has("gui_macvim") || has("mac") || has("macunix")
+    elseif g:os == "mac"
         let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
     endif
     let Tlist_Show_One_File = 0
