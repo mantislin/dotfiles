@@ -241,6 +241,7 @@
     au BufEnter,VimEnter,FileType *.ahk,*.bat set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
+    au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set ft=vim
     " Remember everything (position, folds, etc)
     au BufWinLeave ?* mkview 1
     au BufWinEnter ?* silent loadview 1
@@ -375,14 +376,14 @@ set ttymouse=xterm2 " makes it work in everything
     " ColorToggle " toggle highlights
 
 " plugin: rainbow_parentheses
-    au VimEnter * RainbowParenthesesToggle " on/off
+    " au VimEnter * RainbowParenthesesToggle " on/off
     au Syntax * RainbowParenthesesLoadRound " ()
     au Syntax * RainbowParenthesesLoadSquare " []
     au Syntax * RainbowParenthesesLoadBraces " {}
     au Syntax * RainbowParenthesesLoadChevrons " <>
 
 " plugin: Rainbow Parentheses
-    " let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
+    let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
 " plugin: MiniBufExplorer
     let g:miniBufExplMapWindowNavVim = 1
@@ -535,9 +536,9 @@ set ttymouse=xterm2 " makes it work in everything
         let g:ltl=33 | let g:ltc=110 | let g:ltx=4   | let g:lty=28
         let g:rtl=29 | let g:rtc=101 | let g:rtx=644 | let g:rty=29
     elseif g:os=="mac"
-        let g:ml =56 | let g:mc =180 | let g:mx =8   | let g:my =32
-        let g:ll =56 | let g:lc =100 | let g:lx =10  | let g:ly =32
-        let g:rl =56 | let g:rc =100 | let g:rx =567 | let g:ry =32
+        let g:ml =57 | let g:mc =181 | let g:mx =8   | let g:my =32
+        let g:ll =57 | let g:lc =100 | let g:lx =10  | let g:ly =32
+        let g:rl =57 | let g:rc =100 | let g:rx =577 | let g:ry =32
         let g:lbl=34 | let g:lbc=118 | let g:lbx=3   | let g:lby=325
         let g:rbl=34 | let g:rbc=118 | let g:rbx=448 | let g:rby=325
         let g:ltl=34 | let g:ltc=118 | let g:ltx=3   | let g:lty=32
