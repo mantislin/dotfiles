@@ -5,7 +5,7 @@
 *.pydevproject
 .project
 .metadata
-# bin/ # this conflict with dotfiles
+bin/
 tmp/
 *.tmp
 *.bak
@@ -217,7 +217,6 @@ pip-log.txt
 #############
 ## Custom
 #############
-
 vimfiles/backup/*
 vimfiles/temp/*
 vimfiles/undo/*
