@@ -1,0 +1,3 @@
+#!/bin/sh
+"goagent-kill"
+python "${HOME}/local/goagent/local/proxy.py"

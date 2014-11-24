@@ -1,0 +1,3 @@
+#!/bin/sh
+killall GoAgentMac
+killall python
