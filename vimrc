@@ -203,8 +203,8 @@
     " hit f11 to paste
     " set pastetoggle=<f11>
     " space / shift-space scroll in normal mode
-    noremap <S-space> <C-b>
-    noremap <space> <C-f>
+    noremap <S-space> 5k
+    noremap <space> 5j
     " fuzzymaps
     " nmap <leader>f :FufFileWithCurrentBufferDir<CR>
     " nmap <leader>ff :FufFile<CR>
@@ -221,10 +221,10 @@
 
     map <up> <ESC>:bp<RETURN>
     map <down> <ESC>:bn<RETURN>
-    map <C-H> :wincmd h<CR>
-    map <C-J> :wincmd j<CR>
-    map <C-K> :wincmd k<CR>
-    map <C-L> :wincmd l<CR>
+    map <C-h> :wincmd h<CR>
+    map <C-j> :wincmd j<CR>
+    map <C-k> :wincmd k<CR>
+    map <C-l> :wincmd l<CR>
 
 " Autocommands
     " ruby standard 2 spaces, always
@@ -261,7 +261,7 @@
 " GUI Settings
 if has("gui_running")
     " Basics
-    colorscheme molokai
+    colorscheme codeschool
     set guioptions=ce
     "              ||
     "              |+-- use simple dialogs rather than pop-ups
@@ -310,7 +310,7 @@ endif
 if s:colorful_term
     "256 color --
     let &t_Co=256
-    colorscheme molokai
+    colorscheme codeschool
     " colorscheme slate
     " restore screen after quitting
     if has("terminfo")
