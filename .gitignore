@@ -5,7 +5,7 @@
 *.pydevproject
 .project
 .metadata
-bin/
+# bin/ # this conflict with dotfiles repository
 tmp/
 *.tmp
 *.bak
