@@ -377,13 +377,14 @@ set ttymouse=xterm2 " makes it work in everything
 
 " plugin: rainbow_parentheses
     " au VimEnter * RainbowParenthesesToggle " on/off
+    au VimEnter * RainbowParenthesesActivate " active
     au Syntax * RainbowParenthesesLoadRound " ()
     au Syntax * RainbowParenthesesLoadSquare " []
     au Syntax * RainbowParenthesesLoadBraces " {}
     au Syntax * RainbowParenthesesLoadChevrons " <>
 
 " plugin: Rainbow Parentheses
-    let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
+    " let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
 " plugin: MiniBufExplorer
     let g:miniBufExplMapWindowNavVim = 1
