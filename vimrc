@@ -5,7 +5,6 @@
 "
 "   If you find an obvious mistake hit me up at:
 "   http://robertmelton.com (many forms of communication)
-"   fuck
 
 " Startup
     source $VIMRUNTIME/vimrc_example.vim
