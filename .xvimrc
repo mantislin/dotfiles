@@ -1,6 +1,7 @@
 " Base
 set incsearch
 set ignorecase
+set magic
 set smartcase
 set blinkcursor
 

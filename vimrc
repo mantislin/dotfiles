@@ -221,7 +221,9 @@
     nnoremap <buffer> <silent> gj j
 
     map <up> <ESC>:bp<RETURN>
+    map gT <ESC>:bp<RETURN>
     map <down> <ESC>:bn<RETURN>
+    map gt <ESC>:bn<RETURN>
     map <C-h> :wincmd h<CR>
     map <C-j> :wincmd j<CR>
     map <C-k> :wincmd k<CR>
@@ -234,12 +236,13 @@
     " Override types
     au BufNewFile,BufRead *.ahk set filetype=autohotkey
     au BufNewFile,BufRead *.bat set filetype=dosbatch
+    au BufNewFile,BufRead *.command set filetype=sh
     au BufNewFile,BufRead *.ps1 set filetype=ps1
     au BufNewFile,BufRead *.md set filetype=markdown
     au BufNewFile,BufRead *.dtl set filetype=htmldjango
     au BufNewFile,BufRead *.json,jquery.*.js set filetype=javascript syntax=jquery
     au BufNewFile,BufRead *.h,*.m,*.mm set filetype=objc
-    au BufEnter,VimEnter,FileType *.ahk,*.bat set cindent cinoptions=+0
+    au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set ft=vim
