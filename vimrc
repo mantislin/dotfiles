@@ -250,12 +250,12 @@
     au BufWinLeave ?* mkview 1
     au BufWinEnter ?* silent loadview 1
     " Formatting
-    function! RemoveTrailSpaces()
+    function! RemoveTrailingSpaces()
         let l:save_cursor = getpos('.')
         :%s/\(\s\|　\)\+$//gei
         call setpos('.', l:save_cursor)
     endfunction
-    au BufWritePre * silent! call RemoveTrailSpaces()
+    au BufWritePre * silent! call RemoveTrailingSpaces()
     " Set highlights
     au BufEnter,VimEnter * set cursorline
     " highlight FormatWarning ctermbg=red ctermfg=white guibg=#592929 guifg=white
