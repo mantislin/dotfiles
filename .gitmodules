@@ -1,0 +1,42 @@
+[submodule "vimfiles/bundle/Colorizer_chrisbra"]
+	path = vimfiles/bundle/Colorizer_chrisbra
+	url = git@github.com:chrisbra/Colorizer.git
+[submodule "vimfiles/bundle/cocoa.vim"]
+	path = vimfiles/bundle/cocoa.vim
+	url = git@github.com:/msanders/cocoa.vim.git
+[submodule "vimfiles/bundle/js-beautify"]
+	path = vimfiles/bundle/js-beautify
+	url = git@github.com:/beautify-web/js-beautify.git
+[submodule "vimfiles/bundle/minibufexpl.vim"]
+	path = vimfiles/bundle/minibufexpl.vim
+	url = git@github.com:/fholgado/minibufexpl.vim.git
+[submodule "vimfiles/bundle/nerdtree"]
+	path = vimfiles/bundle/nerdtree
+	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vimfiles/bundle/rainbow"]
+	path = vimfiles/bundle/rainbow
+	url = git@github.com:/luochen1990/rainbow.git
+[submodule "vimfiles/bundle/rainbow_parentheses.vim"]
+	path = vimfiles/bundle/rainbow_parentheses.vim
+	url = git@github.com:/kien/rainbow_parentheses.vim.git
+[submodule "vimfiles/bundle/taglist.vim"]
+	path = vimfiles/bundle/taglist.vim
+	url = git@github.com:/vim-scripts/taglist.vim.git
+[submodule "vimfiles/bundle/vim-cocoapods"]
+	path = vimfiles/bundle/vim-cocoapods
+	url = git@github.com:jvirtanen/vim-cocoapods.git
+[submodule "vimfiles/bundle/vim-colors-solarized"]
+	path = vimfiles/bundle/vim-colors-solarized
+	url = git@github.com:altercation/vim-colors-solarized.git
+[submodule "vimfiles/bundle/vim-jsbeautify"]
+	path = vimfiles/bundle/vim-jsbeautify
+	url = git@github.com:/maksimr/vim-jsbeautify.git
+[submodule "vimfiles/bundle/vimshell.vim"]
+	path = vimfiles/bundle/vimshell.vim
+	url = git@github.com:/Shougo/vimshell.vim.git
+[submodule "vimfiles/bundle/bash-support.vim"]
+	path = vimfiles/bundle/bash-support.vim
+	url = git@github.com:vim-scripts/bash-support.vim.git
+[submodule "vimfiles/bundle/neocomplcache.vim"]
+	path = vimfiles/bundle/neocomplcache.vim
+	url = git@github.com:Shougo/neocomplcache.vim.git
