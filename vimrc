@@ -231,17 +231,17 @@
 
 " Autocommands
     " ruby standard 2 spaces, always
-    au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2
-    au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2
+    au BufEnter,VimEnter,FileType *.rb,*.rhtml set shiftwidth=2 softtabstop=2
     " Override types
-    au BufNewFile,BufRead *.ahk set filetype=autohotkey
-    au BufNewFile,BufRead *.bat set filetype=dosbatch
-    au BufNewFile,BufRead *.command set filetype=sh
-    au BufNewFile,BufRead *.ps1 set filetype=ps1
-    au BufNewFile,BufRead *.md set filetype=markdown
-    au BufNewFile,BufRead *.dtl set filetype=htmldjango
-    au BufNewFile,BufRead *.json,jquery.*.js set filetype=javascript syntax=jquery
-    au BufNewFile,BufRead *.h,*.m,*.mm,*.pch set filetype=objc
+    au BufEnter,VimEnter,FileType *.ahk set filetype=autohotkey
+    au BufEnter,VimEnter,FileType *.bat set filetype=dosbatch
+    au BufEnter,VimEnter,FileType *.command set filetype=sh
+    au BufEnter,VimEnter,FileType *.ps1 set filetype=ps1
+    au BufEnter,VimEnter,FileType *.md set filetype=markdown
+    au BufEnter,VimEnter,FileType *.dtl set filetype=htmldjango
+    au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery
+    au BufEnter,VimEnter,FileType *.h,*.m,*.mm,*.pch set filetype=objc
+    au BufEnter,VimEnter,FileType *.h set filetype=objcpp
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
