@@ -330,6 +330,9 @@ endif
 " Odds n Ends
 set ttymouse=xterm2 " makes it work in everything
 
+" plugin: pathogen
+execute pathogen#infect()
+
 " plugin: vimtweak.dll - gvim transparency in windows
     " Alpha Window - SetAlpha
     " Maximized Window - EnableMaximize
@@ -431,7 +434,7 @@ set ttymouse=xterm2 " makes it work in everything
     endfu
     command! -nargs=? Ntr call Ntr(<f-args>)
 
-" Plugin neocomplcache
+" plugin neocomplcache
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
