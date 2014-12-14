@@ -241,7 +241,7 @@
     au BufNewFile,BufRead *.md set filetype=markdown
     au BufNewFile,BufRead *.dtl set filetype=htmldjango
     au BufNewFile,BufRead *.json,jquery.*.js set filetype=javascript syntax=jquery
-    au BufNewFile,BufRead *.h,*.m,*.mm set filetype=objc
+    au BufNewFile,BufRead *.h,*.m,*.mm,*.pch set filetype=objc
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
@@ -602,4 +602,8 @@ set ttymouse=xterm2 " makes it work in everything
 
     command! -nargs=1 Size call Size(<f-args>)
 
-    au GUIEnter * Size df
+    if &diff
+        au GUIEnter * Size m
+    else
+        au GUIEnter * Size df
+    endif
