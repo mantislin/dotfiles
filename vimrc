@@ -237,10 +237,11 @@
     au BufEnter,VimEnter,FileType *.bat set filetype=dosbatch
     au BufEnter,VimEnter,FileType *.command set filetype=sh
     au BufEnter,VimEnter,FileType *.ps1 set filetype=ps1
+    au BufEnter,VimEnter,FileType *.markdown set filetype=md
     au BufEnter,VimEnter,FileType *.md set filetype=markdown
     au BufEnter,VimEnter,FileType *.dtl set filetype=htmldjango
     au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery
-    au BufEnter,VimEnter,FileType *.h,*.m,*.mm,*.pch set filetype=objc
+    au BufEnter,VimEnter,FileType *.m,*.mm,*.pch set filetype=objc
     au BufEnter,VimEnter,FileType *.h set filetype=objcpp
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
