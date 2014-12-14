@@ -1,8 +1,5 @@
 #!/bin/sh
 
-echo>1.txt
-echo>2.txt
-
 # git submodule add --force "git@github.com:/lilydjwg/colorizer.git" "colorizer_lilydjwg"
 # git submodule add --force "git@github.com:/vim-scripts/jsbeautify.git"
 git submodule add --force "git@github.com:chrisbra/Colorizer.git" "Colorizer_chrisbra"
