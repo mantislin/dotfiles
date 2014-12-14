@@ -415,6 +415,7 @@ execute pathogen#infect()
 " plugin NERDTree
     let NERDTreeIgnore = ['\.beam', '\.pyc', 'ebin']
     " let NERDChristmasTree = 1
+    let NERDTreeWinSize=40
     " let NERDTreeMinimalUI = 1
     " let NERDTreeDirArrows = 0
 
