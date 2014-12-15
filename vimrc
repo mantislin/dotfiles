@@ -412,6 +412,7 @@ set ttymouse=xterm2 " makes it work in everything
 " plugin NERDTree
     let NERDTreeIgnore = ['\.beam', '\.pyc', 'ebin']
     " let NERDChristmasTree = 1
+    let NERDTreeWinSize = 40
     " let NERDTreeMinimalUI = 1
     " let NERDTreeDirArrows = 0
 
