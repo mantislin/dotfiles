@@ -1,6 +1,9 @@
 [submodule "vimfiles/bundle/Colorizer_chrisbra"]
 	path = vimfiles/bundle/Colorizer_chrisbra
 	url = git@github.com:chrisbra/Colorizer.git
+[submodule "vimfiles/bundle/bash-support.vim"]
+	path = vimfiles/bundle/bash-support.vim
+	url = git@github.com:vim-scripts/bash-support.vim.git
 [submodule "vimfiles/bundle/cocoa.vim"]
 	path = vimfiles/bundle/cocoa.vim
 	url = git@github.com:/msanders/cocoa.vim.git
@@ -10,6 +13,9 @@
 [submodule "vimfiles/bundle/minibufexpl.vim"]
 	path = vimfiles/bundle/minibufexpl.vim
 	url = git@github.com:/fholgado/minibufexpl.vim.git
+[submodule "vimfiles/bundle/neocomplcache.vim"]
+	path = vimfiles/bundle/neocomplcache.vim
+	url = git@github.com:Shougo/neocomplcache.vim.git
 [submodule "vimfiles/bundle/nerdtree"]
 	path = vimfiles/bundle/nerdtree
 	url = git@github.com:scrooloose/nerdtree.git
@@ -34,9 +40,3 @@
 [submodule "vimfiles/bundle/vimshell.vim"]
 	path = vimfiles/bundle/vimshell.vim
 	url = git@github.com:/Shougo/vimshell.vim.git
-[submodule "vimfiles/bundle/bash-support.vim"]
-	path = vimfiles/bundle/bash-support.vim
-	url = git@github.com:vim-scripts/bash-support.vim.git
-[submodule "vimfiles/bundle/neocomplcache.vim"]
-	path = vimfiles/bundle/neocomplcache.vim
-	url = git@github.com:Shougo/neocomplcache.vim.git
