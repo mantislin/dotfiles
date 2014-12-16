@@ -40,3 +40,9 @@
 [submodule "vimfiles/bundle/vimshell.vim"]
 	path = vimfiles/bundle/vimshell.vim
 	url = git@github.com:/Shougo/vimshell.vim.git
+[submodule "vimfiles/bundle/clang_complete"]
+	path = vimfiles/bundle/clang_complete
+	url = git@github.com:Rip-Rip/clang_complete.git
+[submodule "vimfiles/bundle/vim-ios"]
+	path = vimfiles/bundle/vim-ios
+	url = git@github.com:eraserhd/vim-ios.git

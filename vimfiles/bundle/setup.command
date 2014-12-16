@@ -47,3 +47,9 @@ git submodule add "git@github.com:/maksimr/vim-jsbeautify.git"
 
 git clone "git@github.com:/Shougo/vimshell.vim.git"
 git submodule add "git@github.com:/Shougo/vimshell.vim.git"
+
+git clone "git@github.com:Rip-Rip/clang_complete.git"
+git submodule add "git@github.com:Rip-Rip/clang_complete.git"
+
+git clone "git@github.com:eraserhd/vim-ios.git"
+git submodule add "git@github.com:eraserhd/vim-ios.git"
