@@ -80,10 +80,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias gs="git status"
-alias gl="git log"
 alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gcm="git commit -m"
+alias gdt='git difftool'
+alias gdty='git difftool -y'
+alias gdg='git difftool -g'
+alias gdgy='git difftool -g -y'
+alias gmt='git mergetool'
+alias gmty='git mergetool -y'
+alias gl="git log"
 alias glog="git log --oneline --decorate --color --graph"
 
 # Others
