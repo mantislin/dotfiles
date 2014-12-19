@@ -80,10 +80,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias gs="git status"
-alias gl="git lg"
+alias gl="git log"
 alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gcm="git commit -m"
+alias glog="git log --oneline --decorate --color --graph"
 
 # Others
 unsetopt correct_all # Turn off auto correct
