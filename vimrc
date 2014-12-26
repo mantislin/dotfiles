@@ -241,15 +241,17 @@
     au BufEnter,VimEnter,FileType *.md set filetype=markdown
     au BufEnter,VimEnter,FileType *.dtl set filetype=htmldjango
     au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery
-    au BufEnter,VimEnter,FileType *.m,*.mm,*.pch set filetype=objc
-    au BufEnter,VimEnter,FileType *.h set filetype=objcpp
+    au BufEnter,VimEnter,FileType *.mm,*.pch set filetype=objc
+    au BufEnter,VimEnter,FileType *.h,*.m set filetype=objcpp
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set ft=vim
     " Remember everything (position, folds, etc)
-    au BufWinLeave ?* mkview 1
-    au BufWinEnter ?* silent loadview 1
+    if !&diff
+        au BufWinLeave ?* mkview 1
+        au BufWinEnter ?* silent loadview 1
+    endif
     " Formatting
     function! RemoveTrailingSpaces()
         let l:save_cursor = getpos('.')
@@ -386,7 +388,7 @@ set ttymouse=xterm2 " makes it work in everything
     au Syntax * RainbowParenthesesLoadRound " ()
     au Syntax * RainbowParenthesesLoadSquare " []
     au Syntax * RainbowParenthesesLoadBraces " {}
-    au Syntax * RainbowParenthesesLoadChevrons " <>
+    " au Syntax * RainbowParenthesesLoadChevrons " <>
 
 " plugin: Rainbow Parentheses
     " let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
