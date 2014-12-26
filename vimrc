@@ -241,8 +241,8 @@
     au BufEnter,VimEnter,FileType *.md set filetype=markdown
     au BufEnter,VimEnter,FileType *.dtl set filetype=htmldjango
     au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery
-    au BufEnter,VimEnter,FileType *.mm,*.pch set filetype=objc
-    au BufEnter,VimEnter,FileType *.h,*.m set filetype=objcpp
+    " au BufEnter,VimEnter,FileType *.mm,*.pch set filetype=objc
+    " au BufEnter,VimEnter,FileType *.h,*.m set filetype=objcpp
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
