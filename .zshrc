@@ -45,7 +45,7 @@ ZSH_THEME="Prose"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git php ruby brew autojump pod vagrant laravel4 composer)
+plugins=(git vim emac php ruby brew autojump pod vagrant laravel4 composer node)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,14 +83,18 @@ alias gs="git status"
 alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gcm="git commit -m"
+
 alias gdt='git difftool'
 alias gdty='git difftool -y'
-alias gdg='git difftool -g'
-alias gdgy='git difftool -g -y'
+alias gdtg='git difftool -g'
+alias gdtgy='git difftool -g -y'
 alias gmt='git mergetool'
 alias gmty='git mergetool -y'
 alias gl="git log"
 alias glog="git log --oneline --decorate --color --graph"
+
+alias gus="git reset --soft HEAD~1"
+alias gum="git reset --mixed HEAD~1"
 
 # Others
 unsetopt correct_all # Turn off auto correct
