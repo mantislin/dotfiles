@@ -90,7 +90,7 @@ alias gdtg='git difftool -g'
 alias gdtgy='git difftool -g -y'
 alias gmt='git mergetool'
 alias gmty='git mergetool -y'
-alias gl="git log"
+alias gl="git log --decorate --color --graph"
 alias glog="git log --oneline --decorate --color --graph"
 
 alias gus="git reset --soft HEAD~1"
