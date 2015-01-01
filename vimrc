@@ -245,6 +245,7 @@
     " au BufEnter,VimEnter,FileType *.h,*.m set filetype=objcpp
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
+    " au BufEnter,VimEnter,FileType *.objc,*.objcpp set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set ft=vim
     " Remember everything (position, folds, etc)
