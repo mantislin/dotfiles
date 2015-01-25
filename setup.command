@@ -28,6 +28,8 @@ for file in * .*; do
         -a ".." != "${file}" \
         -a ".DS_Store" != "${file}" \
         -a "Thumbs.db" != "${file}" \
+        -a ".git" != "${file}" \
+        -a ".gitignore" != "${file}" \
         ]; then
 
         if [ "vimfiles" = "${file}" ]; then
