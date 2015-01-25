@@ -201,11 +201,11 @@
     let tlist_vb_settings = 'asp;f:function;c:class'
 
 " Mappings
-    " hit f11 to paste
+    " " hit f11 to paste
     " set pastetoggle=<f11>
-    " space / shift-space scroll in normal mode
-    noremap <S-space> 5k
-    noremap <space> 5j
+    " " space / shift-space scroll in normal mode
+    " noremap <S-space> 5k
+    " noremap <space> 5j
     " fuzzymaps
     " nmap <leader>f :FufFileWithCurrentBufferDir<CR>
     " nmap <leader>ff :FufFile<CR>
@@ -241,6 +241,7 @@
     au BufEnter,VimEnter,FileType *.md set filetype=markdown
     au BufEnter,VimEnter,FileType *.dtl set filetype=htmldjango
     au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery
+    au BufEnter,VimEnter,FileType *.pch set filetype=objc
     " au BufEnter,VimEnter,FileType *.mm,*.pch set filetype=objc
     " au BufEnter,VimEnter,FileType *.h,*.m set filetype=objcpp
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
@@ -248,8 +249,9 @@
     au BufEnter,VimEnter,FileType objc,objcpp set cindent cinoptions=+0
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set ft=vim
-    " Remember everything (position, folds, etc)
     if !&diff
+        au BufEnter,VimEnter,FileType objc,objcpp set foldmethod=indent
+        " Remember everything (position, folds, etc)
         au BufWinLeave ?* mkview 1
         au BufWinEnter ?* silent loadview 1
     endif
