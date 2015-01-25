@@ -137,6 +137,7 @@ xcuserdata
 *.hmap
 *.ipa
 *.xcuserstate
+*.xcbkptlist
 !Profile.lock
 
 # -- github
