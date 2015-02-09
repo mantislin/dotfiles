@@ -1,10 +1,42 @@
+" -- common
+" set focuscontent
+set ignorecase
+set incsearch
+set hlsearch
+set tabnumbers
+set titlestring="mts"
+" set defsearch=g
+" set toolbars=addons,bookmarks,nomenu,nonavigation,tabs
+" colorscheme ywgx
+" set maxitems=25 " item number of vimp popup menu
+set complete=slbt
+
+" -- prev page, next page
+set nextpattern=\s*(下一页>|下一页|下一张|下一章|下一篇|后一页|下页|后页)\s*,\bnext,^>$,^(>>|»)$,^(>|»),(>|»)$,\bmore\b
+set previouspattern=\s*(<上一页|上一页|上一张|上一章|上一篇|前一页|上页|前页)\s*,\bprev|previous\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+
+" -- remapping
+" noremap ,s :so C:\Users\Administrator\_vimperatorrc<CR>
+nnoremap ,t /.torrent<Esc><cr>
 nnoremap j 2j
 nnoremap k 2k
 nnoremap h 2h
 nnoremap l 2l
 
-set incsearch
-set hlsearch
+" -- disable useless shortcuts
+map a <Nop>
+
+" -- address quick complete
+" cnoremap <C-Return> <End>.com<Home><C-Right>www.<CR>
+" cnoremap <A-N> <End>.nankai.edu.cn<CR>
+" cnoremap <A-G> <End>.google.com<cr>
+
+" -- GUI
+map <C-UP> :set toolbars=all<CR>
+map <C-Down> :set toolbars=addons,bookmarks,nomenu,navigation,notabs<CR>
+
+" ==============================================================================
+" -- debugging
 
 " nmap <space>ge :execute "tabmove " . 1 * v:count1
 " nmap <space>gq :execute "tabmove " . -1 * v:count1
