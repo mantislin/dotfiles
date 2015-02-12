@@ -19,13 +19,14 @@ function myln() { # source, target, nobackup
 
 pushd "${dotfiles}"
 
-echo "basename="$(basename $0)
+# echo "basename="$(basename $0)
 
 for file in * .*; do
     if [ "" != "${file}" \
         -a "$(basename $0)" != "${file}" \
         -a "." != "${file}" \
         -a ".." != "${file}" \
+        -a "setup.bat" != "${file}" \
         -a ".DS_Store" != "${file}" \
         -a "Thumbs.db" != "${file}" \
         -a ".git" != "${file}" \
