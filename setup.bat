@@ -11,14 +11,14 @@ pushd "%dotfiles%" || (
 set "extfiles=%~nx0"
 
 set "extfiles=%extfiles%:.git"
-rem set "extfiles=%extfiles%:bin"
+set "extfiles=%extfiles%:bin"
 
 set "extfiles=%extfiles%:.DS_Store"
 set "extfiles=%extfiles%:.gitignore"
-rem set "extfiles=%extfiles%:.zshrc"
-rem set "extfiles=%extfiles%:.gemrc"
-rem set "extfiles=%extfiles%:.bashrc"
-rem set "extfiles=%extfiles%:.bash_profile"
+set "extfiles=%extfiles%:.zshrc"
+set "extfiles=%extfiles%:.gemrc"
+set "extfiles=%extfiles%:.bashrc"
+set "extfiles=%extfiles%:.bash_profile"
 set "extfiles=%extfiles%:setup.command"
 set "extfiles=%extfiles%:Thumbs.db"
 
