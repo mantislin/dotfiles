@@ -79,6 +79,8 @@ goto :eof
 ::              -- /F       Force overwrite if target is exist.
 ::              -- /B       Create backup if overwrite(/F) is happening.
 setlocal enabledelayedexpansion
+    set "errlvl=0"
+
     set "link="
     set "target="
     set "toDirectory=0"
@@ -117,15 +119,25 @@ setlocal enabledelayedexpansion
         goto :loop_myln_1
     :done_myln_1
 
-    if "%link%" == "" if "%target%" == "" goto :eo_myln
+    if "%link%" == "" if "%target%" == "" (
+        set "errlvl=10081"
+        goto :eo_myln
+    )
+
+    echo/
+    echo/==================================================
+    echo/ %link%
+    echo/==================================================
+
+    set "basename=" & set "extname=" & set "newname="
+    set "drivepath=" & set "oldname="
     if exist "%link%" (
         if "%toOverwrite%" == "1" (
             if "%toBackup%" == "1" (
-                set "basename="
-                set "extname="
+                set "basename=" & set "extname="
                 for /f %%a in ("%link%") do (
-                    set "basename=%%~na"
-                    set "extname=%%~xa"
+                    set "basename=%%~na" & set "extname=%%~xa"
+                    set "drivepath=%%~dpa" & set "oldname=%%~nxa"
                 )
 
                 set "suffix="
@@ -137,51 +149,52 @@ setlocal enabledelayedexpansion
                     set "newname=!extname!_backup!suffix!"
                 ))
 
-                rem here
+                echo/Creating backup...
                 echo/ren "%link%" "!newname!"
+                ren "%link%" "!newname!"
+                set "errlvl=!errorlevel!"
+                if "!errlvl!" == "0" (
+                    echo/Back up success^^!
+                ) else (
+                    echo/Back up failed^^!
+                    echo/No furture operations.
+                    goto :eo_myln
+                )
             )
         )
     )
 
-    rem echo/"all=%*"
-    rem echo/"target=%target%"
-    rem echo/"link=%link%"
-    rem echo/"toOverwrite=%toOverwrite%"
-    rem echo/"toBackup=%toBackup%"
-    rem echo/##############################
+    echo/Doing setup...
+    if "%toDirectory%" == "1" (
+        echo/mklink /j "%link%" "%target%"
+        mklink /j "%link%" "%target%"
+        set "errlvl=!errorlevel!"
+    ) else (
+        echo/mklink "%link%" "%target%"
+        mklink "%link%" "%target%"
+        set "errlvl=!errorlevel!"
+    )
+    if "!errlvl!" == "0" (
+        echo/Setup success^^!
+    ) else (
+        echo/Setup failed^^!
+        if not "%newname%" == "" (
+            echo/Restoring backup...
+            echo/ren "%drivepath%%newname%" "%oldname%"
+            ren "%drivepath%%newname%" "%oldname%"
+            set "errlvl=!errorlevel!"
+            if "!errlvl!" == "0" (
+                echo/Restore success^^!
+            ) else (
+                echo/Restore failed^^!
+            )
+        )
+    )
+
 :eo_myln
 endlocal
-goto :eof
-
-
-:: =============================================================================
-:getbasename   -- Get basename of file.
-::          -- %~1:     Get output value.
-::                      return basename of passed file.
-::          -- %~2:     Get the file to get basename.
-setlocal
-    set "basename="
-    if not "%~1" == "" if exist "%~2" set "basename=%~n2"
-:eo_basename
-(endlocal
-    if not "%~1" == "" set "%~1=%basename%"
-)
-goto :eof
-
-
-:: =============================================================================
-:getextname    -- Get extname of file.
-::          -- %~1:     Get output value.
-::                      return extname of passed file.
-::          -- %~2:     Get the file to get extname.
-setlocal
-    set "extname="
-    if not "%~1" == "" if exist "%~2" set "extname=%~x2"
-:eo_extname
-(endlocal
-    if not "%~1" == "" set "%~1=%extname%"
-)
-goto :eof
+exit/b %errlvl%
+rem goto :eof
 
 
 :: =============================================================================
