@@ -14,32 +14,27 @@ pushd "%dotfiles%" || (
 
 set "extfiles=%~nx0"
 
-set "extfiles=%extfiles%:.git"
-set "extfiles=%extfiles%:bin"
+set "extfiles=%extfiles%::.git"
+set "extfiles=%extfiles%::bin"
 
-set "extfiles=%extfiles%:.DS_Store"
-set "extfiles=%extfiles%:.gitignore"
-set "extfiles=%extfiles%:.zshrc"
-set "extfiles=%extfiles%:.gemrc"
-set "extfiles=%extfiles%:.bashrc"
-set "extfiles=%extfiles%:.bash_profile"
-set "extfiles=%extfiles%:setup.command"
-set "extfiles=%extfiles%:Thumbs.db"
+set "extfiles=%extfiles%::.DS_Store"
+set "extfiles=%extfiles%::.gitignore"
+set "extfiles=%extfiles%::.zshrc"
+set "extfiles=%extfiles%::.gemrc"
+set "extfiles=%extfiles%::.bashrc"
+set "extfiles=%extfiles%::.bash_profile"
+set "extfiles=%extfiles%::setup.command"
+set "extfiles=%extfiles%::Thumbs.db"
 
 for /f %%a in ('dir/b/a:d "%dotfiles%"') do (
     echo/%extfiles%|find /i "%%a" >nul 2>nul && (
         echo/%%a>nul
     ) || (
         call :myln /d /f /b
-        rem echo/
-        rem echo/########## %%a ##########
-        rem echo/"a=%%a"
         if "%%a" == ".vimperator" (
             call :myln /d /f /b "%userprofile%\vimperator" "%dotfiles%\%%a"
-            rem mklink /j "%userprofile%\vimperator" "%dotfiles%\%%a"
         ) else (
             call :myln /d /f /b "%userprofile%\%%a" "%dotfiles%\%%a"
-            rem mklink /j "%userprofile%\%%a" "%dotfiles%\%%a"
         )
     )
 )
@@ -47,15 +42,10 @@ for /f %%a in ('dir/b/a:-d "%dotfiles%"') do (
     echo/%extfiles%|find /i "%%a" >nul 2>nul && (
         echo/%%a>nul
     ) || (
-        rem echo/
-        rem echo/########## %%a ##########
-        rem echo/"a=%%a"
         if "%%a" == "vimrc" (
             call :myln /f /b "%userprofile%\_vimrc" "%dotfiles%\%%a"
-            rem mklink "%userprofile%\_vimrc" "%dotfiles%\%%a"
         ) else (
             call :myln /f /b "%userprofile%\%%a" "%dotfiles%\%%a"
-            rem mklink "%userprofile%\%%a" "%dotfiles%\%%a"
         )
     )
 )
