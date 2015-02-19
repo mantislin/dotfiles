@@ -151,7 +151,7 @@
     set report=0 " tell us when anything is changed via :...
     set ruler " Always show current positions along the bottom
     set scrolloff=10 " Keep 10 lines (top/bottom) for scope
-    set shortmess=aOstT " shortens messages to avoid 'press a key' prompt
+    set shortmess=aOstTA " shortens messages to avoid 'press a key' prompt and swap file exists "ATTENTION" message
     set showcmd " show the command being typed
     set showmatch " show matching brackets
     set sidescrolloff=10 " Keep 5 lines at the size
