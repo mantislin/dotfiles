@@ -250,7 +250,7 @@
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set ft=vim
     if !&diff
-        au BufEnter,VimEnter,FileType objc,objcpp set foldmethod=indent
+        au BufEnter,VimEnter,FileType *.h,*.m,*.mm,*.pch,*.plist set foldmethod=indent
         " Remember everything (position, folds, etc)
         au BufWinLeave ?* mkview 1
         au BufWinEnter ?* silent loadview 1
