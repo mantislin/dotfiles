@@ -50,4 +50,8 @@ for file in * .*; do
     fi
 done
 
+if [ -d "${HOME}/bin" ]; then
+    find "${HOME}/bin/" -type f -exec chmod +x {} \;
+fi
+
 popd
