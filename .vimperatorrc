@@ -6,7 +6,7 @@ set hlsearch
 set tabnumbers
 set titlestring="mts"
 " set defsearch=g
-" set toolbars=addons,bookmarks,nomenu,nonavigation,tabs
+set toolbars=noaddons,nobookmarks,menu,navigation,notabs
 " colorscheme ywgx
 " set maxitems=25 " item number of vimp popup menu
 set complete=slbt
@@ -33,7 +33,7 @@ map a <Nop>
 
 " -- GUI
 map <C-UP> :set toolbars=all<CR>
-map <C-Down> :set toolbars=addons,bookmarks,nomenu,navigation,notabs<CR>
+map <C-Down> :set toolbars=noaddons,nobookmarks,menu,navigation,notabs<CR>
 
 " ==============================================================================
 " -- debugging
