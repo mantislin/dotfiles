@@ -7,7 +7,7 @@
 "   http://robertmelton.com (many forms of communication)
 "   fuck
 
-" Startup
+" -- Startup
     source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
     behave mswin
@@ -15,7 +15,7 @@
     let g:erlangHighlightBif = 1
     let g:erlangHighLightOperators = 1
 
-" Functions those should before basic
+" -- Functions those should before basic
     func! GetRunningOS()
         if has("win32")
             return "windows"
@@ -29,7 +29,7 @@
     endfu
     let g:os=GetRunningOS()
 
-" Basics
+" -- Basics
     set nocompatible " explicitly get out of vi-compatible mode
     set noexrc " don't use local version of .(g)vimrc, .exrc
     set background=dark " we plan to use a dark background
@@ -69,7 +69,7 @@
     syntax on " syntax highlighting on
     let g:skip_loading_mswin=1 " Just in case :)
 
-" Newish
+" -- Newish
     set history=9999 " big old history
     set timeoutlen=300 " super low delay (works for me)
     set formatoptions+=n " Recognize numbered lists
@@ -77,14 +77,13 @@
     set viminfo+=! " Store upper-case registers in viminfo
     set nomore " Short nomore
 
-" General
+" -- General
     filetype plugin indent on " load filetype plugins/indent settings
     set autochdir " always switch to the current file directory
     set backspace=indent,eol,start " make backspace a more flexible
     set backup " make backup files
     set undofile " make undo files
     set clipboard+=unnamed " share windows clipboard
-    set colorcolumn=81
     if g:os == "windows"
         let folderPath=$HOME . '/vimfiles/backup'
         echo(system('if not exist "' . folderPath . '" md "' . folderPath . '"'))
@@ -135,7 +134,7 @@
     let use_xhtml = 0
     let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}
 
-" Vim UI
+" -- Vim UI
     set incsearch " BUT do highlight as you type you search phrase
     set laststatus=2 " always show the status line
     set lazyredraw " do not redraw while running macros
@@ -169,7 +168,7 @@
     "              | +-- rodified flag in square brackets
     "              +-- full path to file in the buffer
 
-" Text Formatting/Layout
+" -- Text Formatting/Layout
     set completeopt=menuone " don't use a pop up menu for completions
     set expandtab " no real tabs please!
     set formatoptions=rq " Automatically insert comment leader on return, and let gq format comments
@@ -182,7 +181,7 @@
     set softtabstop=4 " when hitting tab or backspace, how many spaces should a tab be (see expandtab)
     set tabstop=4 " real tabs should be 8, and they will show with set list on
 
-" Folding
+" -- Folding
     set foldenable " Turn on folding
     set foldmethod=indent " Fold on the indent (damn you python)
     set foldlevel=100 " Don't autofold anything (but I can still fold manually)
@@ -192,7 +191,7 @@
     endfunction " }
     set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
 
-" Plugin Settings
+" -- Plugin Settings
     let b:match_ignorecase = 1 " case is stupid
     let perl_extended_vars=1 " highlight advanced perl vars inside strings
     let tlist_aspjscript_settings = 'asp;f:function;c:class'
@@ -200,7 +199,7 @@
     let tlist_php_settings = 'php;c:class;d:constant;f:function'
     let tlist_vb_settings = 'asp;f:function;c:class'
 
-" Mappings
+" -- Mappings
     " " hit f11 to paste
     " set pastetoggle=<f11>
     " " space / shift-space scroll in normal mode
@@ -229,7 +228,7 @@
     map <C-k> :wincmd k<CR>
     map <C-l> :wincmd l<CR>
 
-" Autocommands
+" -- Autocommands
     " ruby standard 2 spaces, always
     au BufEnter,VimEnter,FileType *.rb,*.rhtml set shiftwidth=2 softtabstop=2
     " Override types
@@ -265,10 +264,12 @@
     " Set highlights
     au BufEnter,VimEnter * set cursorline
     " highlight FormatWarning ctermbg=red ctermfg=white guibg=#592929 guifg=white
-    highlight FormatWarning ctermbg=red guibg=#592929
-    au BufEnter,VimEnter * match FormatWarning /\(\%81v.\+\|\( \|\t\)\+\n\)/
+    " highlight FormatWarning ctermbg=red guibg=#592929
+    " au BufEnter * match FormatWarning /\(\%>81v.\+\|\( \|\t\)\+\n\)/
+    au BufEnter * set colorcolumn=81
+    au BufEnter *.h,*.m,*.mm,*.pch,*.plist set colorcolumn=121
 
-" GUI Settings
+" -- GUI Settings
 if has("gui_running")
     " Basics
     colorscheme codeschool
@@ -316,7 +317,7 @@ if has("gui_running")
     " map <F12> <ESC>:set guifont=Consolas:h20<CR>
 endif
 
-" Term Settings
+" -- Term Settings
 if s:colorful_term
     "256 color --
     let &t_Co=256
@@ -332,8 +333,10 @@ if s:colorful_term
     endif
 endif
 
-" Odds n Ends
+" -- Odds n Ends
 set ttymouse=xterm2 " makes it work in everything
+
+" -- Plugins
 
 " plugin: vimtweak.dll - gvim transparency in windows
     " Alpha Window - SetAlpha
@@ -543,7 +546,7 @@ set ttymouse=xterm2 " makes it work in everything
     " https://github.com/c9s/perlomni.vim
     let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-" Position and size settings
+" -- Position and size settings
     let     g:dfl=30 | let g:dfc=86  | let g:dfx=-1  | let g:dfy=-1
     if g:os=="windows"
         let g:ml =48 | let g:mc =178 | let g:mx =7   | let g:my =7
