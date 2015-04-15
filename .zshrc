@@ -79,23 +79,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias gs="git status"
-alias gco="git checkout"
-alias gcb="git checkout -b"
-alias gcm="git commit -m"
-
-alias gdt='git difftool'
-alias gdty='git difftool -y'
-alias gdtg='git difftool -g'
-alias gdtgy='git difftool -g -y'
-alias gmt='git mergetool'
-alias gmty='git mergetool -y'
-alias gl="git log --decorate --color --graph"
-alias glog="git log --oneline --decorate --color --graph"
-
-alias gus="git reset --soft HEAD~1"
-alias gum="git reset --mixed HEAD~1"
-
 # Others
 unsetopt correct_all # Turn off auto correct
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

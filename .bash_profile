@@ -4,6 +4,12 @@ if [ -f "${HOME}/bin/global_env" ]; then
 fi
 # -- bin
 export PATH=${HOME}/bin:${PATH}
+# -- macvim
+if [ -d "${HOME}/Applications/MacVim" ]; then
+    export VIM_APP_DIR="${HOME}/Applications/MacVim"
+else
+    export VIM_APP_DIR="/Applications/MacVim"
+fi
 # -- vmware
 export vmware_lib="/Applications/VMware Fusion.app/Contents/Library"
 export PATH="${vmware_lib}:${PATH}"
@@ -24,3 +30,20 @@ export xcode_sdks_macosx="${xcode_home}/Contents/Developer/Platforms/MacOSX.plat
 if [ -f "${HOME}/.bashrc" ]; then
     source "${HOME}/.bashrc"
 fi
+# -- alias
+alias gs="git status"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gcm="git commit -m"
+
+alias gdt='git difftool'
+alias gdty='git difftool -y'
+alias gdtg='git difftool -g'
+alias gdtgy='git difftool -g -y'
+alias gmt='git mergetool'
+alias gmty='git mergetool -y'
+alias gl="git log --decorate --color --graph"
+alias glog="git log --oneline --decorate --color --graph"
+
+alias gus="git reset --soft HEAD~1"
+alias gum="git reset --mixed HEAD~1"
