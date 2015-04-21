@@ -2,30 +2,31 @@
 
 
 if [ -n "${VIM_APP_DIR}" -a -d "${VIM_APP_DIR}" ]; then
-    macvimapp="${VIM_APP_DIR}"
+    macvimpath="${VIM_APP_DIR}"
 fi
 
 
-if [ ! -z "$macvimapp" ]; then
+if [ ! -z "$macvimpath" ]; then
     if [ -d "${HOME}/Applications/MacVim" ]; then
-        macvimapp="${HOME}/Applications/MacVim"
+        macvimpath="${HOME}/Applications/MacVim"
     elif [ -d "/Applications/MacVim" ]; then
-        macvimapp="/Applications/MacVim"
+        macvimpath="/Applications/MacVim"
     elif [ -d "${HOME}/Applications/MacVim.app" ]; then
-        macvimapp="${HOME}/Applications"
+        macvimpath="${HOME}/Applications"
     elif [ -d "/Applications/MacVim.app" ]; then
-        macvimapp="/Applications"
+        macvimpath="/Applications"
     else
-        if [ ! -z "$macvimapp" ]; then
+        if [ ! -z "$macvimpath" ]; then
             for f in $(find "${HOME}/Applications" -type d -iname "MacVim.app")
             do
-                macvimapp="$f/.."
+                macvimpath="$f/.."
             done
         fi
     fi
 fi
 
 
-if [ -n "$macvimapp" ]; then
-    open -a "${macvimapp}/MacVim.app" $*
+if [ -n "$macvimpath" ]; then
+    VIM_APP_DIR="$macvimpath"
+    mvim $*
 fi
