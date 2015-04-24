@@ -23,6 +23,7 @@ set "extfiles=%extfiles%::.zshrc"
 set "extfiles=%extfiles%::.gemrc"
 set "extfiles=%extfiles%::.bashrc"
 set "extfiles=%extfiles%::.bash_profile"
+set "extfiles=%extfiles%::.cow"
 set "extfiles=%extfiles%::setup.command"
 set "extfiles=%extfiles%::Thumbs.db"
 
