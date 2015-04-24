@@ -16,3 +16,8 @@ vimfiles/view/*
 .vimperator/info/default/local-marks
 .vimperator/info/default/macros
 .vimperator/info/default/quickmarks
+
+# -- cow
+
+.cow/stat.bat
+.cow/stat
