@@ -18,14 +18,15 @@ set "extfiles=%extfiles%::.git"
 set "extfiles=%extfiles%::bin"
 
 set "extfiles=%extfiles%::.DS_Store"
+set "extfiles=%extfiles%::.bash_profile"
+set "extfiles=%extfiles%::.bash_themes"
+set "extfiles=%extfiles%::.bashrc"
+set "extfiles=%extfiles%::.cow"
+set "extfiles=%extfiles%::.gemrc"
 set "extfiles=%extfiles%::.gitignore"
 set "extfiles=%extfiles%::.zshrc"
-set "extfiles=%extfiles%::.gemrc"
-set "extfiles=%extfiles%::.bashrc"
-set "extfiles=%extfiles%::.bash_profile"
-set "extfiles=%extfiles%::.cow"
-set "extfiles=%extfiles%::setup.command"
 set "extfiles=%extfiles%::Thumbs.db"
+set "extfiles=%extfiles%::setup.command"
 
 for /f %%a in ('dir/b/a:d "%dotfiles%"') do (
     echo/%extfiles%|find /i "%%a" >nul 2>nul && (
