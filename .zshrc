@@ -33,6 +33,9 @@ ZSH_THEME="Prose"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# Disable update prompt
+DISABLE_UPDATE_PROMPT=true
+
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
