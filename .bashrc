@@ -44,6 +44,7 @@ export xcode_sdks_macosx="${xcode_home}/Contents/Developer/Platforms/MacOSX.plat
 # -- alias
 
 alias gs="git status"
+alias gitstatus="git status"
 alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gcm="git commit -m"
@@ -59,3 +60,6 @@ alias glog="git log --oneline --decorate --color --graph"
 
 alias gus='git reset --soft HEAD~1'
 alias gum='git reset --mixed HEAD~1'
+
+alias ss="svn status"
+alias svnstatus="svn status"
