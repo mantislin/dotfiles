@@ -321,8 +321,7 @@ endif
 if s:colorful_term
     "256 color --
     let &t_Co=256
-    colorscheme codeschool
-    " colorscheme slate
+    colorscheme solarized " colorscheme codeschool " colorscheme slate
     " restore screen after quitting
     if has("terminfo")
         let &t_Sf="\ESC[3%p1%dm"

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+myifaddr=$(ipconfig getifaddr en0)
+
+[ -z "$myifaddr" ] && myifaddr=$(ipconfig getifaddr en1)
+
+[ -z "$myifaddr" ] && myifaddr=$(ipconfig getifaddr en2)
+
+echo $myifaddr

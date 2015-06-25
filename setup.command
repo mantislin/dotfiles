@@ -26,11 +26,11 @@ for file in * .*; do
         -a "$(basename $0)" != "${file}" \
         -a "." != "${file}" \
         -a ".." != "${file}" \
-        -a "setup.bat" != "${file}" \
         -a ".DS_Store" != "${file}" \
-        -a "Thumbs.db" != "${file}" \
         -a ".git" != "${file}" \
         -a ".gitignore" != "${file}" \
+        -a "Thumbs.db" != "${file}" \
+        -a "setup.bat" != "${file}" \
         ]; then
 
         if [ "vimfiles" = "${file}" ]; then

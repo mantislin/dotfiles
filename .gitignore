@@ -12,3 +12,8 @@ vimfiles/view/*
 # -- vimperator
 
 .vimperator/info/*
+
+# -- cow
+
+.cow/stat.bat
+.cow/stat

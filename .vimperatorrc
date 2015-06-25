@@ -12,7 +12,7 @@ set toolbars=noaddons,nobookmarks,nomenu,navigation,notabs
 set complete=slbt
 set hintchars=qwertasdfgzxcvb
 " highlight Hint font-size:200%;color:white;background-color:red;padding:2px;
-highlight Hint font-size:120%;color:white;background-color:red;padding:2px;
+highlight Hint font-size:100%;color:white;background-color:red;padding:2px;
 
 " -- prev page, next page
 set nextpattern=\s*(下一页>|下一页|下一张|下一章|下一篇|后一页|下页|后页)\s*,\bnext,^>$,^(>>|»)$,^(>|»),(>|»)$,\bmore\b
