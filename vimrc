@@ -272,7 +272,7 @@
 " -- GUI Settings
 if has("gui_running")
     " Basics
-    colorscheme codeschool
+    colorscheme solarized " colorscheme codeschool
     set guioptions=ce
     "              ||
     "              |+-- use simple dialogs rather than pop-ups
