@@ -135,7 +135,7 @@
     let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}
 
 " -- Vim UI
-    set incsearch " BUT do highlight as you type you search phrase
+    set incsearch " do highlight as you type you search phrase
     set laststatus=2 " always show the status line
     set lazyredraw " do not redraw while running macros
     set linespace=0 " don't insert any extra pixel lines betweens rows
@@ -143,6 +143,7 @@
     set listchars=tab:>-,trail:- " show tabs and trailing
     set matchtime=5 " how many tenths of a second to blink matching brackets for
     set hlsearch " do not highlight searched for phrases
+    set nowrapscan " searches wrap around the end of the file
     set nostartofline " leave my cursor where it was
     set novisualbell " don't blink
     set number " turn on line numbers
