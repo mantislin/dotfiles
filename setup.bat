@@ -16,6 +16,7 @@ set "extfiles=%~nx0"
 
 set "extfiles=%extfiles%::.git"
 set "extfiles=%extfiles%::bin"
+set "extfiles=%extfiles%::.oh-my-zsh"
 
 set "extfiles=%extfiles%::.DS_Store"
 set "extfiles=%extfiles%::.gitignore"
