@@ -143,7 +143,7 @@
     set listchars=tab:>-,trail:- " show tabs and trailing
     set matchtime=5 " how many tenths of a second to blink matching brackets for
     set hlsearch " do not highlight searched for phrases
-    set nowrapscan " searches wrap around the end of the file
+    set wrapscan " searches wrap around the end of the file
     set nostartofline " leave my cursor where it was
     set novisualbell " don't blink
     set number " turn on line numbers
