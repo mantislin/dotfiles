@@ -183,6 +183,7 @@
     set tabstop=4 " real tabs should be 8, and they will show with set list on
 
 " -- Folding
+    set diffopt+=context:99999
     set foldenable " Turn on folding
     set foldmethod=indent " Fold on the indent (damn you python)
     set foldlevel=100 " Don't autofold anything (but I can still fold manually)
@@ -249,7 +250,7 @@
     au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set ft=vim
     if !&diff
-        au BufEnter,VimEnter,FileType *.h,*.m,*.mm,*.pch,*.plist set foldmethod=indent
+        " au BufEnter,VimEnter,FileType *.h,*.m,*.mm,*.pch,*.plist set foldmethod=indent " trying
         " Remember everything (position, folds, etc)
         au BufWinLeave ?* mkview 1
         au BufWinEnter ?* silent loadview 1
@@ -380,7 +381,7 @@ set ttymouse=xterm2 " makes it work in everything
     endif
 
     if cohi == 1
-        au VimEnter * ColorHighlight
+        au BufEnter,VimEnter * ColorHighlight
     endif
 
     " ColorHighlight " start/update highlighting
