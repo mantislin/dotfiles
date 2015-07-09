@@ -183,7 +183,9 @@
     set tabstop=4 " real tabs should be 8, and they will show with set list on
 
 " -- Folding
-    set diffopt+=context:99999
+    if &diff
+        set diffopt+=context:99999
+    endif
     set foldenable " Turn on folding
     set foldmethod=indent " Fold on the indent (damn you python)
     set foldlevel=100 " Don't autofold anything (but I can still fold manually)
