@@ -10,7 +10,7 @@ RIGHT=${7}
 
 # Call the diff command (change the following line to make sense for
 # your merge program).
-$DIFF -f -d -c "wincmd R" "$LEFT" "$RIGHT"
+$DIFF -f -d -c "wincmd H" "$RIGHT" "$LEFT"
 
 # Return an errorcode of 0 if no differences were detected, 1 if some were.
 # Any other errorcode will be treated as fatal.
