@@ -11,7 +11,7 @@ ZSH_THEME="Prose"
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -34,7 +34,7 @@ ZSH_THEME="Prose"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Disable update prompt
-DISABLE_UPDATE_PROMPT=true
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
