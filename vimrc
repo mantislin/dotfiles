@@ -340,6 +340,9 @@ set ttymouse=xterm2 " makes it work in everything
 
 " -- Plugins
 
+" vim-ios
+let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To work around this add the line
+
 " plugin: vimtweak.dll - gvim transparency in windows
     " Alpha Window - SetAlpha
     " Maximized Window - EnableMaximize
