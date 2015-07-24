@@ -28,7 +28,7 @@ fi
 
 if [ -n "$macvimpath" ]; then
     VIM_APP_DIR="$macvimpath"
-    mvim $* || (
-        open -a "${macvimpath}/MacVim.app" $*
+    mvim "$@" || (
+        open -a "${macvimpath}/MacVim.app" "$@"
     )
 fi
