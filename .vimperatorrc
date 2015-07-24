@@ -38,6 +38,11 @@ map a <Nop>
 map <C-UP> :set toolbars=all<CR>
 map <C-Down> :set toolbars=noaddons,nobookmarks,nomenu,navigation,notabs<CR>
 
+" -- Interactive
+map ,i :js io.run("C:\\Program Files\\Internet Explorer\\iexplore.exe", [buffer.URL])<CR>
+map ,c :js io.run("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", [buffer.URL])<CR>
+map ,s :js io.run("\/Applications\/Safari.app", [buffer.URL])<CR>
+
 " ==============================================================================
 " -- debugging
 
