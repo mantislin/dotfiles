@@ -33,14 +33,14 @@
     set nocompatible " explicitly get out of vi-compatible mode
     set noexrc " don't use local version of .(g)vimrc, .exrc
     set background=dark " we plan to use a dark background
-    set fencs=ucs-bom,utf-8,japan,chinese,taiwan,korean,latin1
-    "set fenc=utf-8
+    set fencs=ucs-bom,utf-8,shift-jis,gb18030,gbk,gb2312,cp936,taiwan,korean,latin1
+    set fenc=utf-8
     if g:os=="windows" || g:os=="mac"
-        "set fenc=utf-8
+        set fenc=utf-8
         set tenc=utf-8
         set enc=utf-8
     elseif g:os=="linux"
-        "set fenc=utf-8
+        set fenc=utf-8
         set tenc=utf-8
         let s:enc=""
         if exists("$LANG") && $LANG != "C"
