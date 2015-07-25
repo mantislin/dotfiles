@@ -286,7 +286,7 @@ if has("gui_running")
         set guifont=Consolas:h10
         set gfw=Consolas:h10
     elseif g:os == "linux"
-        set guifont=Consolas\ 10.5
+        set guifont=CourierNew\ 10.5
         set gfw=CourierNew\ 10.5
     elseif g:os == "mac"
         set guifont=Menlo:h11
