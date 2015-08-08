@@ -1,8 +1,0 @@
-set guifont=Consolas:h10
-set gfw=Consolas:h10
-
-let g:ml=63  | let g:mc=235  | let g:mx=8    | let g:my=12
-let g:ll=63  | let g:lc=116  | let g:lx=12   | let g:ly=12
-let g:rl=63  | let g:rc=116  | let g:rx=841  | let g:ry=12
-let g:lbl=31 | let g:lbc=146 | let g:lbx=0   | let g:lby=510
-let g:rbl=31 | let g:rbc=146 | let g:rbx=638 | let g:rby=510

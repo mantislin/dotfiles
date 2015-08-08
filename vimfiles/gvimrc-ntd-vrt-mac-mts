@@ -1,8 +1,0 @@
-set guifont=Menlo:h11
-set gfw=Menlo:h11
-
-let g:ml=75  | let g:mc=237  | let g:mx=10   | let g:my=33
-let g:ll=75  | let g:lc=120  | let g:lx=13   | let g:ly=34
-let g:rl=75  | let g:rc=120  | let g:rx=825  | let g:ry=34
-let g:lbl=35 | let g:lbc=125 | let g:lbx=0   | let g:lby=566
-let g:rbl=35 | let g:rbc=125 | let g:rbx=802 | let g:rby=566

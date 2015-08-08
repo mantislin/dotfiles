@@ -555,29 +555,29 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
 " -- Position and size settings
     let     g:dfl=30 | let g:dfc=86  | let g:dfx=-1  | let g:dfy=-1
     if g:os=="windows"
-        let g:ml =48 | let g:mc =178 | let g:mx =7   | let g:my =7
-        let g:ll =48 | let g:lc =101 | let g:lx =7   | let g:ly =7
-        let g:rl =48 | let g:rc =101 | let g:rx =547 | let g:ry =7
-        let g:lbl=26 | let g:lbc=113 | let g:lbx=0   | let g:lby=327
-        let g:rbl=26 | let g:rbc=113 | let g:rbx=469 | let g:rby=327
-        let g:ltl=26 | let g:ltc=113 | let g:ltx=0   | let g:lty=0
-        let g:rtl=26 | let g:rtc=113 | let g:rtx=469 | let g:rty=0
+        let g:ml =999 | let g:mc =999 | let g:mx =7   | let g:my =7
+        let g:ll =48  | let g:lc =101 | let g:lx =7   | let g:ly =7
+        let g:rl =48  | let g:rc =101 | let g:rx =547 | let g:ry =7
+        let g:lbl=26  | let g:lbc=113 | let g:lbx=0   | let g:lby=327
+        let g:rbl=26  | let g:rbc=113 | let g:rbx=469 | let g:rby=327
+        let g:ltl=26  | let g:ltc=113 | let g:ltx=0   | let g:lty=0
+        let g:rtl=26  | let g:rtc=113 | let g:rtx=469 | let g:rty=0
     elseif g:os=="linux"
-        let g:ml =49 | let g:mc =157 | let g:mx =7   | let g:my =29
-        let g:ll =49 | let g:lc =87  | let g:lx =5   | let g:ly =28
-        let g:rl =49 | let g:rc =87  | let g:rx =569 | let g:ry =29
-        let g:lbl=33 | let g:lbc=110 | let g:lbx=4   | let g:lby=342
-        let g:rbl=29 | let g:rbc=101 | let g:rbx=644 | let g:rby=335
-        let g:ltl=33 | let g:ltc=110 | let g:ltx=4   | let g:lty=28
-        let g:rtl=29 | let g:rtc=101 | let g:rtx=644 | let g:rty=29
+        let g:ml =49  | let g:mc =157 | let g:mx =7   | let g:my =29
+        let g:ll =49  | let g:lc =87  | let g:lx =5   | let g:ly =28
+        let g:rl =49  | let g:rc =87  | let g:rx =569 | let g:ry =29
+        let g:lbl=33  | let g:lbc=110 | let g:lbx=4   | let g:lby=342
+        let g:rbl=29  | let g:rbc=101 | let g:rbx=644 | let g:rby=335
+        let g:ltl=33  | let g:ltc=110 | let g:ltx=4   | let g:lty=28
+        let g:rtl=29  | let g:rtc=101 | let g:rtx=644 | let g:rty=29
     elseif g:os=="mac"
-        let g:ml =57 | let g:mc =181 | let g:mx =8   | let g:my =32
-        let g:ll =57 | let g:lc =100 | let g:lx =10  | let g:ly =32
-        let g:rl =57 | let g:rc =100 | let g:rx =577 | let g:ry =32
-        let g:lbl=34 | let g:lbc=118 | let g:lbx=3   | let g:lby=325
-        let g:rbl=34 | let g:rbc=118 | let g:rbx=448 | let g:rby=325
-        let g:ltl=34 | let g:ltc=118 | let g:ltx=3   | let g:lty=32
-        let g:rtl=34 | let g:rtc=118 | let g:rtx=448 | let g:rty=32
+        let g:ml =999 | let g:mc =999 | let g:mx =8   | let g:my =32
+        let g:ll =57  | let g:lc =100 | let g:lx =10  | let g:ly =32
+        let g:rl =57  | let g:rc =100 | let g:rx =577 | let g:ry =32
+        let g:lbl=34  | let g:lbc=118 | let g:lbx=3   | let g:lby=325
+        let g:rbl=34  | let g:rbc=118 | let g:rbx=448 | let g:rby=325
+        let g:ltl=34  | let g:ltc=118 | let g:ltx=3   | let g:lty=32
+        let g:rtl=34  | let g:rtc=118 | let g:rtx=448 | let g:rty=32
     endif
 
     let hostfile=""
