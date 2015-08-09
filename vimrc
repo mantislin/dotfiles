@@ -571,9 +571,9 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
         let g:ltl=33  | let g:ltc=110 | let g:ltx=4   | let g:lty=28
         let g:rtl=29  | let g:rtc=101 | let g:rtx=644 | let g:rty=29
     elseif g:os=="mac"
-        let g:ml =999 | let g:mc =999 | let g:mx =8   | let g:my =32
-        let g:ll =999 | let g:lc =100 | let g:lx =10  | let g:ly =32
-        let g:rl =999 | let g:rc =100 | let g:rx =577 | let g:ry =32
+        let g:ml =57  | let g:mc =182 | let g:mx =0   | let g:my =23
+        let g:ll =57  | let g:lc =100 | let g:lx =0   | let g:ly =23
+        let g:rl =57  | let g:rc =100 | let g:rx =577 | let g:ry =32
         let g:lbl=34  | let g:lbc=118 | let g:lbx=3   | let g:lby=325
         let g:rbl=34  | let g:rbc=118 | let g:rbx=448 | let g:rby=325
         let g:ltl=34  | let g:ltc=118 | let g:ltx=3   | let g:lty=32
