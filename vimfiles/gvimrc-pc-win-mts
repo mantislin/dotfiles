@@ -2,8 +2,8 @@ set guifont=Consolas:h10
 set gfw=Consolas:h10
 
 let g:ml=999 | let g:mc=999  | let g:mx=8    | let g:my=11
-let g:ll=65  | let g:lc=130  | let g:lx=10   | let g:ly=10
-let g:rl=65  | let g:rc=130  | let g:rx=979  | let g:ry=10
+let g:ll=999 | let g:lc=130  | let g:lx=10   | let g:ly=10
+let g:rl=999 | let g:rc=130  | let g:rx=979  | let g:ry=10
 let g:lbl=33 | let g:lbc=148 | let g:lbx=0   | let g:lby=502
 let g:rbl=33 | let g:rbc=148 | let g:rbx=864 | let g:rby=502
 let g:ltl=33 | let g:ltc=148 | let g:ltx=0   | let g:lty=0
