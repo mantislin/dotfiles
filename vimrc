@@ -556,8 +556,8 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     let     g:dfl=30 | let g:dfc=86  | let g:dfx=-1  | let g:dfy=-1
     if g:os=="windows"
         let g:ml =999 | let g:mc =999 | let g:mx =7   | let g:my =7
-        let g:ll =48  | let g:lc =101 | let g:lx =7   | let g:ly =7
-        let g:rl =48  | let g:rc =101 | let g:rx =547 | let g:ry =7
+        let g:ll =999 | let g:lc =101 | let g:lx =7   | let g:ly =7
+        let g:rl =999 | let g:rc =101 | let g:rx =547 | let g:ry =7
         let g:lbl=26  | let g:lbc=113 | let g:lbx=0   | let g:lby=327
         let g:rbl=26  | let g:rbc=113 | let g:rbx=469 | let g:rby=327
         let g:ltl=26  | let g:ltc=113 | let g:ltx=0   | let g:lty=0
@@ -572,8 +572,8 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
         let g:rtl=29  | let g:rtc=101 | let g:rtx=644 | let g:rty=29
     elseif g:os=="mac"
         let g:ml =999 | let g:mc =999 | let g:mx =8   | let g:my =32
-        let g:ll =57  | let g:lc =100 | let g:lx =10  | let g:ly =32
-        let g:rl =57  | let g:rc =100 | let g:rx =577 | let g:ry =32
+        let g:ll =999 | let g:lc =100 | let g:lx =10  | let g:ly =32
+        let g:rl =999 | let g:rc =100 | let g:rx =577 | let g:ry =32
         let g:lbl=34  | let g:lbc=118 | let g:lbx=3   | let g:lby=325
         let g:rbl=34  | let g:rbc=118 | let g:rbx=448 | let g:rby=325
         let g:ltl=34  | let g:ltc=118 | let g:ltx=3   | let g:lty=32
