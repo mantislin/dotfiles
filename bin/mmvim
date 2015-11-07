@@ -32,3 +32,26 @@ if [ -n "$macvimpath" ]; then
         open -a "${macvimpath}/MacVim.app" "$@"
     )
 fi
+
+
+##the method below could make mvim not open file path with space correctly
+#if [ -n "$macvimpath" ]; then
+#    VIM_APP_DIR="$macvimpath"
+#    mvim "$@" || (
+#        open -a "${macvimpath}/MacVim.app" "$@"
+#    )
+#fi
+
+
+#while [ -n "$1" ]; do
+#    args="$args $1"
+#    shift;
+#done
+
+
+#if [ -n "$macvimpath" ]; then
+#    VIM_APP_DIR="$macvimpath"
+#    mvim $args || (
+#        open -a "${macvimpath}/MacVim.app" "$args"
+#    )
+#fi
