@@ -237,26 +237,32 @@
     " ruby standard 2 spaces, always
     au BufEnter,VimEnter,FileType *.rb,*.rhtml set shiftwidth=2 softtabstop=2
     " Override types
-    au BufEnter,VimEnter,FileType *.ahk set filetype=autohotkey
-    au BufEnter,VimEnter,FileType *.bat set filetype=dosbatch
     au BufEnter,VimEnter,FileType *.command set filetype=sh
     au BufEnter,VimEnter,FileType *.ps1 set filetype=ps1
-    au BufEnter,VimEnter,FileType *.markdown set filetype=md
     au BufEnter,VimEnter,FileType *.md set filetype=markdown
     au BufEnter,VimEnter,FileType *.dtl set filetype=htmldjango
     au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery
-    au BufEnter,VimEnter,FileType *.pch,*.h,*.m set filetype=objc
-    au BufEnter,VimEnter,FileType *.mm set filetype=objcpp
-    au BufEnter,VimEnter,FileType *.ahk,*.bat,*.txt set cindent cinoptions=+0
-    au BufEnter,VimEnter,FileType *.autohotkey,*.batch set cindent cinoptions=+0
-    au BufEnter,VimEnter,FileType objc,objcpp set cindent cinoptions=+0
-    au BufEnter,VimEnter,FileType *.ahk,*.bat,*.reg,*.ini set ff=dos
-    au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set ft=vim
+    au BufEnter,VimEnter,FileType *.txt set cindent cinoptions=+0 fileformat=dos
+    au BufEnter,VimEnter,FileType *.reg,*.ini set fileformat=dos
+    au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set filetype=vim
+
+    au BufEnter,VimEnter,FileType *.ahk set filetype=autohotkey
+    au BufEnter,VimEnter,FileType *.autohotkey,*.ahk set cindent cinoptions=+0 fileformat=dos
+
+    au BufEnter,VimEnter,FileType *.bat set filetype=dosbatch
+    au BufEnter,VimEnter,FileType *.batch,*.bat set cindent cinoptions=+0 fileformat=dos
+
+    au BufEnter,VimEnter,FileType *.pch,*.h,*.m set cindent cinoptions=+0 filetype=objc foldmethod=indent
+    au BufEnter,VimEnter,FileType *.mm set cindent cinoptions=+0 filetype=objcpp foldmethod=indent
+    au BufEnter,VimEnter,FileType objc,objcpp set cindent cinoptions=+0 foldmethod=indent
     if !&diff
-        " au BufEnter,VimEnter,FileType *.h,*.m,*.mm,*.pch,*.plist set foldmethod=indent " trying
         " Remember everything (position, folds, etc)
         au BufWinLeave ?* mkview 1
         au BufWinEnter ?* silent loadview 1
+    else
+        au BufEnter,VimEnter,FileType *.pch,*.h,*.m set cindent cinoptions=+0 foldmethod=diff
+        au BufEnter,VimEnter,FileType *.mm set cindent cinoptions=+0 foldmethod=diff
+        au BufEnter,VimEnter,FileType objc,objcpp set cindent cinoptions=+0 foldmethod=diff
     endif
     " Formatting
     function! RemoveTrailingSpaces()
