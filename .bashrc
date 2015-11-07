@@ -40,6 +40,7 @@ export xcode_home="/Applications/Xcode.app"
 export xcode_sdks_iphoneos="${xcode_home}/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs"
 export xcode_sdks_iphonesimulator="${xcode_home}/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs"
 export xcode_sdks_macosx="${xcode_home}/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs"
+export xcode_derived="${HOME}/Library/Developer/Xcode/DerivedData"
 
 # -- alias
 
