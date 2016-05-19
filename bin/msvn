@@ -1,0 +1,86 @@
+#!/bin/sh
+
+# ==============================================================================
+# -- To judge if a data formatting is necessary.
+# -- $1, not null, argument to judge
+# -- return value
+#       0, means no need to format
+#       1, means need to format
+needf() {
+    if [[ ! $@ == *"@"* ]]; then
+        echo 0
+    else
+        echo 1
+    fi
+}
+
+# ==============================================================================
+# -- Format argument to fit terminal svn
+farg() {
+    result=""
+    if [ $(needf "$@") == 0 ]; then
+        result="${@}"
+    else
+        result="${@}@"
+    fi
+    #result=$(sed -e "s/\s/\\ /g" <<< $result) #not work
+    echo "${result}"
+}
+
+# ==============================================================================
+# -- Format arguments to fit terminal svn
+# -- $@, arguments to format
+# -- return value, formatted(if needed) arguments
+fargs() {
+    #if [ $(needf "$@") == 0 ]; then
+        #echo $@
+        #return
+    #fi
+
+    result=""
+    for output in "$@"; do
+        tempResult=$(farg "${output}")
+        [ -z "${result}" ] && result="\"${tempResult}\"" || result="${result} \"${tempResult}\""
+
+        #if [ $(needf "${output}") == 0 ]; then
+            #[ -z "${result}" ] && result="\"${output}\"" || result="${result} \"${output}\""
+        #else
+            #tempResult=$(farg "${output}")
+            #[ -z "${result}" ] && result="\"${tempResult}\"" || result="${result} \"${tempResult}\""
+        #fi
+    done
+
+    echo ${result}
+}
+
+# ==============================================================================
+# -- Transfer arguments to svn command
+tsvn() {
+    #echo svn $@
+    #echo "\$1=$1"
+    #echo "\$2=$2"
+    #echo "\$3=$3"
+    #echo "\$4=$4"
+    #echo "\$5=$5"
+    #echo "\$6=$6"
+    #echo "\$7=$7"
+    eval svn $@
+}
+
+# ==============================================================================
+# -- MAIN PROGRAM
+if [ "$1" == "commit" ]; then
+    if [ $# -lt 4 ]; then
+        echo "More argument(s) required."
+        exit
+    fi
+fi
+
+if [ "$1" == "revert" ]; then
+    if [ $# -lt 2 ]; then
+        echo "More argument(s) required."
+        exit
+    fi
+fi
+
+tsvn $1 $(fargs "${@:2}")
