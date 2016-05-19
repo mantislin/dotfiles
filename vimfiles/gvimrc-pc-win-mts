@@ -1,7 +1,7 @@
 set guifont=Consolas:h10
 set gfw=Consolas:h10
 
-let g:ml=48  | let g:mc=180  | let g:mx=0    | let g:my=7
+let g:ml=65  | let g:mc=205  | let g:mx=0    | let g:my=0
 let g:ll=48  | let g:lc=130  | let g:lx=0    | let g:ly=7
 let g:rl=48  | let g:rc=130  | let g:rx=979  | let g:ry=7
 let g:lbl=33 | let g:lbc=148 | let g:lbx=0   | let g:lby=502
