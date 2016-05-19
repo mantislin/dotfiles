@@ -1,0 +1,10 @@
+#!/bin/sh
+
+MERGE="mmvim"
+
+BASE="${1}"
+REMOTE="${2}"
+LOCAL="${3}"
+MERGED="${5}"
+
+$MERGE -f -d "${REMOTE}" "${LOCAL}" "${BASE}" -c ":bo sp ${MERGED}" -c ":diffthis" -c "setl stl=MERGED | wincmd W | setl stl=BASE | wincmd W | setl stl=LOCAL | wincmd W | setl stl=REMOTE | wincmd j"

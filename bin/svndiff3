@@ -1,17 +1,17 @@
 #!/bin/sh
 
 # Configure your favorite diff3/merge program here.
-DIFF3="mvim"
+DIFF3="mmvim"
 
 # Subversion provides the paths we need as the ninth, tenth, and eleventh
 # parameters.
-MINE=${9}
-OLDER=${10}
-YOURS=${11}
+LOCAL="${9}"
+BASE="${10}"
+REMOTE="${11}"
 
 # Call the merge command (change the following line to make sense for
 # your merge program).
-$DIFF3 -f -d --older $OLDER --mine $MINE --yours $YOURS
+$DIFF3 -f -d "${REMOTE}" "${BASE}" -c ":bo sp ${LOCAL}" -c ":diffthis" -c "setl stl=LOCAL | wincmd W | setl stl=BASE | wincmd W | setl stl=REMOTE | wincmd j"
 
 # After performing the merge, this script needs to print the contents
 # of the merged file to stdout.  Do that in whatever way you see fit.

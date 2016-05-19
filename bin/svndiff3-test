@@ -1,0 +1,7 @@
+#!/bin/sh
+
+mine="$9"
+older="$10"
+yours="$11"
+
+mmvim -f -d --older "$older" --mine "$mine" --yours "$yours"
