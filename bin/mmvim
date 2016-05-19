@@ -19,7 +19,8 @@ if [ -z "$macvimpath" ]; then
         if [ -d "${HOME}/Applications" ]; then
             for f in $(find "${HOME}/Applications" -type d -iname "MacVim.app")
             do
-                macvimpath="$f/.."
+                #macvimpath="$f/.."
+                macvimpath="$(dirname $f)"
             done
         fi
     fi
