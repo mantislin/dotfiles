@@ -169,6 +169,7 @@
     "              | | +-- readonly flag in square brackets
     "              | +-- rodified flag in square brackets
     "              +-- full path to file in the buffer
+    set display=lastline " Show as much as possible of a wrapped last line, not just "@".
 
 " -- Text Formatting/Layout
     set completeopt=menuone " don't use a pop up menu for completions
@@ -325,13 +326,12 @@ if has("gui_running")
     " map <F10> <ESC>:set guifont=Consolas:h12<CR>
     " map <F11> <ESC>:set guifont=Consolas:h16<CR>
     " map <F12> <ESC>:set guifont=Consolas:h20<CR>
-endif
-
+elseif s:colorful_term
 " -- Term Settings
-if s:colorful_term
+
     "256 color --
     let &t_Co=256
-    colorscheme solarized " colorscheme codeschool " colorscheme slate
+    colorscheme slate " colorscheme solarized " colorscheme codeschool
     " restore screen after quitting
     if has("terminfo")
         let &t_Sf="\ESC[3%p1%dm"
