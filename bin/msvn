@@ -83,4 +83,11 @@ if [ "$1" == "revert" ]; then
     fi
 fi
 
+if [ "$1" == "diff" ]; then
+    if [ $# -lt 2 ]; then
+        echo "More argument(s) required."
+        exit
+    fi
+fi
+
 tsvn $1 $(fargs "${@:2}")
