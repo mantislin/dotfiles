@@ -5,6 +5,8 @@ set magic
 set smartcase
 set blinkcursor
 
+set clipboard=unnamed
+
 " Mappings
 nmap n nzz
 nmap N Nzz
