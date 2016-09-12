@@ -225,14 +225,14 @@
     nnoremap <buffer> <silent> gk k
     nnoremap <buffer> <silent> gj j
 
-    map <up> <ESC>:bp<RETURN>
-    map gT <ESC>:bp<RETURN>
-    map <down> <ESC>:bn<RETURN>
-    map gt <ESC>:bn<RETURN>
-    map <C-h> :wincmd h<CR>
-    map <C-j> :wincmd j<CR>
-    map <C-k> :wincmd k<CR>
-    map <C-l> :wincmd l<CR>
+    noremap <up> <ESC>:bp<RETURN>
+    noremap gT <ESC>:bp<RETURN>
+    noremap <down> <ESC>:bn<RETURN>
+    noremap gt <ESC>:bn<RETURN>
+    noremap <C-h> :wincmd h<CR>
+    noremap <C-j> :wincmd j<CR>
+    noremap <C-k> :wincmd k<CR>
+    noremap <C-l> :wincmd l<CR>
 
 " -- Autocommands
     " ruby standard 2 spaces, always
