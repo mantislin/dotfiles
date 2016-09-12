@@ -361,6 +361,10 @@ pip-log.txt
 
 # -- github
 .fuse_hidden*
+mygit
 
 # -- xCode 5
 .xccheckout
+
+# -- svn
+mysvn
