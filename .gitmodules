@@ -1,0 +1,24 @@
+[submodule "vimfiles/bundle/Colorizer"]
+	path = vimfiles/bundle/Colorizer
+	url = https://github.com/chrisbra/Colorizer
+[submodule "vimfiles/bundle/clang_complete"]
+	path = vimfiles/bundle/clang_complete
+	url = https://github.com/Rip-Rip/clang_complete
+[submodule "vimfiles/bundle/minibufexpl.vim"]
+	path = vimfiles/bundle/minibufexpl.vim
+	url = https://github.com/fholgado/minibufexpl.vim
+[submodule "vimfiles/bundle/neocomplcache.vim"]
+	path = vimfiles/bundle/neocomplcache.vim
+	url = https://github.com/Shougo/neocomplcache.vim
+[submodule "vimfiles/bundle/nerdtree"]
+	path = vimfiles/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "vimfiles/bundle/rainbow_parentheses.vim"]
+	path = vimfiles/bundle/rainbow_parentheses.vim
+	url = https://github.com/kien/rainbow_parentheses.vim
+[submodule "vimfiles/bundle/taglist.vim"]
+	path = vimfiles/bundle/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim
+[submodule "vimfiles/bundle/vim-ios"]
+	path = vimfiles/bundle/vim-ios
+	url = https://github.com/eraserhd/vim-ios
