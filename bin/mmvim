@@ -1,58 +1,79 @@
 #!/bin/sh
 
+main()
+{
+    ## ---------- Terminal Tool Way
 
-if [ -n "${VIM_APP_DIR}" -a -d "${VIM_APP_DIR}" ]; then
-    macvimpath="${VIM_APP_DIR}"
-fi
+    ## -- default mvim
+    #echo "mvim1=$(which mvim)"
+    mvim "$@" 2>/dev/null && exit 0
 
+    ## -- which mvim
+    if [ -z "${mvim+x}" ]; then
+        for f in $(which mvim 2>/dev/null); do
+            mvim="$f"
+        done
+    fi
+    #echo "mvim2=${mvim}"
+    [ -n "${mvim+x}" -a -f "${mvim}" ] && "${mvim}" "$@" 2>/dev/null && exit 0
 
-if [ -z "$macvimpath" ]; then
-    if [ -d "${HOME}/Applications/MacVim" ]; then
-        macvimpath="${HOME}/Applications/MacVim"
-    elif [ -d "/Applications/MacVim" ]; then
-        macvimpath="/Applications/MacVim"
-    elif [ -d "${HOME}/Applications/MacVim.app" ]; then
-        macvimpath="${HOME}/Applications"
-    elif [ -d "/Applications/MacVim.app" ]; then
-        macvimpath="/Applications"
-    else
-        if [ -d "${HOME}/Applications" ]; then
-            for f in $(find "${HOME}/Applications" -type d -iname "MacVim.app")
+    ## -- search mvim
+    if [ -z "${mvim+x}" ]; then
+        if [ -d "/usr/local" ]; then
+            for f in $(find "/usr/local" -iname "mvim" 2>/dev/null | head -n 1); do
+                mvim="$f"
+            done
+        fi
+    fi
+    #echo "mvim3=${mvim}"
+    [ -n "${mvim+x}" -a -f "${mvim}" ] && "${mvim}" "$@" 2>/dev/null && exit 0
+
+    ## ---------- Application Way
+
+    [ -n "${VIM_APP_DIR+x}" -a -d "${VIM_APP_DIR}" ] && macvimpath="${VIM_APP_DIR}"
+
+    ## -- Match Somewhere Regular
+    if [ -z "${macvimpath+x}" ]; then
+        if [ -d "${HOME}/Applications/MacVim" ]; then
+            macvimpath="${HOME}/Applications/MacVim"
+        elif [ -d "/Applications/MacVim" ]; then
+            macvimpath="/Applications/MacVim"
+        elif [ -d "${HOME}/Applications/MacVim.app" ]; then
+            macvimpath="${HOME}/Applications"
+        elif [ -d "/Applications/MacVim.app" ]; then
+            macvimpath="/Applications"
+        fi
+    fi
+    #echo "macvimpath1=${macvimpath}"
+
+    ## -- Search /Applications recursively
+    if [ -z "${macvimpath+x}" ]; then
+        if [ -d "/Applications" ]; then
+            for f in $(find "/Applications" -depth 2 -iname "MacVim.app" 2>/dev/null | head -n 1)
             do
-                #macvimpath="$f/.."
                 macvimpath="$(dirname $f)"
             done
         fi
     fi
-fi
+    #echo "macvimpath2=${macvimpath}"
 
+    ## -- Search ~/Applications recursively
+    if [ -z "${macvimpath+x}" ]; then
+        if [ -d "${HOME}/Applications" ]; then
+            for f in $(find "${HOME}/Applications" -depth 2 -iname "MacVim.app" 2>/dev/null | head -n 1)
+            do
+                macvimpath="$(dirname $f)"
+            done
+        fi
+    fi
+    #echo "macvimpath3=${macvimpath}"
 
-if [ -n "$macvimpath" ]; then
-    VIM_APP_DIR="$macvimpath"
-    mvim "$@" || (
+    ## -- execute
+
+    if [ -n "${macvimpath}" ]; then
+        VIM_APP_DIR="${macvimpath}"
         open -a "${macvimpath}/MacVim.app" "$@"
-    )
-fi
+    fi
+}
 
-
-##the method below could make mvim not open file path with space correctly
-#if [ -n "$macvimpath" ]; then
-#    VIM_APP_DIR="$macvimpath"
-#    mvim "$@" || (
-#        open -a "${macvimpath}/MacVim.app" "$@"
-#    )
-#fi
-
-
-#while [ -n "$1" ]; do
-#    args="$args $1"
-#    shift;
-#done
-
-
-#if [ -n "$macvimpath" ]; then
-#    VIM_APP_DIR="$macvimpath"
-#    mvim $args || (
-#        open -a "${macvimpath}/MacVim.app" "$args"
-#    )
-#fi
+main "$@"
