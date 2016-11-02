@@ -22,3 +22,18 @@
 [submodule "vimfiles/bundle/vim-ios"]
 	path = vimfiles/bundle/vim-ios
 	url = https://github.com/eraserhd/vim-ios
+[submodule "vimfiles/bundle/ultisnips"]
+	path = vimfiles/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "vimfiles/bundle/vim-javascript"]
+	path = vimfiles/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule "vimfiles/bundle/vim-jsx"]
+	path = vimfiles/bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx
+[submodule "vimfiles/bundle/vim-react-snippets"]
+	path = vimfiles/bundle/vim-react-snippets
+	url = https://github.com/justinj/vim-react-snippets
+[submodule "vimfiles/bundle/vim-snippets"]
+	path = vimfiles/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets

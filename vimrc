@@ -208,6 +208,9 @@
     au BufEnter,VimEnter,FileType *.reg,*.ini set fileformat=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set filetype=vim
 
+    au BufEnter,VimEnter,FileType *.js,*.jsx set shiftwidth=3 softtabstop=3
+    au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery shiftwidth=3 softtabstop=3
+
     au BufEnter,VimEnter,FileType *.ahk set filetype=autohotkey
     au BufEnter,VimEnter,FileType *.autohotkey,*.ahk set cindent cinoptions=+0 fileformat=dos
 
@@ -315,11 +318,6 @@ if has("gui_running")
     endfu
     nmap <F2> :call SwitchGUIDisplay()<CR>
     au VimEnter * call SwitchGUIDisplay()
-    " map <F8> <ESC>:set guifont=Consolas:h8<CR>
-    " map <F9> <ESC>:set guifont=Consolas:h10<CR>
-    " map <F10> <ESC>:set guifont=Consolas:h12<CR>
-    " map <F11> <ESC>:set guifont=Consolas:h16<CR>
-    " map <F12> <ESC>:set guifont=Consolas:h20<CR>
 elseif s:colorful_term
 " ---------- Term Settings
     "256 color --
@@ -357,6 +355,53 @@ set ttymouse=xterm2 " makes it work in everything
 
 " -- plugin:vim-ios
     let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To work around this add the line
+
+" -- plugin:vim-javascript
+    let g:javascript_plugin_jsdoc = 1 " Enables syntax highlighting for JSDocs. Default Value: 0.
+    let g:javascript_plugin_ngdoc = 1 " Enables some additional syntax highlighting for NGDocs. Requires JSDoc plugin to be enabled as well. Default Value: 0
+    let g:javascript_plugin_flow = 1 " Enable syntax highlighting for Flow. Default Value: 0.
+    " You can customize concealing characters by defining one or more of the following variables:
+    let g:javascript_conceal_function       = "ƒ"
+    let g:javascript_conceal_null           = "ø"
+    let g:javascript_conceal_this           = "@"
+    let g:javascript_conceal_return         = "⇚"
+    let g:javascript_conceal_undefined      = "¿"
+    let g:javascript_conceal_NaN            = "ℕ"
+    let g:javascript_conceal_prototype      = "¶"
+    let g:javascript_conceal_static         = "•"
+    let g:javascript_conceal_super          = "Ω"
+    let g:javascript_conceal_arrow_function = "⇒"
+
+" -- plugin:vim-jsx
+    let g:jsx_ext_required = 0
+    let g:jsx_pragma_required = 0
+    " eslint
+    let g:syntastic_javascript_checkers = ['eslint']
+    let g:syntastic_javascript_eslint_exe = 'npm run eslint --'
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    "" Override eslint with local version where necessary.
+    "let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
+    "if matchstr(local_eslint, "^\/\\w") = ''
+    "    let local_eslint = getcwd() . "/" . local_eslint
+    "endif
+    "if executable(local_eslint)
+    "    let g:syntastic_javascript_eslint_exec = local_eslint
+    "endif
+
+
+" -- plugin:UltiSnips
+    " Trigger configuration. Do not use <TAB> if you use https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<TAB>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
+
+" -- plugin:vim-snippets
+    "just do nothing
 
 " -- plugin:vimtweak.dll - gvim transparency in windows
     " Alpha Window - SetAlpha
