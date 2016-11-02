@@ -556,6 +556,12 @@ set ttymouse=xterm2 " makes it work in everything
     endfunction
     " <TAB>: completion.
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    "   fix question: complete with <Tab> doesn't work.
+    "   reference-from: https://github.com/spf13/spf13-vim/issues/108
+    " <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    au BufEnter * inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    au BufEnter * inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
