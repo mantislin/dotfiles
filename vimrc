@@ -196,44 +196,14 @@
     endfunction " }
     set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
 
-" ---------- Mappings
-    " " hit f11 to paste
-    " set pastetoggle=<f11>
-    " " space / shift-space scroll in normal mode
-    " noremap <S-space> 5k
-    " noremap <space> 5j
-    " fuzzymaps
-    " nmap <leader>f :FufFileWithCurrentBufferDir<CR>
-    " nmap <leader>ff :FufFile<CR>
-    " nmap <leader>b :FufBuffer<CR>
-    " nmap <leader>t :FufBufferTag<CR>
-    " nmap <tab> :FufBufferTag<CR>
-    " make arrow keys useful
-    map <left> <ESC>:NERDTreeFind<RETURN>
-    " map <right> <ESC>:TagbarToggle<RETURN>
-    nnoremap <buffer> <silent> k gk
-    nnoremap <buffer> <silent> j gj
-    nnoremap <buffer> <silent> gk k
-    nnoremap <buffer> <silent> gj j
-
-    noremap <up> <ESC>:bp<RETURN>
-    noremap gT <ESC>:bp<RETURN>
-    noremap <down> <ESC>:bn<RETURN>
-    noremap gt <ESC>:bn<RETURN>
-    noremap <C-h> :wincmd h<CR>
-    noremap <C-j> :wincmd j<CR>
-    noremap <C-k> :wincmd k<CR>
-    noremap <C-l> :wincmd l<CR>
-
 " ---------- Autocommands
-    " ruby standard 2 spaces, always
-    au BufEnter,VimEnter,FileType *.rb,*.rhtml set shiftwidth=2 softtabstop=2
+    " ruby standard 3 spaces, always
+    au BufEnter,VimEnter,FileType *.rb,*.rhtml set shiftwidth=3 softtabstop=3
     " Override types
     au BufEnter,VimEnter,FileType *.command set filetype=sh
     au BufEnter,VimEnter,FileType *.ps1 set filetype=ps1
     au BufEnter,VimEnter,FileType *.md set filetype=markdown
     au BufEnter,VimEnter,FileType *.dtl set filetype=htmldjango
-    au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery
     au BufEnter,VimEnter,FileType *.txt set cindent cinoptions=+0 fileformat=dos
     au BufEnter,VimEnter,FileType *.reg,*.ini set fileformat=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set filetype=vim
@@ -256,7 +226,7 @@
         au BufEnter,VimEnter,FileType *.mm set cindent cinoptions=+0 foldmethod=diff
         au BufEnter,VimEnter,FileType objc,objcpp set cindent cinoptions=+0 foldmethod=diff
     endif
-    " Formatting
+    " Remove trailing spaces on save
     function! RemoveTrailingSpaces()
         let l:save_cursor = getpos('.')
         :%s/\(\s\|　\)\+$//gei
@@ -270,6 +240,39 @@
     " au BufEnter * match FormatWarning /\(\%>81v.\+\|\( \|\t\)\+\n\)/
     au BufEnter * set colorcolumn=81
     au BufEnter *.h,*.m,*.mm,*.pch,*.plist set colorcolumn=121
+
+" ---------- Mappings
+    " " hit f11 to paste
+    " set pastetoggle=<f11>
+    " " space / shift-space scroll in normal mode
+    " noremap <S-space> 5k
+    " noremap <space> 5j
+    " fuzzymaps
+    " nmap <leader>f :FufFileWithCurrentBufferDir<CR>
+    " nmap <leader>ff :FufFile<CR>
+    " nmap <leader>b :FufBuffer<CR>
+    " nmap <leader>t :FufBufferTag<CR>
+    " nmap <tab> :FufBufferTag<CR>
+    " make arrow keys useful
+    map <left> <ESC>:NERDTreeFind<RETURN>
+    " map <right> <ESC>:TagbarToggle<RETURN>
+    nnoremap <buffer> <silent> k gk
+    nnoremap <buffer> <silent> j gj
+    nnoremap <buffer> <silent> gk k
+    nnoremap <buffer> <silent> gj j
+    vnoremap <buffer> <silent> k gk
+    vnoremap <buffer> <silent> j gj
+    vnoremap <buffer> <silent> gk k
+    vnoremap <buffer> <silent> gj j
+
+    noremap <up> <ESC>:bp<RETURN>
+    noremap gT <ESC>:bp<RETURN>
+    noremap <down> <ESC>:bn<RETURN>
+    noremap gt <ESC>:bn<RETURN>
+    noremap <C-h> :wincmd h<CR>
+    noremap <C-j> :wincmd j<CR>
+    noremap <C-k> :wincmd k<CR>
+    noremap <C-l> :wincmd l<CR>
 
 " ---------- GUI Settings
 if has("gui_running")
@@ -319,7 +322,6 @@ if has("gui_running")
     " map <F12> <ESC>:set guifont=Consolas:h20<CR>
 elseif s:colorful_term
 " ---------- Term Settings
-
     "256 color --
     let &t_Co=256
     colorscheme slate " colorscheme solarized " colorscheme codeschool
@@ -346,13 +348,17 @@ set ttymouse=xterm2 " makes it work in everything
 
 " ---------- Plugins
 
-" -- pathogen
-execute pathogen#infect()
+" -- plugin:pathogen
+    execute pathogen#infect()
 
-" -- vim-ios
-let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To work around this add the line
+"" -- plugin:color_coded
+    "let g:color_coded_enabled = 1
+    "let g:color_coded_filetypes = ['c', 'cpp', 'objc']
 
-" -- plugin: vimtweak.dll - gvim transparency in windows
+" -- plugin:vim-ios
+    let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To work around this add the line
+
+" -- plugin:vimtweak.dll - gvim transparency in windows
     " Alpha Window - SetAlpha
     " Maximized Window - EnableMaximize
     " EnableCaption - EnableCaption
@@ -386,7 +392,7 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
         set transparency=7 " transparency, just work to MacVim
     endif
 
-"" -- plugin: Colorizer
+"" -- plugin:Colorizer
 "    let cohi = 0
 "    if has("gui_running")
 "        let cohi = 1
@@ -402,7 +408,7 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
 "    " ColorClear " clear all highlights
 "    " ColorToggle " toggle highlights
 
-" -- plugin: rainbow_parentheses
+" -- plugin:rainbow_parentheses
     " au VimEnter * RainbowParenthesesToggle " on/off
     au VimEnter * RainbowParenthesesActivate " active
     au Syntax * RainbowParenthesesLoadRound " ()
@@ -410,16 +416,16 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     au Syntax * RainbowParenthesesLoadBraces " {}
     " au Syntax * RainbowParenthesesLoadChevrons " <>
 
-"" -- plugin: Rainbow Parentheses
+"" -- plugin:Rainbow Parentheses
 "    let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
-" -- plugin: MiniBufExplorer
+" -- plugin:MiniBufExplorer
     let g:miniBufExplMapWindowNavVim = 1
     let g:miniBufExplMapWindowNavArrows = 1
     let g:miniBufExplMapCTabSwitchBufs = 0
     let g:miniBufExplModSelTarget = 1
 
-" -- plugin: taglist
+" -- plugin:taglist
     if g:os == "windows"
         let Tlist_Ctags_Cmd = 'ctags'
     elseif g:os == "linux"
@@ -431,7 +437,7 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     let Tlist_Exit_OnlyWindow = 1
     let Tlist_User_Right_Window = 0
 
-" -- plugin NERDTree
+" -- plugin:NERDTree
     let NERDTreeIgnore = ['\.beam', '\.pyc', 'ebin']
     " let NERDChristmasTree = 1
     let NERDTreeWinSize = 40
@@ -454,12 +460,12 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     endfu
     command! -nargs=? Ntr call Ntr(<f-args>)
 
-" -- plugin clang_complate
+" -- plugin:clang_complate
     let g:clang_complate_auto = 0
     let g:clang_auto_select = 0
     let g:clang_use_library = 1
 
-" -- Plugin neocomplcache
+" -- Plugin:neocomplcache
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
