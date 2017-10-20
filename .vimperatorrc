@@ -20,11 +20,11 @@ set previouspattern=\s*(<上一页|上一页|上一张|上一章|上一篇|前�
 
 " -- remapping
 " noremap ,s :so C:\Users\Administrator\_vimperatorrc<CR>
-nnoremap ,t /.torrent<Esc><cr>
-nnoremap j 2j
-nnoremap k 2k
-nnoremap h 2h
-nnoremap l 2l
+"nnoremap ,t /.torrent<Esc><cr>
+"nnoremap j 2j
+"nnoremap k 2k
+"nnoremap h 2h
+"nnoremap l 2l
 
 " -- disable useless shortcuts
 map a <Nop>
