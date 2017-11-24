@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Volumes/WINDOWS/SHAREDDATAS/Dropbox/terminalDownloaders'
-let g:netrw_dirhist_2='/Volumes/WINDOWS/SHAREDDATAS/Dropbox'
-let g:netrw_dirhist_3='/Volumes/WINDOWS/SHAREDDATAS/Dropbox/terminalDownloaders'
-let g:netrw_dirhist_4='/Users/Sword/.cocoapods/repos'

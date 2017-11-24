@@ -1,6 +1,0 @@
-ftdetect/json.vim
-ftplugin/json.vim
-indent/json.vim
-json-test.json
-jsonp-test.jsonp
-syntax/json.vim

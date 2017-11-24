@@ -5,9 +5,8 @@
 "
 "   If you find an obvious mistake hit me up at:
 "   http://robertmelton.com (many forms of communication)
-"   fuck
 
-" -- Startup
+" ---------- Startup
     source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
     behave mswin
@@ -15,7 +14,7 @@
     let g:erlangHighlightBif = 1
     let g:erlangHighLightOperators = 1
 
-" -- Functions those should before basic
+" ---------- Functions those should before basic
     func! GetRunningOS()
         if has("win32")
             return "windows"
@@ -29,7 +28,7 @@
     endfu
     let g:os=GetRunningOS()
 
-" -- Basics
+" ---------- Basics
     set nocompatible " explicitly get out of vi-compatible mode
     set noexrc " don't use local version of .(g)vimrc, .exrc
     set background=dark " we plan to use a dark background
@@ -69,7 +68,7 @@
     syntax on " syntax highlighting on
     let g:skip_loading_mswin=1 " Just in case :)
 
-" -- Newish
+" ---------- Newish
     set history=9999 " big old history
     set timeoutlen=300 " super low delay (works for me)
     set formatoptions+=n " Recognize numbered lists
@@ -77,7 +76,7 @@
     set viminfo+=! " Store upper-case registers in viminfo
     set nomore " Short nomore
 
-" -- General
+" ---------- General
     filetype plugin indent on " load filetype plugins/indent settings
     set ambiwidth=double " what to do with Unicode chars of ambiguous
     set autochdir " always switch to the current file directory
@@ -135,7 +134,7 @@
     let use_xhtml = 0
     let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}
 
-" -- Vim UI
+" ---------- Vim UI
     set incsearch " do highlight as you type you search phrase
     set laststatus=2 " always show the status line
     set lazyredraw " do not redraw while running macros
@@ -169,8 +168,9 @@
     "              | | +-- readonly flag in square brackets
     "              | +-- rodified flag in square brackets
     "              +-- full path to file in the buffer
+    set display=lastline " Show as much as possible of a wrapped last line, not just "@".
 
-" -- Text Formatting/Layout
+" ---------- Text Formatting/Layout
     set completeopt=menuone " don't use a pop up menu for completions
     set expandtab " no real tabs please!
     set formatoptions=rq " Automatically insert comment leader on return, and let gq format comments
@@ -183,7 +183,7 @@
     set softtabstop=4 " when hitting tab or backspace, how many spaces should a tab be (see expandtab)
     set tabstop=4 " real tabs should be 8, and they will show with set list on
 
-" -- Folding
+" ---------- Folding
     if &diff
         set diffopt+=context:99999
     endif
@@ -196,55 +196,20 @@
     endfunction " }
     set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
 
-" -- Plugin Settings
-    let b:match_ignorecase = 1 " case is stupid
-    let perl_extended_vars=1 " highlight advanced perl vars inside strings
-    let tlist_aspjscript_settings = 'asp;f:function;c:class'
-    let tlist_aspvbs_settings = 'asp;f:function;s:sub'
-    let tlist_php_settings = 'php;c:class;d:constant;f:function'
-    let tlist_vb_settings = 'asp;f:function;c:class'
-
-" -- Mappings
-    " " hit f11 to paste
-    " set pastetoggle=<f11>
-    " " space / shift-space scroll in normal mode
-    " noremap <S-space> 5k
-    " noremap <space> 5j
-    " fuzzymaps
-    " nmap <leader>f :FufFileWithCurrentBufferDir<CR>
-    " nmap <leader>ff :FufFile<CR>
-    " nmap <leader>b :FufBuffer<CR>
-    " nmap <leader>t :FufBufferTag<CR>
-    " nmap <tab> :FufBufferTag<CR>
-    " make arrow keys useful
-    map <left> <ESC>:NERDTreeFind<RETURN>
-    " map <right> <ESC>:TagbarToggle<RETURN>
-    nnoremap <buffer> <silent> k gk
-    nnoremap <buffer> <silent> j gj
-    nnoremap <buffer> <silent> gk k
-    nnoremap <buffer> <silent> gj j
-
-    map <up> <ESC>:bp<RETURN>
-    map gT <ESC>:bp<RETURN>
-    map <down> <ESC>:bn<RETURN>
-    map gt <ESC>:bn<RETURN>
-    map <C-h> :wincmd h<CR>
-    map <C-j> :wincmd j<CR>
-    map <C-k> :wincmd k<CR>
-    map <C-l> :wincmd l<CR>
-
-" -- Autocommands
-    " ruby standard 2 spaces, always
-    au BufEnter,VimEnter,FileType *.rb,*.rhtml set shiftwidth=2 softtabstop=2
+" ---------- Autocommands
+    " ruby standard 3 spaces, always
+    au BufEnter,VimEnter,FileType *.rb,*.rhtml set shiftwidth=3 softtabstop=3
     " Override types
     au BufEnter,VimEnter,FileType *.command set filetype=sh
     au BufEnter,VimEnter,FileType *.ps1 set filetype=ps1
     au BufEnter,VimEnter,FileType *.md set filetype=markdown
     au BufEnter,VimEnter,FileType *.dtl set filetype=htmldjango
-    au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery
     au BufEnter,VimEnter,FileType *.txt set cindent cinoptions=+0 fileformat=dos
     au BufEnter,VimEnter,FileType *.reg,*.ini set fileformat=dos
     au BufEnter,VimEnter,FileType *.vimperatorrc,*.xvimrc set filetype=vim
+
+    au BufEnter,VimEnter,FileType *.js,*.jsx set shiftwidth=3 softtabstop=3
+    au BufEnter,VimEnter,FileType *.json,jquery.*.js set filetype=javascript syntax=jquery shiftwidth=3 softtabstop=3
 
     au BufEnter,VimEnter,FileType *.ahk set filetype=autohotkey
     au BufEnter,VimEnter,FileType *.autohotkey,*.ahk set cindent cinoptions=+0 fileformat=dos
@@ -264,7 +229,7 @@
         au BufEnter,VimEnter,FileType *.mm set cindent cinoptions=+0 foldmethod=diff
         au BufEnter,VimEnter,FileType objc,objcpp set cindent cinoptions=+0 foldmethod=diff
     endif
-    " Formatting
+    " Remove trailing spaces on save
     function! RemoveTrailingSpaces()
         let l:save_cursor = getpos('.')
         :%s/\(\s\|　\)\+$//gei
@@ -279,7 +244,40 @@
     au BufEnter * set colorcolumn=81
     au BufEnter *.h,*.m,*.mm,*.pch,*.plist set colorcolumn=121
 
-" -- GUI Settings
+" ---------- Mappings
+    " " hit f11 to paste
+    " set pastetoggle=<f11>
+    " " space / shift-space scroll in normal mode
+    " noremap <S-space> 5k
+    " noremap <space> 5j
+    " fuzzymaps
+    " nmap <leader>f :FufFileWithCurrentBufferDir<CR>
+    " nmap <leader>ff :FufFile<CR>
+    " nmap <leader>b :FufBuffer<CR>
+    " nmap <leader>t :FufBufferTag<CR>
+    " nmap <tab> :FufBufferTag<CR>
+    " make arrow keys useful
+    map <left> <ESC>:NERDTreeFind<RETURN>
+    " map <right> <ESC>:TagbarToggle<RETURN>
+    nnoremap <buffer> <silent> k gk
+    nnoremap <buffer> <silent> j gj
+    nnoremap <buffer> <silent> gk k
+    nnoremap <buffer> <silent> gj j
+    vnoremap <buffer> <silent> k gk
+    vnoremap <buffer> <silent> j gj
+    vnoremap <buffer> <silent> gk k
+    vnoremap <buffer> <silent> gj j
+
+    noremap <up> <ESC>:bp<RETURN>
+    noremap gT <ESC>:bp<RETURN>
+    noremap <down> <ESC>:bn<RETURN>
+    noremap gt <ESC>:bn<RETURN>
+    noremap <C-h> :wincmd h<CR>
+    noremap <C-j> :wincmd j<CR>
+    noremap <C-k> :wincmd k<CR>
+    noremap <C-l> :wincmd l<CR>
+
+" ---------- GUI Settings
 if has("gui_running")
     " Basics
     colorscheme solarized " colorscheme codeschool
@@ -320,18 +318,11 @@ if has("gui_running")
     endfu
     nmap <F2> :call SwitchGUIDisplay()<CR>
     au VimEnter * call SwitchGUIDisplay()
-    " map <F8> <ESC>:set guifont=Consolas:h8<CR>
-    " map <F9> <ESC>:set guifont=Consolas:h10<CR>
-    " map <F10> <ESC>:set guifont=Consolas:h12<CR>
-    " map <F11> <ESC>:set guifont=Consolas:h16<CR>
-    " map <F12> <ESC>:set guifont=Consolas:h20<CR>
-endif
-
-" -- Term Settings
-if s:colorful_term
+elseif s:colorful_term
+" ---------- Term Settings
     "256 color --
     let &t_Co=256
-    colorscheme solarized " colorscheme codeschool " colorscheme slate
+    colorscheme slate " colorscheme solarized " colorscheme codeschool
     " restore screen after quitting
     if has("terminfo")
         let &t_Sf="\ESC[3%p1%dm"
@@ -342,15 +333,77 @@ if s:colorful_term
     endif
 endif
 
-" -- Odds n Ends
+" ---------- Odds n Ends
 set ttymouse=xterm2 " makes it work in everything
 
-" -- Plugins
+" ---------- Plugin Settings
+    let b:match_ignorecase = 1 " case is stupid
+    let perl_extended_vars=1 " highlight advanced perl vars inside strings
+    let tlist_aspjscript_settings = 'asp;f:function;c:class'
+    let tlist_aspvbs_settings = 'asp;f:function;s:sub'
+    let tlist_php_settings = 'php;c:class;d:constant;f:function'
+    let tlist_vb_settings = 'asp;f:function;c:class'
 
-" vim-ios
-let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To work around this add the line
+" ---------- Plugins
 
-" plugin: vimtweak.dll - gvim transparency in windows
+" -- plugin:pathogen
+    execute pathogen#infect()
+
+"" -- plugin:color_coded
+    "let g:color_coded_enabled = 1
+    "let g:color_coded_filetypes = ['c', 'cpp', 'objc']
+
+" -- plugin:vim-ios
+    let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To work around this add the line
+
+" -- plugin:vim-javascript
+    let g:javascript_plugin_jsdoc = 1 " Enables syntax highlighting for JSDocs. Default Value: 0.
+    let g:javascript_plugin_ngdoc = 1 " Enables some additional syntax highlighting for NGDocs. Requires JSDoc plugin to be enabled as well. Default Value: 0
+    let g:javascript_plugin_flow = 1 " Enable syntax highlighting for Flow. Default Value: 0.
+    " You can customize concealing characters by defining one or more of the following variables:
+    let g:javascript_conceal_function       = "ƒ"
+    let g:javascript_conceal_null           = "ø"
+    let g:javascript_conceal_this           = "@"
+    let g:javascript_conceal_return         = "⇚"
+    let g:javascript_conceal_undefined      = "¿"
+    let g:javascript_conceal_NaN            = "ℕ"
+    let g:javascript_conceal_prototype      = "¶"
+    let g:javascript_conceal_static         = "•"
+    let g:javascript_conceal_super          = "Ω"
+    let g:javascript_conceal_arrow_function = "⇒"
+
+" -- plugin:vim-jsx
+    let g:jsx_ext_required = 0
+    let g:jsx_pragma_required = 0
+    " eslint
+    let g:syntastic_javascript_checkers = ['eslint']
+    let g:syntastic_javascript_eslint_exe = 'npm run eslint --'
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    "" Override eslint with local version where necessary.
+    "let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
+    "if matchstr(local_eslint, "^\/\\w") = ''
+    "    let local_eslint = getcwd() . "/" . local_eslint
+    "endif
+    "if executable(local_eslint)
+    "    let g:syntastic_javascript_eslint_exec = local_eslint
+    "endif
+
+
+" -- plugin:UltiSnips
+    " Trigger configuration. Do not use <TAB> if you use https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<TAB>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
+
+" -- plugin:vim-snippets
+    "just do nothing
+
+" -- plugin:vimtweak.dll - gvim transparency in windows
     " Alpha Window - SetAlpha
     " Maximized Window - EnableMaximize
     " EnableCaption - EnableCaption
@@ -384,23 +437,23 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
         set transparency=7 " transparency, just work to MacVim
     endif
 
-" plugin: Colorizer
-    let cohi = 0
-    if has("gui_running")
-        let cohi = 1
-    elseif stridx(&shell, 'cmd.exe') == -1
-        let cohi = 1
-    endif
+"" -- plugin:Colorizer
+"    let cohi = 0
+"    if has("gui_running")
+"        let cohi = 1
+"    elseif stridx(&shell, 'cmd.exe') == -1
+"        let cohi = 1
+"    endif
+"
+"    if cohi == 1
+"        au BufEnter,VimEnter * ColorHighlight
+"    endif
+"
+"    " ColorHighlight " start/update highlighting
+"    " ColorClear " clear all highlights
+"    " ColorToggle " toggle highlights
 
-    if cohi == 1
-        au BufEnter,VimEnter * ColorHighlight
-    endif
-
-    " ColorHighlight " start/update highlighting
-    " ColorClear " clear all highlights
-    " ColorToggle " toggle highlights
-
-" plugin: rainbow_parentheses
+" -- plugin:rainbow_parentheses
     " au VimEnter * RainbowParenthesesToggle " on/off
     au VimEnter * RainbowParenthesesActivate " active
     au Syntax * RainbowParenthesesLoadRound " ()
@@ -408,16 +461,16 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     au Syntax * RainbowParenthesesLoadBraces " {}
     " au Syntax * RainbowParenthesesLoadChevrons " <>
 
-" plugin: Rainbow Parentheses
-    " let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
+"" -- plugin:Rainbow Parentheses
+"    let g:rainbow_active = 1 " 0 if you want to enable it later via :RainbowToggle
 
-" plugin: MiniBufExplorer
+" -- plugin:MiniBufExplorer
     let g:miniBufExplMapWindowNavVim = 1
     let g:miniBufExplMapWindowNavArrows = 1
     let g:miniBufExplMapCTabSwitchBufs = 0
     let g:miniBufExplModSelTarget = 1
 
-" plugin: taglist
+" -- plugin:taglist
     if g:os == "windows"
         let Tlist_Ctags_Cmd = 'ctags'
     elseif g:os == "linux"
@@ -429,7 +482,7 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     let Tlist_Exit_OnlyWindow = 1
     let Tlist_User_Right_Window = 0
 
-" plugin NERDTree
+" -- plugin:NERDTree
     let NERDTreeIgnore = ['\.beam', '\.pyc', 'ebin']
     " let NERDChristmasTree = 1
     let NERDTreeWinSize = 40
@@ -452,13 +505,12 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     endfu
     command! -nargs=? Ntr call Ntr(<f-args>)
 
-" plugin clang_complate
+" -- plugin:clang_complate
     let g:clang_complate_auto = 0
     let g:clang_auto_select = 0
     let g:clang_use_library = 1
 
-
-" Plugin neocomplcache
+" -- Plugin:neocomplcache
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
@@ -504,6 +556,12 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     endfunction
     " <TAB>: completion.
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    "   fix question: complete with <Tab> doesn't work.
+    "   reference-from: https://github.com/spf13/spf13-vim/issues/108
+    " <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    au BufEnter * inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    au BufEnter * inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
@@ -558,7 +616,7 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     " https://github.com/c9s/perlomni.vim
     let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-" -- Position and size settings
+" ---------- Position and size settings
     let     g:dfl=30 | let g:dfc=86  | let g:dfx=-1  | let g:dfy=-1
     if g:os=="windows"
         let g:ml =48  | let g:mc =180 | let g:mx =0   | let g:my =7
