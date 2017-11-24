@@ -42,6 +42,12 @@ export xcode_sdks_iphonesimulator="${xcode_home}/Contents/Developer/Platforms/iP
 export xcode_sdks_macosx="${xcode_home}/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs"
 export xcode_derived="${HOME}/Library/Developer/Xcode/DerivedData"
 
+# -- openssl
+
+export PATH=/usr/local/opt/openssl/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
+export CPATH=/usr/local/opt/openssl/include:$LD_LIBRARY_PATH
+
 # -- alias
 
 alias gs="git status"
