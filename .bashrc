@@ -101,3 +101,7 @@ alias gum='git reset --mixed HEAD~1'
 
 alias ss="svn status"
 alias svnstatus="svn status"
+
+alias op="open"
+alias opn="open"
+alias oepn="open"
