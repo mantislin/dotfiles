@@ -224,14 +224,22 @@
     nnoremap <buffer> <silent> gk k
     nnoremap <buffer> <silent> gj j
 
-    map <up> <ESC>:bp<RETURN>
-    map gT <ESC>:bp<RETURN>
-    map <down> <ESC>:bn<RETURN>
-    map gt <ESC>:bn<RETURN>
-    map <C-h> :wincmd h<CR>
-    map <C-j> :wincmd j<CR>
-    map <C-k> :wincmd k<CR>
-    map <C-l> :wincmd l<CR>
+    nnoremap <up> <ESC>:bp<RETURN>
+    nnoremap gT <ESC>:bp<RETURN>
+    nnoremap <down> <ESC>:bn<RETURN>
+    nnoremap gt <ESC>:bn<RETURN>
+
+    if g:os == "windows" || g:os == "linux"
+        nnoremap <A-h> :wincmd h<CR>
+        nnoremap <A-j> :wincmd j<CR>
+        nnoremap <A-k> :wincmd k<CR>
+        nnoremap <A-l> :wincmd l<CR>
+    elseif g:os == "mac"
+        nnoremap ˙ :wincmd h<CR>
+        nnoremap ∆ :wincmd j<CR>
+        nnoremap ˚ :wincmd k<CR>
+        nnoremap ¬ :wincmd l<CR>
+    endif
 
 " -- Autocommands
     " ruby standard 2 spaces, always
