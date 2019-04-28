@@ -458,6 +458,7 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     let g:clang_complate_auto = 0
     let g:clang_auto_select = 0
     let g:clang_use_library = 1
+    let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 
 
 " Plugin neocomplcache
