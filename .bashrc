@@ -1,8 +1,8 @@
 # -- BASE
 
-# if [ -f "${HOME}/bin/global_env" ]; then
-#     source "${HOME}/bin/global_env"
-# fi
+#if [ -f "${HOME}/bin/global_env" ]; then
+#    source "${HOME}/bin/global_env"
+#fi
 
 # -- bin
 
