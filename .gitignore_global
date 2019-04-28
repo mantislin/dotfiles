@@ -199,7 +199,7 @@ build/
 *.ilk
 *.meta
 *.obj
-*.pch
+#*.pch
 *.pdb
 *.pgc
 *.pgd
@@ -358,6 +358,8 @@ pip-log.txt
 #############
 ## Customize
 #############
+
+mygit
 
 # -- github
 .fuse_hidden*
