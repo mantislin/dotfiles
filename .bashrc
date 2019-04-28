@@ -38,6 +38,13 @@ if [ -z "${VIM_APP_DIR}" ]; then
     fi
 fi
 
+
+# -- QQ
+
+export qq_caches="${HOME}/Library/Containers/com.tencent.qq/Data/Library/Caches"
+export qq_caches_images="${qq_caches}/Images/"
+export qq_caches_videos="${qq_caches}/Videos/"
+
 # -- vmware
 
 export vmware_lib="/Applications/VMware Fusion.app/Contents/Library"
