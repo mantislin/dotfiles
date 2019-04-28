@@ -105,3 +105,5 @@ alias svnstatus="svn status"
 alias op="open"
 alias opn="open"
 alias oepn="open"
+
+alias upgradepip="python -m pip install --upgrade pip"
