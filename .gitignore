@@ -17,3 +17,7 @@ vimfiles/view/*
 
 .cow/stat.bat
 .cow/stat
+
+# -- oh my zsh
+
+.oh-my-zsh
