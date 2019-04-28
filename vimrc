@@ -297,8 +297,8 @@ if has("gui_running")
         set guifont=CourierNew\ 10.5
         set gfw=CourierNew\ 10.5
     elseif g:os == "mac"
-        set guifont=Menlo:h11
-        set gfw=Menlo:h11
+        set guifont=Menlo:h14
+        set gfw=Menlo:h14
     endif
     func! SwitchGUIDisplay() " Cusfunc, show a compact gui window
         if !exists("g:gdstate")
