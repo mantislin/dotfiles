@@ -7,12 +7,12 @@ fi
 
 
 if [ -z "$macvimpath" ]; then
-    if [ -d "${HOME}/Applications/MacVim" ]; then
+    if [ -d "${HOME}/Applications/MacVim/MacVim.app" ]; then
         macvimpath="${HOME}/Applications/MacVim"
-    elif [ -d "/Applications/MacVim" ]; then
-        macvimpath="/Applications/MacVim"
     elif [ -d "${HOME}/Applications/MacVim.app" ]; then
         macvimpath="${HOME}/Applications"
+    elif [ -d "/Applications/MacVim/MacVim.app" ]; then
+        macvimpath="/Applications/MacVim"
     elif [ -d "/Applications/MacVim.app" ]; then
         macvimpath="/Applications"
     else

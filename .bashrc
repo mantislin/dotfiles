@@ -12,9 +12,30 @@ export PATH=${HOME}/bin:${PATH}
 
 if [ -d "${HOME}/Applications/MacVim/MacVim.app" ]; then
     export VIM_APP_DIR="${HOME}/Applications/MacVim"
-fi
-if [ -d "/Applications/MacVim/MacVim.app" ]; then
+elif [ -d "${HOME}/Applications/MacVim.app" ]; then
+    export VIM_APP_DIR="${HOME}/Applications"
+elif [ -d "/Applications/MacVim/MacVim.app" ]; then
     export VIM_APP_DIR="/Applications/MacVim"
+elif [ -d "/Applications/MacVim.app" ]; then
+    export VIM_APP_DIR="/Applications"
+fi
+if [ -z "${VIM_APP_DIR}" ]; then
+    if [ -d "/Applications" ]; then
+        for f in $(find "/Applications" -type d -iname "MacVim.app")
+        do
+            echo "4"
+            export VIM_APP_DIR="$f/.."
+        done
+    fi
+fi
+if [ -z "${VIM_APP_DIR}" ]; then
+    if [ -d "${HOME}/Applications" ]; then
+        for f in $(find "${HOME}/Applications" -type d -iname "MacVim.app")
+        do
+            echo "5"
+            export VIM_APP_DIR="$f/.."
+        done
+    fi
 fi
 
 # -- vmware
