@@ -75,6 +75,10 @@ export PATH=/usr/local/opt/openssl/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:$LD_LIBRARY_PATH
 
+# -- ffmpeg
+
+export PATH="$PATH:${HOME}/local/ffmpeg/bin:${HOME}/local/ffmpeg/presets"
+
 # -- alias
 
 alias gs="git status"
