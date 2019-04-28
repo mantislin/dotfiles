@@ -1,7 +1,7 @@
 @chcp 65001 >nul 2>nul
 
 @if exist "%ffmpeg_bin%" (
-    @set "path=%ffmpeg_bin%;%path%" >nul 2>nul
+    @set "path=%program%\MTerminalTools;%ffmpeg_bin%;%path%" >nul 2>nul
 )
 
 @set "fftail=-threads 0 -stats -loglevel error"
