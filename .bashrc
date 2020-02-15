@@ -61,6 +61,10 @@ export GEM_HOME=${HOME}/gems
 export GEM_BIN=${GEM_HOME}/bin
 export PATH="${GEM_BIN}:${PATH}"
 
+# -- python
+
+export "PATH=${HOME}/Library/Python/3.7/bin:${PATH}"
+
 # -- xCode
 
 export xcode_plugin="${HOME}/Library/Application Support/Developer/Shared/Xcode/Plug-ins"
@@ -78,6 +82,8 @@ export CPATH=/usr/local/opt/openssl/include:$LD_LIBRARY_PATH
 # -- ffmpeg
 
 export PATH="$PATH:${HOME}/local/ffmpeg/bin:${HOME}/local/ffmpeg/presets"
+export hwaccel="-hwaccel videotoolbox"
+export fftail="-threads 0 -stats -loglevel error"
 
 # -- alias
 
