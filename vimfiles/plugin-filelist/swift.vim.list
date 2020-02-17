@@ -1,0 +1,8 @@
+ale_linters/swift/swiftpm.vim
+ftplugin/swift.vim
+ctags/swift.cnf
+syntax_checkers/swift/swiftlint.vim
+syntax_checkers/swift/swiftpm.vim
+ftdetect/swift.vim
+plugin/swift.vim
+syntax/swift.vim
