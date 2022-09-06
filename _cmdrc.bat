@@ -9,3 +9,4 @@
 @set "hwaccel1=-hwaccel_device 1 -hwaccel qsv"
 @set "hwaccel=%hwaccel0%"
 @set "upgradepip=python -m pip install --upgrade pip"
+@set "upgradepip3=python3 -m pip install --upgrade pip"
