@@ -34,24 +34,31 @@
     set noexrc " don't use local version of .(g)vimrc, .exrc
     set background=dark " we plan to use a dark background
     set fencs=ucs-bom,utf-8,shift-jis,gb18030,gbk,gb2312,cp936,taiwan,korean,latin1
-    set fenc=utf-8
-    if g:os=="windows" || g:os=="mac"
-        set fenc=utf-8
-        set tenc=utf-8
-        set enc=utf-8
-    elseif g:os=="linux"
-        set fenc=utf-8
-        set tenc=utf-8
-        let s:enc=""
+
+    "set fenc=utf-8
+    "if g:os=="windows" || g:os=="mac"
+    "    set fenc=utf-8
+    "    set tenc=utf-8
+    "    set enc=utf-8
+    "elseif g:os=="linux"
+    "    set fenc=utf-8
+    "    set tenc=utf-8
+    "    let s:enc=""
+    "    if exists("$LANG") && $LANG != "C"
+    "        let s:enc = substitute($LANG, '\w\{2\}_\w\{2\}\.', "", "")
+    "    endif
+    "    if s:enc != ""
+    "        let &enc=s:enc
+    "    else
+    "        set enc=utf-8
+    "    endif
+    "endif
+    if g:os=="linux"
         if exists("$LANG") && $LANG != "C"
             let s:enc = substitute($LANG, '\w\{2\}_\w\{2\}\.', "", "")
         endif
-        if s:enc != ""
-            let &enc=s:enc
-        else
-            set enc=utf-8
-        endif
     endif
+
     language messages en_US.UTF-8 " fix Unrecognizable Code in console output
     set langmenu=en_US.UTF-8 " set language of menu
     source $VIMRUNTIME/delmenu.vim " prevent menu from becoming Unrecognizable Code
@@ -434,7 +441,7 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     let Tlist_Exit_OnlyWindow = 1
     let Tlist_User_Right_Window = 0
 
-" plugin NERDTree
+" plugin: NERDTree
     let NERDTreeIgnore = ['\.beam', '\.pyc', 'ebin']
     " let NERDChristmasTree = 1
     let NERDTreeWinSize = 40
@@ -457,14 +464,14 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     endfu
     command! -nargs=? Ntr call Ntr(<f-args>)
 
-" plugin clang_complate
+" plugin: clang_complate
     let g:clang_complate_auto = 0
     let g:clang_auto_select = 0
     let g:clang_use_library = 1
     let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 
 
-" Plugin neocomplcache
+" plugin: neocomplcache
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
@@ -563,6 +570,28 @@ let c_no_curly_error = 1 " Vim highlights curly braces in blocks as errors. To w
     " For perlomni.vim setting.
     " https://github.com/c9s/perlomni.vim
     let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" plugin: AutoFenc
+    let g:autofenc_enable = 0 "Enables/disables this plugin.
+    let g:autofenc_emit_messages = 0 "Emits messages about the detected/used encoding or warnings upon opening a file.
+    let g:autofenc_max_file_size = 10485760 "If the size of a file is higher than this value (in bytes), then the autodetection will not be performed.
+    "let g:autofenc_disable_for_files_matching = '' "(regular expression, see the settings in plugin/AutoFenc.vim) If the file (with complete path) matches this regular expression, then the autodetection will not be performed. It is by default set to disable autodetection for non-local files (e.g. accessed via ftp or scp) because the script cannot handle some kind of autodetection for these files. The regular expression is matched case-sensitively.
+    let g:autofenc_disable_for_file_types = [] "If the file type matches some of the filetypes specified in this list, then the autodetection will not be performed. The comparison is done case-sensitively.
+    let g:autofenc_autodetect_bom = 0 "0 if ucs-bom is in fileencodings, 1 otherwise Enables/disables detection of encoding by BOM.
+    let g:autofenc_autodetect_html = 1 "Enables/disables detection of encoding for HTML-based documents.
+    "let g:autofenc_autodetect_html_filetypes = '' "(regular expression, see the settings in plugin/AutoFenc.vim) Regular expression for all supported HTML file types.
+    let g:autofenc_autodetect_xml = 1 "Enables/disables detection of encoding for XML-based documents.
+    "let g:autofenc_autodetect_xml_filetypes = '' "(regular expression, see the settings in plugin/AutoFenc.vim) Regular expression for all supported XML file types.
+    let g:autofenc_autodetect_css = 1 "Enables/disables detection of encoding for CSS documents.
+    let g:autofenc_autodetect_css_filetypes = '' "(regular expression, see the settings in plugin/AutoFenc.vim) Regular expression for all supported CSS file types.
+    let g:autofenc_autodetect_comment = 1 "Enables/disables detection of encoding in comments.
+    let g:autofenc_autodetect_commentexpr = '' "(regular expression, see the settings in plugin/AutoFenc.vim) Pattern for detection of encodings specified in a comment.
+    let g:autofenc_autodetect_num_of_lines = 5 "How many lines from the beginning and from the end of the file should be searched for the possible encoding declaration.
+    let g:autofenc_autodetect_ext_prog = 1 "Enables/disables detection of encoding via an external program (see additional settings below).
+    let g:autofenc_ext_prog_path = 'enca' "Path to the external program. It can be either a relative or absolute path. The external program can take any number of arguments, but the last one has to be a path to the file for which the encoding is to be detected (it will be supplied by this plugin). The output of the program has to be the name of the encoding in which the file is saved (a string on a single line).
+    let g:autofenc_ext_prog_args = '-i' "Additional program arguments (can be none, i.e. '').
+    let g:autofenc_ext_prog_unknown_fenc = '???' "If the output of the external program is this string, then it means that the file encoding was not detected successfully. The string has to be case-sensitive.
+    let g:autofenc_enc_blacklist = '' "If the detected encoding matches this regular expression, it will be ignored.
 
 " -- Position and size settings
     let     g:dfl=30 | let g:dfc=86  | let g:dfx=-1  | let g:dfy=-1
