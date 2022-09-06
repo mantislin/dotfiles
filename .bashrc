@@ -6,7 +6,7 @@
 
 # -- bin
 
-export PATH=${HOME}/bin:${PATH}
+export PATH="${HOME}/bin:${PATH}"
 
 # -- macvim
 
@@ -21,18 +21,14 @@ elif [ -d "/Applications/MacVim.app" ]; then
 fi
 if [ -z "${VIM_APP_DIR}" ]; then
     if [ -d "/Applications" ]; then
-        for f in $(find "/Applications" -type d -iname "MacVim.app")
-        do
-            echo "4"
+        for f in $(find "/Applications" -type d -iname "MacVim.app"); do
             export VIM_APP_DIR="$f/.."
         done
     fi
 fi
 if [ -z "${VIM_APP_DIR}" ]; then
     if [ -d "${HOME}/Applications" ]; then
-        for f in $(find "${HOME}/Applications" -type d -iname "MacVim.app")
-        do
-            echo "5"
+        for f in $(find "${HOME}/Applications" -type d -iname "MacVim.app"); do
             export VIM_APP_DIR="$f/.."
         done
     fi
@@ -57,13 +53,19 @@ export PATH="${composer_bin}:${PATH}"
 
 # -- gem
 
-export GEM_HOME=${HOME}/gems
-export GEM_BIN=${GEM_HOME}/bin
+export GEM_HOME="${HOME}/gems"
+export GEM_BIN="${GEM_HOME}/bin"
 export PATH="${GEM_BIN}:${PATH}"
 
 # -- python
 
-export "PATH=${HOME}/Library/Python/3.7/bin:${PATH}"
+#export "PATH=${HOME}/Library/Python/3.7/bin:${PATH}"
+if [ -d "${HOME}/Library/Python/3.8/bin" ]; then
+    export PATH="${HOME}/Library/Python/3.8/bin:${PATH}"
+elif [ -d "/usr/local/opt/python@3.8/bin" ]; then
+    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+    export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
+fi
 
 # -- xCode
 
@@ -72,6 +74,21 @@ export xcode_home="/Applications/Xcode.app"
 export xcode_sdks_iphoneos="${xcode_home}/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs"
 export xcode_sdks_iphonesimulator="${xcode_home}/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs"
 export xcode_sdks_macosx="${xcode_home}/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs"
+
+# -- Android
+
+if [ -d "/Library/Java/JavaVirtualMachines" ]; then
+    for f in $(find "/Library/Java/JavaVirtualMachines" -type d -iname "jdk*.jdk"); do
+        export JAVA_HOME="${f}/Contents/Home"
+    done
+fi
+if [ -d "${HOME}/Library/Android/sdk" ]; then
+    export ANDROID_HOME="${HOME}/Library/Android/sdk"
+    alias emulator="${ANDROID_HOME}/emulator/emulator"
+fi
+if [ -d "${HOME}/Library/Android/sdk/ndk-bundle" ]; then
+    export ANDROID_NDK_HOME="${HOME}/Library/Android/sdk/ndk-bundle"
+fi
 
 # -- openssl
 
@@ -113,3 +130,4 @@ alias opn="open"
 alias oepn="open"
 
 alias upgradepip="python -m pip install --upgrade pip"
+alias upgradepip3="python3 -m pip install --upgrade pip"
